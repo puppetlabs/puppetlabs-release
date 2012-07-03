@@ -1,0 +1,2 @@
+puppetlabs-keyring.gpg /etc/apt/trusted.gpg.d
+puppetlabs.list /etc/apt/sources.list.d

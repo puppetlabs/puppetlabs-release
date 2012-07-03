@@ -1,0 +1,30 @@
+<%= @name -%> (<%= @debversion -%>-<%= @release -%>) <%= @dist %>; urgency=low
+
+  * Update to version <%= @debversion -%>-<%= @release -%>
+
+ -- Puppet Labs Release <info@puppetlabs.com>  <%= Time.now.strftime("%a, %d %b %Y %H:%M:%S %z")  -%>
+
+puppetlabs-release (1.0-4) <%= @dist %>; urgency=low
+
+  * Replace devel package
+
+ -- Matthaus Litteken <matthaus@puppetlabs.com>  Thu, 02 Jul 2012 20:00:00 -0800
+
+puppetlabs-release (1.0-3) <%= @dist %>; urgency=low
+
+  * Add precise to dists
+
+ -- Moses Mendoza <info@puppetlabs.com>  Thu, 10 May 2012 13:31:56 -0800
+
+puppetlabs-release (1.0-2) <%= @dist %>; urgency=low
+
+  * Added install of gpg key via apt-key add. Added version checking for debian lenny via debian_version
+
+ -- Moses Mendoza <info@puppetlabs.com>  Tue, 14 Feb 2012 19:32:56 -0800
+
+puppetlabs-release (1.0-1) <%= @dist %>; urgency=low
+
+  * Initial release
+
+ -- Moses Mendoza <info@puppetlabs.com>  Mon, 13 Feb 2012 19:32:56 -0800
+
