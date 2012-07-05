@@ -1,6 +1,6 @@
 [puppetlabs-products]
 name=Puppet Labs Products <%= @dist.capitalize -%> <%= @version -%> - $basearch
-baseurl=http://yum.puppetlabs.com/<%= @dist.downcase -%>/<%= @shortname -%>/products/$basearch
+baseurl=http://yum.puppetlabs.com/<%= @dist.downcase -%>/<%= @codename -%>/products/$basearch
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs
 enabled=1
 gpgcheck=1
