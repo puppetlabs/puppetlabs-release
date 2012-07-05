@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# install the gpg key
+
+KEY="/etc/apt/trusted.gpg.d/puppetlabs-keyring.gpg"
+/usr/bin/apt-key add "$KEY" >/dev/null 2>&1

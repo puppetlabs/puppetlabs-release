@@ -1,0 +1,10 @@
+#!/usr/bin/expect -f
+### rpmsign-expects -- Sign RPMs by sending the passphrase.
+
+set password <%= @passphrase %>
+spawn rpm <%= @cur_signmacros -%> --addsign $argv
+expect -exact "Enter pass phrase: "
+send -- "$password\r"
+expect eof
+
+## end of rpmsign-expects
