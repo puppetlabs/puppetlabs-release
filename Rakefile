@@ -41,7 +41,7 @@ end
 @signmacros = %{--define "%_gpg_name #{@signwith}"}
 @signmacros_el5 = %{--define "%__gpg_sign_cmd %{__gpg} gpg --force-v3-sigs --digest-algo=sha1 --batch --no-verbose --no-armor --passphrase-fd 3 --no-secmem-warning -u %{_gpg_name} -sbo %{__signature_filename} %{__plaintext_filename}"}
 @rpm_rsync_url = ENV["rpm_rsync_url"] ||= "#{ENV["USER"]}@burji.puppetlabs.com:/opt/repository/yum"
-@deb_rsync_url = ENV["deb_rsync_url"] ||= "#{ENV["USER"]}@burji.puppetlabs.lan:/opt/repository/incoming"
+@deb_rsync_url = ENV["deb_rsync_url"] ||= "#{ENV["USER"]}@burji.puppetlabs.com:/opt/repository/incoming"
 
 def check_command(cmd)
   %x{which #{cmd}}
@@ -236,7 +236,7 @@ namespace :deb do
 
   desc "Ship the packages to the place"
   task :ship do
-    sh "rsync -avg pkg/deb/* #{@deb_rsync_uri}"
+    sh "rsync -avg pkg/deb/* #{@deb_rsync_url}"
   end
 end
 
