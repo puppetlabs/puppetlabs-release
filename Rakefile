@@ -119,6 +119,7 @@ end
   :el6 => { :dist => 'el', :codename => '6', :version => '6' },
   :f15 => { :dist => 'fedora', :codename => 'f15', :version => '15' },
   :f16 => { :dist => 'fedora', :codename => 'f16', :version => '16' },
+  :f17 => { :dist => 'fedora', :codename => 'f17', :version => '17' },
   }
 
 desc "Clean package artifacts"
