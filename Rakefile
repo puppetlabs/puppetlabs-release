@@ -34,8 +34,8 @@ def populate_classvars(dist)
 end
 
 @debversion = ENV["debversion"] ||= "1.0"
-@release = ENV["release"] ||= "5"
-@deb_dists = ["hardy", "lenny", "lucid", "maverick", "natty", "oneiric", "precise", "sid", "squeeze", "unstable", "wheezy", "stable"]
+@release = ENV["release"] ||= "6"
+@deb_dists = ["hardy", "lenny", "lucid", "maverick", "natty", "oneiric", "quantal", "precise", "sid", "squeeze", "unstable", "wheezy", "stable"]
 @signwith = ENV["signwith"] ||= "4BD6EC30"
 @nosign ||= ENV["no_sign"]
 @signmacros = %{--define "%_gpg_name #{@signwith}"}
