@@ -34,8 +34,8 @@ def populate_classvars(dist)
 end
 
 @debversion = ENV["debversion"] ||= "1.0"
-@release = ENV["release"] ||= "6"
-@deb_dists = ["hardy", "lenny", "lucid", "maverick", "natty", "oneiric", "quantal", "precise", "sid", "squeeze", "unstable", "wheezy", "stable"]
+@release = ENV["release"] ||= "7"
+@deb_dists = ["lucid", "oneiric", "precise", "quantal", "raring", "sid", "squeeze", "unstable", "wheezy", "stable"]
 @signwith = ENV["signwith"] ||= "4BD6EC30"
 @nosign ||= ENV["no_sign"]
 @signmacros = %{--define "%_gpg_name #{@signwith}"}
@@ -117,9 +117,9 @@ end
 @matrix = {
   :el5 => { :dist => 'el', :codename => '5', :version => '5' },
   :el6 => { :dist => 'el', :codename => '6', :version => '6' },
-  :f15 => { :dist => 'fedora', :codename => 'f15', :version => '15' },
   :f16 => { :dist => 'fedora', :codename => 'f16', :version => '16' },
   :f17 => { :dist => 'fedora', :codename => 'f17', :version => '17' },
+  :f18 => { :dist => 'fedora', :codename => 'f18', :version => '18' },
   }
 
 desc "Clean package artifacts"
