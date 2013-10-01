@@ -34,14 +34,14 @@ def populate_classvars(dist)
 end
 
 @debversion = ENV["debversion"] ||= "1.0"
-@release = ENV["release"] ||= "7"
+@release = ENV["release"] ||= "8"
 @deb_dists = ["lucid", "oneiric", "precise", "quantal", "raring", "sid", "squeeze", "unstable", "wheezy", "stable"]
 @signwith = ENV["signwith"] ||= "4BD6EC30"
 @nosign ||= ENV["no_sign"]
 @signmacros = %{--define "%_gpg_name #{@signwith}"}
 @signmacros_el5 = %{--define "%__gpg_sign_cmd %{__gpg} gpg --force-v3-sigs --digest-algo=sha1 --batch --no-verbose --no-armor --passphrase-fd 3 --no-secmem-warning -u %{_gpg_name} -sbo %{__signature_filename} %{__plaintext_filename}"}
-@rpm_rsync_url = ENV["rpm_rsync_url"] ||= "#{ENV["USER"]}@burji.puppetlabs.com:/opt/repository/yum"
-@deb_rsync_url = ENV["deb_rsync_url"] ||= "#{ENV["USER"]}@burji.puppetlabs.com:/opt/repository/incoming"
+@rpm_rsync_url = ENV["rpm_rsync_url"] ||= "#{ENV["USER"]}@yum.puppetlabs.com:/opt/repository/yum"
+@deb_rsync_url = ENV["deb_rsync_url"] ||= "#{ENV["USER"]}@apt.puppetlabs.com:/opt/repository/incoming"
 
 def check_command(cmd)
   %x{which #{cmd}}
@@ -61,7 +61,8 @@ def build_rpm(dist)
      --define "_default_patch_fuzz 2"'
   args = rpm_define + ' ' + rpm_old_version
   mkdir_p temp
-  base = "pkg/rpm/#{@dist}/#{@codename}/products"
+  topdir = "pkg/rpm"
+  base = "#{topdir}/#{@dist}/#{@codename}/products"
   mkdir_p "#{base}/SRPMS"
   mkdir_p "#{base}/i386"
   mkdir_p "#{base}/x86_64"
@@ -79,9 +80,10 @@ def build_rpm(dist)
   output.each_line do | line |
     puts "#{`pwd`.strip}/pkg/rpm/#{line.split('/')[-1]}"
   end
-  mock = "#{@dist == 'el' ? 'pl' : 'fedora'}-#{@version}-i386"
+  mock = "#{@dist == 'el' ? 'pl-el' : 'pl-fedora'}-#{@version}-i386"
   sh "mock -r #{mock} #{base}/SRPMS/#{@name}-#{@version}-#{@release}.src.rpm"
   cp_pr "/var/lib/mock/#{mock}/result/#{@name}-#{@version}-#{@release}.noarch.rpm", "#{base}/i386"
+  ln_sf "#{base}/i386/#{@name}-#{@version}-#{@release}.noarch.rpm", "#{topdir}/#{@name}-#{@dist}-#{@version}.noarch.rpm"
   cp_pr "/var/lib/mock/#{mock}/result/#{@name}-#{@version}-#{@release}.noarch.rpm", "#{base}/x86_64"
 end
 
@@ -117,9 +119,9 @@ end
 @matrix = {
   :el5 => { :dist => 'el', :codename => '5', :version => '5' },
   :el6 => { :dist => 'el', :codename => '6', :version => '6' },
-  :f16 => { :dist => 'fedora', :codename => 'f16', :version => '16' },
   :f17 => { :dist => 'fedora', :codename => 'f17', :version => '17' },
   :f18 => { :dist => 'fedora', :codename => 'f18', :version => '18' },
+  :f19 => { :dist => 'fedora', :codename => 'f19', :version => '19' },
   }
 
 desc "Clean package artifacts"
