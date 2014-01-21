@@ -1,6 +1,23 @@
 require 'erb'
 
 @name = 'puppetlabs-release'
+@debversion = ENV["debversion"] ||= "1.0"
+@release = ENV["release"] ||= "10"
+@deb_dists = ["lucid", "precise", "quantal", "raring", "saucy", "sid", "squeeze", "unstable", "wheezy", "stable"]
+@signwith = ENV["signwith"] ||= "4BD6EC30"
+@nosign ||= ENV["no_sign"]
+@signmacros = %{--define "%_gpg_name #{@signwith}"}
+@signmacros_el5 = %{--define "%__gpg_sign_cmd %{__gpg} gpg --force-v3-sigs --digest-algo=sha1 --batch --no-verbose --no-armor --passphrase-fd 3 --no-secmem-warning -u %{_gpg_name} -sbo %{__signature_filename} %{__plaintext_filename}"}
+@rpm_rsync_url = ENV["rpm_rsync_url"] ||= "#{ENV["USER"]}@yum.puppetlabs.com:/opt/repository/yum"
+@deb_rsync_url = ENV["deb_rsync_url"] ||= "#{ENV["USER"]}@apt.puppetlabs.com:/opt/repository/incoming"
+
+@matrix = {
+  :el5 => { :dist => 'el', :codename => '5', :version => '5' },
+  :el6 => { :dist => 'el', :codename => '6', :version => '6' },
+  :el7 => { :dist => 'el', :codename => '7', :version => '7' },
+  :f19 => { :dist => 'fedora', :codename => 'f19', :version => '19' },
+  :f20 => { :dist => 'fedora', :codename => 'f20', :version => '20' },
+}
 
 def get_temp
   `mktemp -d -t tmpXXXXXX`.strip
@@ -32,16 +49,6 @@ end
 def populate_classvars(dist)
   @version, @dist, @codename = @matrix[dist.to_sym][:version], @matrix[dist.to_sym][:dist],  @matrix[dist.to_sym][:codename]
 end
-
-@debversion = ENV["debversion"] ||= "1.0"
-@release = ENV["release"] ||= "9"
-@deb_dists = ["lucid", "precise", "quantal", "raring", "saucy", "sid", "squeeze", "unstable", "wheezy", "stable"]
-@signwith = ENV["signwith"] ||= "4BD6EC30"
-@nosign ||= ENV["no_sign"]
-@signmacros = %{--define "%_gpg_name #{@signwith}"}
-@signmacros_el5 = %{--define "%__gpg_sign_cmd %{__gpg} gpg --force-v3-sigs --digest-algo=sha1 --batch --no-verbose --no-armor --passphrase-fd 3 --no-secmem-warning -u %{_gpg_name} -sbo %{__signature_filename} %{__plaintext_filename}"}
-@rpm_rsync_url = ENV["rpm_rsync_url"] ||= "#{ENV["USER"]}@yum.puppetlabs.com:/opt/repository/yum"
-@deb_rsync_url = ENV["deb_rsync_url"] ||= "#{ENV["USER"]}@apt.puppetlabs.com:/opt/repository/incoming"
 
 def check_command(cmd)
   %x{which #{cmd}}
@@ -116,13 +123,6 @@ def sign_rpm(rpm, type = nil)
   `./rpmsign-expects#{type.nil? ? "-rpm" : "-el5"} #{rpm} &> /dev/null`
 end
 
-@matrix = {
-  :el5 => { :dist => 'el', :codename => '5', :version => '5' },
-  :el6 => { :dist => 'el', :codename => '6', :version => '6' },
-  :f17 => { :dist => 'fedora', :codename => 'f17', :version => '17' },
-  :f18 => { :dist => 'fedora', :codename => 'f18', :version => '18' },
-  :f19 => { :dist => 'fedora', :codename => 'f19', :version => '19' },
-  }
 
 desc "Clean package artifacts"
 task :clean do
