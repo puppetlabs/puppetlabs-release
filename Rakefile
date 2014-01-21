@@ -119,6 +119,7 @@ end
 @matrix = {
   :el5 => { :dist => 'el', :codename => '5', :version => '5' },
   :el6 => { :dist => 'el', :codename => '6', :version => '6' },
+  :el7 => { :dist => 'el', :codename => '7', :version => '7' },
   :f19 => { :dist => 'fedora', :codename => 'f19', :version => '19' },
   :f20 => { :dist => 'fedora', :codename => 'f20', :version => '20' },
   }
