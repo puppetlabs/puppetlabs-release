@@ -87,11 +87,15 @@ def build_rpm(dist)
   output.each_line do | line |
     puts "#{`pwd`.strip}/pkg/rpm/#{line.split('/')[-1]}"
   end
-  mock = "#{@dist == 'el' ? 'pl-el' : 'pl-fedora'}-#{@version}-i386"
+
+  # This package is inherantly noarch, but we're building it on a 64-bit
+  # mock and copying it into a 32-bit namespace for distribution.
+  mock = "#{@dist == 'el' ? 'pl-el' : 'pl-fedora'}-#{@version}-x86_64"
   sh "mock -r #{mock} #{base}/SRPMS/#{@name}-#{@version}-#{@release}.src.rpm"
-  cp_pr "/var/lib/mock/#{mock}/result/#{@name}-#{@version}-#{@release}.noarch.rpm", "#{base}/i386"
+
+  cp_pr "/var/lib/mock/#{mock}/result/#{@name}-#{@version}-#{@release}.noarch.rpm", "#{base}/i386/"
+  cp_pr "/var/lib/mock/#{mock}/result/#{@name}-#{@version}-#{@release}.noarch.rpm", "#{base}/x86_64/"
   ln_sf "#{base}/i386/#{@name}-#{@version}-#{@release}.noarch.rpm", "#{topdir}/#{@name}-#{@dist}-#{@version}.noarch.rpm"
-  cp_pr "/var/lib/mock/#{mock}/result/#{@name}-#{@version}-#{@release}.noarch.rpm", "#{base}/x86_64"
 end
 
 def build_deb(dist)
