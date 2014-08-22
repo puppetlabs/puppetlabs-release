@@ -1,6 +1,9 @@
 #!/bin/sh
 
-# install the gpg key
+# install the gpg keys
 
-KEY="/etc/apt/trusted.gpg.d/puppetlabs-keyring.gpg"
-/usr/bin/apt-key add "$KEY" >/dev/null 2>&1
+MAIN_KEY="/etc/apt/trusted.gpg.d/puppetlabs-keyring.gpg"
+NIGHTLY_KEY="/etc/apt/trusted.gpg.d/puppetlabs-nightly-keyring.gpg"
+for key in $MAIN_KEY $NIGHTLY_KEY; do
+  /usr/bin/apt-key add "$key" >/dev/null 2>&1
+done

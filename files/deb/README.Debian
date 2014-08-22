@@ -2,6 +2,6 @@ puppetlabs-release for Debian
 -----------------------------
 
 Puppet package to install Puppet Labs community repository information to /etc/apt/sources.list.d
-as well as Puppet Labs apt gpg key to /etc/trusted.gpg.d.
+as well as Puppet Labs apt and nightly gpg keys to /etc/apt/trusted.gpg.d.
 
  -- Moses Mendoza <info@puppetlabs.com>  Mon, 13 Feb 2012 21:19:01 +0000

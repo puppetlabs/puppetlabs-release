@@ -11,7 +11,8 @@ License:        ASL 2.0
 # within this srpm.
 URL:            http://yum.puppetlabs.com
 Source0:        http://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs
-Source1:        puppetlabs.repo
+Source1:        RPM-GPG-KEY-nightly-puppetlabs
+Source2:        puppetlabs.repo
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -29,6 +30,7 @@ GPG key as well as configuration for a yum client.
 %setup -q  -c -T
 install -pm 644 %{SOURCE0} .
 install -pm 644 %{SOURCE1} .
+install -pm 644 %{SOURCE2} .
 
 %build
 
@@ -38,10 +40,12 @@ rm -rf $RPM_BUILD_ROOT
 #GPG Key
 install -Dpm 644 %{SOURCE0} \
     $RPM_BUILD_ROOT%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs
+install -Dpm 644 %{SOURCE1} \
+    $RPM_BUILD_ROOT%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-nightly-puppetlabs
 
 # yum
 install -dm 755 $RPM_BUILD_ROOT%{_sysconfdir}/yum.repos.d
-install -pm 644 %{SOURCE1}  \
+install -pm 644 %{SOURCE2}  \
     $RPM_BUILD_ROOT%{_sysconfdir}/yum.repos.d
 
 %clean
@@ -51,11 +55,15 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %config(noreplace) /etc/yum.repos.d/puppetlabs.repo
 %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs
+%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-nightly-puppetlabs
 
 
 %changelog
 * <%= Time.now.strftime("%a %b %d %Y") %> Puppet Labs Release <info@puppetlabs.com> -  <%= @version %>-<%= @release %>
 - Build for <%= @version %>
+
+* Fri Aug 22 2014 Matthaus Owens <matthaus@puppetlabs.com>
+- Add nightly key to puppetlabs-release package
 
 * Thu Jun 28 2012 Matthaus Litteken <matthaus@puppetlabs.com> -  <%= @version -%>-2
 - Update %files section, obsolete devel package
