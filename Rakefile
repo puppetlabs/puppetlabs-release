@@ -2,7 +2,7 @@ require 'erb'
 
 @name = 'puppetlabs-release'
 @debversion = ENV["debversion"] ||= "1.0"
-@release = ENV["release"] ||= "10"
+@release = ENV["release"] ||= "11"
 @deb_dists = ["lucid", "precise", "squeeze", "wheezy", "stable", "trusty"]
 @signwith = ENV["signwith"] ||= "4BD6EC30"
 @nosign ||= ENV["no_sign"]
