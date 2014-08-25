@@ -2,8 +2,8 @@ require 'erb'
 
 @name = 'puppetlabs-release'
 @debversion = ENV["debversion"] ||= "1.0"
-@release = ENV["release"] ||= "10"
-@deb_dists = ["lucid", "precise", "quantal", "raring", "saucy", "sid", "squeeze", "unstable", "wheezy", "stable", "trusty"]
+@release = ENV["release"] ||= "11"
+@deb_dists = ["lucid", "precise", "squeeze", "wheezy", "stable", "trusty"]
 @signwith = ENV["signwith"] ||= "4BD6EC30"
 @nosign ||= ENV["no_sign"]
 @signmacros = %{--define "%_gpg_name #{@signwith}"}
@@ -76,6 +76,7 @@ def build_rpm(dist)
   mkdir_p "#{temp}/SOURCES"
   mkdir_p "#{temp}/SPECS"
   cp_p "files/RPM-GPG-KEY-puppetlabs", "#{temp}/SOURCES/RPM-GPG-KEY-puppetlabs"
+  cp_p "files/RPM-GPG-KEY-nightly-puppetlabs", "#{temp}/SOURCES/RPM-GPG-KEY-nightly-puppetlabs"
   erb "templates/redhat/puppetlabs.repo.erb", "#{temp}/SOURCES/puppetlabs.repo"
   erb "templates/redhat/#{@name}.spec.erb", "#{temp}/SPECS/#{@name}.spec"
   sh "rpmbuild -bs #{args} --nodeps #{temp}/SPECS/#{@name}.spec"
@@ -117,6 +118,7 @@ def build_deb(dist)
   build_root = "#{temp}/puppetlabs-release_1.0"
   mkdir_p build_root
   cp_p "files/puppetlabs-keyring.gpg", build_root
+  cp_p "files/puppetlabs-nightly-keyring.gpg", build_root
   cp_pr "files/deb", "#{build_root}/debian"
   erb "templates/deb/puppetlabs.list.erb", "#{build_root}/puppetlabs.list"
   erb "templates/deb/changelog.erb", "#{build_root}/debian/changelog"
