@@ -4,6 +4,7 @@ project 'puppetlabs-release-pc1' do |proj|
   proj.version '1.2.3'
   proj.vendor 'Puppet Labs <info@puppetlabs.com>'
   proj.homepage 'https://www.puppetlabs.com'
+  proj.target_repo 'PC1'
 
   proj.component 'gpg_key'
   proj.component 'repo_definition'
