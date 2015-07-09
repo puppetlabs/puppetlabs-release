@@ -7,7 +7,9 @@ gpg_key: '4BD6EC30'
 build_tar: FALSE
 sign_tar: FALSE
 vanagon_project: TRUE
-apt_host: http://pl-build-tools.delivery.puppetlabs.net/debian/
+apt_host: 'pl-build-tools.delivery.puppetlabs.net'
+apt_repo_path: '/opt/build-tools/debian'
 apt_repo_name: ''
-yum_host: http://pl-build-tools.delivery.puppetlabs.net/yum/
+yum_host: 'pl-build-tools.delivery.puppetlabs.net'
+yum_repo_path: '/opt/build-tools/yum'
 yum_repo_name: ''
