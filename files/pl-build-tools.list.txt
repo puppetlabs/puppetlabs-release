@@ -1,0 +1,3 @@
+# Puppetlabs Build Tools __CODENAME__ Repository
+deb http://pl-build-tools.delivery.puppetlabs.net/debian/ __CODENAME__ main
+#deb-src http://pl-build-tools.delivery.puppetlabs.net/debian/ __CODENAME__ main

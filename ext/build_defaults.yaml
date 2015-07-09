@@ -1,11 +1,13 @@
 ---
-project: 'puppetlabs-release-pc1'
+project: 'pl-build-tools-release'
 packaging_url: 'git://github.com/puppetlabs/packaging.git --branch=master'
 packaging_repo: 'packaging'
 gpg_name: 'info@puppetlabs.com'
 gpg_key: '4BD6EC30'
+build_tar: FALSE
 sign_tar: FALSE
 vanagon_project: TRUE
-apt_repo_name: 'PC1'
-yum_repo_name: 'PC1'
-build_tar: FALSE
+apt_host: http://pl-build-tools.delivery.puppetlabs.net/debian/
+apt_repo_name: ''
+yum_host: http://pl-build-tools.delivery.puppetlabs.net/yum/
+yum_repo_name: ''

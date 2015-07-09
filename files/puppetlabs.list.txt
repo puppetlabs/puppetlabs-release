@@ -1,3 +1,0 @@
-# Puppetlabs PC1 __CODENAME__ Repository
-deb http://apt.puppetlabs.com __CODENAME__ PC1
-deb-src http://apt.puppetlabs.com __CODENAME__ PC1
