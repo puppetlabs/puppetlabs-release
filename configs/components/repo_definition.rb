@@ -2,11 +2,11 @@ component 'repo_definition' do |pkg, settings, platform|
   pkg.version '2015.03.31'
 
   if platform.is_deb?
-    pkg.url 'file://files/puppetlabs.list.txt'
-    pkg.md5sum 'f6fea0cbba6cdc10d904ea17572335b7'
-    pkg.install_file 'puppetlabs.list.txt', '/etc/apt/sources.list.d/puppetlabs-pc1.list'
+    pkg.url 'file://files/pl-build-tools.list.txt'
+    pkg.md5sum 'c9fa2a46a12cc95f536751870a76a87f'
+    pkg.install_file 'pl-build-tools.list.txt', '/etc/apt/sources.list.d/pl-build-tools.list'
     pkg.install do
-      "sed -i 's|__CODENAME__|#{platform.codename}|g' /etc/apt/sources.list.d/puppetlabs-pc1.list"
+      "sed -i 's|__CODENAME__|#{platform.codename}|g' /etc/apt/sources.list.d/pl-build-tools.list"
     end
   else
     # Specifying the repo path as a platform config var is likely the
@@ -17,11 +17,11 @@ component 'repo_definition' do |pkg, settings, platform|
       repo_path = '/etc/yum.repos.d'
     end
 
-    pkg.url 'file://files/puppetlabs.repo.txt'
-    pkg.md5sum '5f6c6e6f16bd22b11d15817b9df5cb19'
-    pkg.install_file 'puppetlabs.repo.txt', "#{repo_path}/puppetlabs-pc1.repo"
+    pkg.url 'file://files/pl-build-tools.repo.txt'
+    pkg.md5sum '154b9edd18c730d88615b64b8b4f0f07'
+    pkg.install_file 'pl-build-tools.repo.txt', "#{repo_path}/pl-build-tools.repo"
     pkg.install do
-      "sed -i -e 's|__OS_NAME__|#{platform.os_name}|g' -e 's|__OS_VERSION__|#{platform.os_version}|g' #{repo_path}/puppetlabs-pc1.repo"
+      "sed -i -e 's|__OS_NAME__|#{platform.os_name}|g' -e 's|__OS_VERSION__|#{platform.os_version}|g' #{repo_path}/pl-build-tools.repo"
     end
   end
 end
