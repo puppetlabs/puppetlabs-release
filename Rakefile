@@ -17,6 +17,7 @@ require 'erb'
   :el7 => { :dist => 'el', :codename => '7', :version => '7' },
   :f20 => { :dist => 'fedora', :codename => 'f20', :version => '20' },
   :f21 => { :dist => 'fedora', :codename => 'f21', :version => '21' },
+  :f22 => { :dist => 'fedora', :codename => 'f22', :version => '22' },
 }
 
 def get_temp
