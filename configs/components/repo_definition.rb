@@ -11,7 +11,7 @@ component 'repo_definition' do |pkg, settings, platform|
   else
     # Specifying the repo path as a platform config var is likely the
     # way to go if anything else needs to get added here:
-    if platform.is_nxos?
+    if platform.is_nxos? or platform.is_cisco_wrlinux?
       repo_path = '/etc/yum/repos.d'
     else
       repo_path = '/etc/yum.repos.d'
