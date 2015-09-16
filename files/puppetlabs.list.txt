@@ -1,3 +1,9 @@
 # Puppetlabs PC1 __CODENAME__ Repository
 deb http://apt.puppetlabs.com __CODENAME__ PC1
-deb-src http://apt.puppetlabs.com __CODENAME__ PC1
+
+# Puppetlabs PC1 __CODENAME__ Source Repository
+# The source repos are commented out by default because we
+# do not always make sources available for all packages or
+# for all platforms. If you want to access the source repos,
+# uncomment the following line.
+#deb-src http://apt.puppetlabs.com __CODENAME__ PC1
