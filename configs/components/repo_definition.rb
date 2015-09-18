@@ -3,7 +3,7 @@ component 'repo_definition' do |pkg, settings, platform|
 
   if platform.is_deb?
     pkg.url 'file://files/puppetlabs.list.txt'
-    pkg.md5sum 'f6fea0cbba6cdc10d904ea17572335b7'
+    pkg.md5sum '53d2e1455bab67b4a49a5d0969ebbb95'
     pkg.install_file 'puppetlabs.list.txt', '/etc/apt/sources.list.d/puppetlabs-pc1.list'
     pkg.install do
       "sed -i 's|__CODENAME__|#{platform.codename}|g' /etc/apt/sources.list.d/puppetlabs-pc1.list"
