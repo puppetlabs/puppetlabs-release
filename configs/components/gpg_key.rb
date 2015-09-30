@@ -8,6 +8,6 @@ component 'gpg_key' do |pkg, settings, platform|
   else
     pkg.url 'file://files/RPM-GPG-KEY-puppetlabs.gpg'
     pkg.md5sum '339014f9b0517552c232501438f40b3d'
-    pkg.install_file 'RPM-GPG-KEY-puppetlabs.gpg', '/etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs'
+    pkg.install_file 'RPM-GPG-KEY-puppetlabs.gpg', '/etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs-PC1'
   end
 end

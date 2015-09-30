@@ -1,14 +1,14 @@
 [puppetlabs-pc1]
 name=Puppet Labs PC1 Repository __OS_NAME__ __OS_VERSION__ - $basearch
 baseurl=http://yum.puppetlabs.com/__OS_NAME__/__OS_VERSION__/PC1/$basearch
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs-PC1
 enabled=1
 gpgcheck=1
 
 [puppetlabs-pc1-source]
 name=Puppet Labs PC1 Repository __OS_NAME__ __OS_VERSION__ - Source
 baseurl=http://yum.puppetlabs.com/__OS_NAME__/__OS_VERSION__/PC1/SRPMS
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs-PC1
 failovermethod=priority
 enabled=0
 gpgcheck=1
