@@ -19,11 +19,17 @@ component 'repo_definition' do |pkg, settings, platform|
       repo_path = '/etc/yum.repos.d'
     end
 
+    install_cmds = [ "sed -i -e 's|__OS_NAME__|#{platform.os_name}|g' -e 's|__OS_VERSION__|#{platform.os_version}|g' #{repo_path}/pl-build-tools.repo" ]
+
+    if platform.name =~ /el-4/
+      install_cmds << "sed -i 's/gpgcheck=1/gpgcheck=0/' #{repo_path}/pl-build-tools.repo"
+    end
+
     pkg.url 'file://files/pl-build-tools.repo.txt'
     pkg.md5sum '154b9edd18c730d88615b64b8b4f0f07'
     pkg.install_file 'pl-build-tools.repo.txt', "#{repo_path}/pl-build-tools.repo"
     pkg.install do
-      "sed -i -e 's|__OS_NAME__|#{platform.os_name}|g' -e 's|__OS_VERSION__|#{platform.os_version}|g' #{repo_path}/pl-build-tools.repo"
+      install_cmds
     end
   end
 end
