@@ -13,3 +13,40 @@ This will install the requirements specified in the Gemfile, pull a VM using the
 
 ### Adding new platforms
 New platforms require a new platform entry in `configs/platforms`. Generally, this is all that needs to happen for a new platform, especially if it's a new version of a platform that already exists. However, if it's a new platform entirely, not just a new version, ther will likely be automation changes that are required. Make sure you know how the package management system on the new platform works, and check [the vanagon repo](https://github.com/puppetlabs/vanagon) to see if there are any vanagon changes required for this new plaform. If we've done things well, you should receive fairly explicit error messages about where the vanagon automation needs to be updated
+
+## GPG Fun
+
+### Exporting
+
+To get the GPG keys exported for use inside a release package, enter the following comands.
+
+    # To get a Debian compatible keychain file
+    gpg --export 27D8D6F1 > debian_keychain.gpg
+
+    # To get a RPM compatible ascii public key
+    gpg --export --armor 27D8D6F1 > RPM_GPG_KEY
+
+
+### Extending Lifetimes
+
+Mainly used [this page](http://www.g-loaded.eu/2010/11/01/change-expiration-date-gpg-key/).
+
+
+The quick steps are:
+
+Identify the key you want to edit. For this example, I'll call it ABCDEF10.
+
+
+    gpg --edit-key  ABCDEF10
+    key 0
+    expire
+    5y
+    y
+    key 1
+    expire
+    5y
+    y
+    save
+    gpg --keyserver pgp.mit.edu --send-keys ABCDEF10
+
+
