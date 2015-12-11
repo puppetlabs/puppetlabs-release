@@ -6,5 +6,5 @@ platform "debian-6-amd64" do |plat|
 
   plat.provision_with "export DEBIAN_FRONTEND=noninteractive; apt-get update -qq; apt-get install -qy --no-install-recommends build-essential devscripts make quilt pkg-config debhelper "
   plat.install_build_dependencies_with "DEBIAN_FRONTEND=noninteractive; apt-get install -qy --no-install-recommends "
-  plat.vcloud_name "debian-6-x86_64"
+  plat.vmpooler_template "debian-6-x86_64"
 end

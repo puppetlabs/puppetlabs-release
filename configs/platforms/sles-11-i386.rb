@@ -5,5 +5,5 @@ platform "sles-11-i386" do |plat|
 
   plat.provision_with "zypper -n --no-gpg-checks install -y aaa_base autoconf automake rsync gcc make"
   plat.install_build_dependencies_with "zypper -n --no-gpg-checks install -y"
-  plat.vcloud_name "sles-11-i386"
+  plat.vmpooler_template "sles-11-i386"
 end

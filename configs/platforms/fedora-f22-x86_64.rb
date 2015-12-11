@@ -5,5 +5,5 @@ platform "fedora-f22-x86_64" do |plat|
 
   plat.provision_with "/usr/bin/dnf install -y autoconf automake createrepo rsync gcc make rpmdevtools rpm-libs yum-utils rpm-sign"
   plat.install_build_dependencies_with "/usr/bin/dnf install -y"
-  plat.vcloud_name "fedora-22-x86_64"
+  plat.vmpooler_template "fedora-22-x86_64"
 end
