@@ -2,7 +2,7 @@ project 'pl-build-tools-release' do |proj|
   proj.description 'Release packages for the Puppet Labs build tools repository'
   proj.license 'ASL 2.0'
   proj.version '22.0.0'
-  proj.release '4'
+  proj.release '5'
   proj.vendor 'Puppet Labs <info@puppetlabs.com>'
   proj.homepage 'https://www.puppetlabs.com'
   proj.noarch
