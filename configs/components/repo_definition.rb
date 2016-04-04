@@ -6,7 +6,12 @@ component 'repo_definition' do |pkg, settings, platform|
     pkg.md5sum 'c9fa2a46a12cc95f536751870a76a87f'
     pkg.install_file 'pl-build-tools.list.txt', '/etc/apt/sources.list.d/pl-build-tools.list'
     pkg.install do
-      "sed -i 's|__CODENAME__|#{platform.codename}|g' /etc/apt/sources.list.d/pl-build-tools.list"
+      if platform.is_huaweios?
+        # For pl-build-tools, we're using jessie packages cross compiled for powerpc
+        "sed -i 's|__CODENAME__|jessie|g' /etc/apt/sources.list.d/pl-build-tools.list"
+      else
+        "sed -i 's|__CODENAME__|#{platform.codename}|g' /etc/apt/sources.list.d/pl-build-tools.list"
+      end
     end
   else
     # Specifying the repo path as a platform config var is likely the
