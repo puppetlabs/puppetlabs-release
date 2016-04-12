@@ -3,7 +3,7 @@ component 'gpg_key' do |pkg, settings, platform|
 
   if platform.is_deb?
     pkg.url 'file://files/puppetlabs-keyring.gpg'
-    pkg.md5sum 'a58d53285fa03c59d3b684f1a10855af'
+    pkg.md5sum '3fc175d29769718c069e4e654ed86534'
     pkg.install_file 'puppetlabs-keyring.gpg', '/etc/apt/trusted.gpg.d/puppetlabs-pc1-keyring.gpg'
   else
     pkg.url 'file://files/RPM-GPG-KEY-puppetlabs.gpg'
