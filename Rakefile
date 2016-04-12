@@ -3,7 +3,7 @@ require 'erb'
 @name = 'puppetlabs-release'
 @debversion = ENV["debversion"] ||= "1.0"
 @release = ENV["release"] ||= "11"
-@deb_dists = ["jessie", "lucid", "precise", "squeeze", "stable", "testing", "trusty", "utopic", "wheezy"]
+@deb_dists = ["jessie", "precise", "squeeze", "trusty", "utopic", "wheezy"]
 @signwith = ENV["signwith"] ||= "4BD6EC30"
 @nosign ||= ENV["no_sign"]
 @signmacros = %{--define "%_gpg_name #{@signwith}"}
