@@ -2,8 +2,8 @@ require 'erb'
 
 @name = 'puppetlabs-release'
 @debversion = ENV["debversion"] ||= "1.0"
-@release = ENV["release"] ||= "11"
-@deb_dists = ["jessie", "lucid", "precise", "squeeze", "stable", "testing", "trusty", "utopic", "wheezy"]
+@release = ENV["release"] ||= "12"
+@deb_dists = ["jessie", "precise", "squeeze", "trusty", "utopic", "wheezy"]
 @signwith = ENV["signwith"] ||= "4BD6EC30"
 @nosign ||= ENV["no_sign"]
 @signmacros = %{--define "%_gpg_name #{@signwith}"}
@@ -17,7 +17,6 @@ require 'erb'
   :el7 => { :dist => 'el', :codename => '7', :version => '7' },
   :f20 => { :dist => 'fedora', :codename => 'f20', :version => '20' },
   :f21 => { :dist => 'fedora', :codename => 'f21', :version => '21' },
-  :f22 => { :dist => 'fedora', :codename => 'f22', :version => '22' },
 }
 
 def get_temp
