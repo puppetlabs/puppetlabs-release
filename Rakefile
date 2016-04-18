@@ -2,7 +2,7 @@
 
 require "English"
 require "erb"
-require 'tmpdir'
+require "tmpdir"
 
 @name = "puppetlabs-release"
 @debversion = ENV["debversion"] ||= "1.0"
@@ -12,8 +12,8 @@ require 'tmpdir'
 @nosign ||= ENV["no_sign"]
 @signmacros = %(--define "%_gpg_name #{@signwith}")
 @signmacros_el5 = %(--define "%__gpg_sign_cmd %{__gpg} gpg --force-v3-sigs --digest-algo=sha1 --batch --no-verbose --no-armor --passphrase-fd 3 --no-secmem-warning -u %{_gpg_name} -sbo %{__signature_filename} %{__plaintext_filename}")
-@rpm_rsync_url = ENV["rpm_rsync_url"] ||= "#{ENV["USER"]}@yum.puppetlabs.com:/opt/repository/yum"
-@deb_rsync_url = ENV["deb_rsync_url"] ||= "#{ENV["USER"]}@apt.puppetlabs.com:/opt/repository/incoming"
+@rpm_rsync_url = ENV["rpm_rsync_url"] ||= "#{ENV["USER"]}@weth.delivery.puppetlabs.net:/opt/repository/yum"
+@deb_rsync_url = ENV["deb_rsync_url"] ||= "#{ENV["USER"]}@weth.delivery.puppetlabs.net:/opt/tools/freight/apt"
 
 @matrix = {
   el5: { dist: "el", codename: "5", version: "5" },
@@ -186,7 +186,21 @@ namespace :rpm do
 
   desc "Ship the packages to the world"
   task ship: [:check] do
-    sh "rsync -avg pkg/rpm/* #{@rpm_rsync_url}"
+    cmd = %W[
+      rsync
+      --recursive
+      --hard-links
+      --links
+      --verbose
+      --omit-dir-times
+      --no-perms
+      --no-owner
+      --no-group
+      pkg/rpm/*
+      #{@rpm_rsync_url}
+    ].join(" ")
+
+    sh cmd
   end
 
   desc "Check the RPM signatures"
@@ -257,6 +271,20 @@ namespace :deb do
 
   desc "Ship the packages to the place"
   task :ship do
-    sh "rsync -avg pkg/deb/* #{@deb_rsync_url}"
+    cmd = %W[
+      rsync
+      --recursive
+      --hard-links
+      --links
+      --verbose
+      --omit-dir-times
+      --no-perms
+      --no-owner
+      --no-group
+      pkg/deb/*
+      #{@deb_rsync_url}
+    ].join(" ")
+
+    sh cmd
   end
 end
