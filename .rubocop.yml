@@ -1,0 +1,62 @@
+AllCops:
+  TargetRubyVersion: 2.0
+  Exclude:
+    - 'files/**/*'
+    - 'templates/**/*'
+
+# ruby style guide favorite
+Style/StringLiterals:
+    EnforcedStyle: double_quotes
+
+# consistency with above
+Style/StringLiteralsInInterpolation:
+    EnforcedStyle: double_quotes
+
+# percent-x is allowed for multiline
+Style/CommandLiteral:
+    EnforcedStyle: mixed
+
+# paths abound, easy escape
+Style/RegexpLiteral:
+    EnforcedStyle: slashes
+
+# no metrics for this dumb Rakefile
+Metrics/AbcSize:
+    Enabled: false
+Metrics/CyclomaticComplexity:
+    Enabled: false
+Metrics/MethodLength:
+    Enabled: false
+Metrics/ClassLength:
+    Enabled: false
+Metrics/PerceivedComplexity:
+    Enabled: false
+
+# we often need very long lines
+Metrics/LineLength:
+    Enabled: false
+
+Style/Documentation:
+    Enabled: false
+
+# consistency and readability when faced with string interpolation
+Style/PercentLiteralDelimiters:
+    PreferredDelimiters:
+        '%':  '()'
+        '%i': '()'
+        '%q': '()'
+        '%Q': '()'
+        '%r': '{}'
+        '%s': '()'
+        '%w': '[]'
+        '%W': '[]'
+        '%x': '()'
+
+Style/UnneededCapitalW:
+    Enabled: false
+
+# we prefer compact if-else-end/case-when-end alignment
+Lint/EndAlignment:
+  AlignWith: variable
+Style/CaseIndentation:
+  IndentWhenRelativeTo: end
