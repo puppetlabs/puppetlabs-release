@@ -209,7 +209,7 @@ namespace :rpm do
 
     # Get to the rpms
     Dir["pkg/rpm/**/*"].select { |rpm| File.file?(rpm) }.each do |rpm|
-      `rpm --checksig #{rpm}`
+      `rpm -Kv #{rpm} | grep --ignore-case "#{@signwith}"`
       unsigned << rpm unless $CHILD_STATUS.success?
       next if unsigned.empty?
       unsigned.each do |pkg|
