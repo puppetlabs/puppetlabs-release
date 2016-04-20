@@ -110,7 +110,6 @@ def build_rpm(dist)
   end
 
   cp_pr "/var/lib/mock/#{mock}/result/#{@name}-#{@version}-#{@release}.noarch.rpm", "#{base}/x86_64/"
-  ln_sf "#{base}/i386/#{@name}-#{@version}-#{@release}.noarch.rpm", "#{topdir}/#{@name}-#{@dist}-#{@version}.noarch.rpm"
 end
 
 def build_deb(dist)
