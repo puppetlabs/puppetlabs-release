@@ -1,0 +1,6 @@
+---
+project: 'puppetlabs-release'
+packaging_url: 'git://github.com/puppetlabs/packaging.git --branch=master'
+packaging_repo: 'packaging'
+gpg_key: '4BD6EC30'
+build_tar: FALSE
