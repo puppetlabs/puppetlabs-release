@@ -110,7 +110,6 @@ def build_rpm(dist)
   end
 
   cp_pr "/var/lib/mock/#{mock}/result/#{@name}-#{@version}-#{@release}.noarch.rpm", "#{base}/x86_64/"
-  ln_sf "#{base}/i386/#{@name}-#{@version}-#{@release}.noarch.rpm", "#{topdir}/#{@name}-#{@dist}-#{@version}.noarch.rpm"
 end
 
 def build_deb(dist)
@@ -209,7 +208,7 @@ namespace :rpm do
 
     # Get to the rpms
     Dir["pkg/rpm/**/*"].select { |rpm| File.file?(rpm) }.each do |rpm|
-      `rpm --checksig #{rpm}`
+      `rpm -Kv #{rpm} | grep --ignore-case "#{@signwith}"`
       unsigned << rpm unless $CHILD_STATUS.success?
       next if unsigned.empty?
       unsigned.each do |pkg|
