@@ -7,3 +7,4 @@ gpg_key: '4BD6EC30'
 build_tar: FALSE
 sign_tar: FALSE
 vanagon_project: TRUE
+dev_build: TRUE
