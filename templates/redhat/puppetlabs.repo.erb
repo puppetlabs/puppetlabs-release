@@ -2,6 +2,7 @@
 name=Puppet Labs Products <%= @dist.capitalize -%> <%= @dist_version -%> - $basearch
 baseurl=http://yum.puppetlabs.com/<%= @dist.downcase -%>/<%= @codename -%>/products/$basearch
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs
+       file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet
 enabled=1
 gpgcheck=1
 
@@ -9,6 +10,7 @@ gpgcheck=1
 name=Puppet Labs Dependencies <%= @dist.capitalize -%> <%= @dist_version -%> - $basearch
 baseurl=http://yum.puppetlabs.com/<%= @dist.downcase -%>/<%= @codename -%>/dependencies/$basearch
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs
+       file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet
 enabled=1
 gpgcheck=1
 
@@ -16,6 +18,7 @@ gpgcheck=1
 name=Puppet Labs Devel <%= @dist.capitalize -%> <%= @dist_version -%> - $basearch
 baseurl=http://yum.puppetlabs.com/<%= @dist.downcase -%>/<%= @codename -%>/devel/$basearch
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs
+       file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet
 enabled=0
 gpgcheck=1
 
@@ -23,6 +26,7 @@ gpgcheck=1
 name=Puppet Labs Products <%= @dist.capitalize -%> <%= @dist_version -%> - $basearch - Source
 baseurl=http://yum.puppetlabs.com/<%= @dist.downcase -%>/<%= @codename -%>/products/SRPMS
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs
+       file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet
 failovermethod=priority
 enabled=0
 gpgcheck=1
@@ -31,6 +35,7 @@ gpgcheck=1
 name=Puppet Labs Source Dependencies <%= @dist.capitalize -%> <%= @dist_version -%> - $basearch - Source
 baseurl=http://yum.puppetlabs.com/<%= @dist.downcase -%>/<%= @codename -%>/dependencies/SRPMS
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs
+       file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet
 enabled=0
 gpgcheck=1
 
@@ -38,5 +43,6 @@ gpgcheck=1
 name=Puppet Labs Devel <%= @dist.capitalize -%> <%= @dist_version -%> - $basearch - Source
 baseurl=http://yum.puppetlabs.com/<%= @dist.downcase -%>/<%= @codename -%>/devel/SRPMS
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs
+       file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet
 enabled=0
 gpgcheck=1
