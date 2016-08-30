@@ -44,7 +44,7 @@ if File.exist?(build_defs_file)
 end
 
 @name = "puppetlabs-release"
-@debversion = ENV["debversion"] ||= "1.0"
+@debversion = ENV["debversion"] ||= "1.1"
 # We have to set this version to be so high because we were previously using
 # the platform version to define the package version. As a result, 21 from
 # fedora 21 ended up being the latest version. Lame! So, in order to build
