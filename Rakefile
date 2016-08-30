@@ -44,14 +44,14 @@ if File.exist?(build_defs_file)
 end
 
 @name = "puppetlabs-release"
-@debversion = ENV["debversion"] ||= "1.0"
+@debversion = ENV["debversion"] ||= "1.1"
 # We have to set this version to be so high because we were previously using
 # the platform version to define the package version. As a result, 21 from
 # fedora 21 ended up being the latest version. Lame! So, in order to build
 # a standard release package with consistent versions across platforms, we
 # get to set this version to 22. Blarg.
 @rpmversion = ENV["rpmversion"] ||= "22.0"
-@release = ENV["release"] ||= "12"
+@release = ENV["release"] ||= "1"
 @deb_dists = %w[jessie precise squeeze trusty utopic wheezy]
 @signwith = ENV["signwith"] ||= "4BD6EC30"
 @nosign ||= ENV["no_sign"]
@@ -126,6 +126,7 @@ def build_rpm(dist)
   mkdir_p "#{temp}/SPECS"
   cp_p "files/RPM-GPG-KEY-puppetlabs", "#{temp}/SOURCES/RPM-GPG-KEY-puppetlabs"
   cp_p "files/RPM-GPG-KEY-nightly-puppetlabs", "#{temp}/SOURCES/RPM-GPG-KEY-nightly-puppetlabs"
+  cp_p "files/RPM-GPG-KEY-puppet.asc", "#{temp}/SOURCES/RPM-GPG-KEY-puppet.asc"
   erb "templates/redhat/puppetlabs.repo.erb", "#{temp}/SOURCES/puppetlabs.repo"
   erb "templates/redhat/#{@name}.spec.erb", "#{temp}/SPECS/#{@name}.spec"
   sh "rpmbuild -bs #{args} --nodeps #{temp}/SPECS/#{@name}.spec"

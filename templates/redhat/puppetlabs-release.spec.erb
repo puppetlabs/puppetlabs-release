@@ -10,9 +10,10 @@ License:        ASL 2.0
 # our distribution.  Thus the source is only available from
 # within this srpm.
 URL:            http://yum.puppetlabs.com
-Source0:        http://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs
-Source1:        RPM-GPG-KEY-nightly-puppetlabs
-Source2:        puppetlabs.repo
+Source0:        http://yum.puppetlabs.com/RPM-GPG-KEY-puppet.asc
+Source1:        http://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs
+Source2:        RPM-GPG-KEY-nightly-puppetlabs
+Source3:        puppetlabs.repo
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -31,6 +32,8 @@ GPG key as well as configuration for a yum client.
 install -pm 644 %{SOURCE0} .
 install -pm 644 %{SOURCE1} .
 install -pm 644 %{SOURCE2} .
+install -pm 644 %{SOURCE3} .
+
 
 %build
 
@@ -39,13 +42,15 @@ rm -rf $RPM_BUILD_ROOT
 
 #GPG Key
 install -Dpm 644 %{SOURCE0} \
-    $RPM_BUILD_ROOT%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs
+    $RPM_BUILD_ROOT%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-puppet
 install -Dpm 644 %{SOURCE1} \
+    $RPM_BUILD_ROOT%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs
+install -Dpm 644 %{SOURCE2} \
     $RPM_BUILD_ROOT%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-nightly-puppetlabs
 
 # yum
 install -dm 755 $RPM_BUILD_ROOT%{_sysconfdir}/yum.repos.d
-install -pm 644 %{SOURCE2}  \
+install -pm 644 %{SOURCE3}  \
     $RPM_BUILD_ROOT%{_sysconfdir}/yum.repos.d
 
 %clean
@@ -54,6 +59,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root,-)
 %config(noreplace) /etc/yum.repos.d/puppetlabs.repo
+%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-puppet
 %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs
 %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-nightly-puppetlabs
 
@@ -61,6 +67,9 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * <%= Time.now.strftime("%a %b %d %Y") %> Puppet Labs Release <info@puppetlabs.com> -  <%= @rpmversion %>-<%= @release %>
 - Build for <%= @rpmversion %>
+
+* Fri Aug 19 2016 Rob Braden <bradejr@puppet.com>
+- Add new puppet, inc key to puppetlabs-release package
 
 * Fri Aug 22 2014 Matthaus Owens <matthaus@puppetlabs.com>
 - Add nightly key to puppetlabs-release package
