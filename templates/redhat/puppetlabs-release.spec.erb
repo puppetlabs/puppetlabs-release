@@ -1,5 +1,5 @@
 Name:           <%= @name %>
-Version:        <%= @version %>
+Version:        <%= @rpmversion %>
 Release:        <%= @release %>
 Summary:        Configuration for yum.puppetlabs.com
 
@@ -19,8 +19,8 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 Requires:       redhat-release >=  %{version}
 
-Provides:       puppetlabs-release-devel >= <%= @version -%>-2
-Obsoletes:      puppetlabs-release-devel <= <%= @version -%>-1
+Provides:       puppetlabs-release-devel >= <%= @dist_version -%>-2
+Obsoletes:      puppetlabs-release-devel <= <%= @dist_version -%>-1
 
 %description
 This package contains the yum.puppetlabs.com repository
@@ -59,14 +59,14 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
-* <%= Time.now.strftime("%a %b %d %Y") %> Puppet Labs Release <info@puppetlabs.com> -  <%= @version %>-<%= @release %>
-- Build for <%= @version %>
+* <%= Time.now.strftime("%a %b %d %Y") %> Puppet Labs Release <info@puppetlabs.com> -  <%= @rpmversion %>-<%= @release %>
+- Build for <%= @rpmversion %>
 
 * Fri Aug 22 2014 Matthaus Owens <matthaus@puppetlabs.com>
 - Add nightly key to puppetlabs-release package
 
-* Thu Jun 28 2012 Matthaus Litteken <matthaus@puppetlabs.com> -  <%= @version -%>-2
+* Thu Jun 28 2012 Matthaus Litteken <matthaus@puppetlabs.com> -  <%= @rpmversion -%>-2
 - Update %files section, obsolete devel package
 
-* Sat Sep 24 2011 Michael Stahnke <stahnma@puppetlabs.com> -  <%= @version -%>-1
+* Sat Sep 24 2011 Michael Stahnke <stahnma@puppetlabs.com> -  <%= @rpmversion -%>-1
 - Initial Package

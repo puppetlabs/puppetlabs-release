@@ -45,6 +45,12 @@ end
 
 @name = "puppetlabs-release"
 @debversion = ENV["debversion"] ||= "1.0"
+# We have to set this version to be so high because we were previously using
+# the platform version to define the package version. As a result, 21 from
+# fedora 21 ended up being the latest version. Lame! So, in order to build
+# a standard release package with consistent versions across platforms, we
+# get to set this version to 22. Blarg.
+@rpmversion = ENV["rpmversion"] ||= "22.0"
 @release = ENV["release"] ||= "12"
 @deb_dists = %w[jessie precise squeeze trusty utopic wheezy]
 @signwith = ENV["signwith"] ||= "4BD6EC30"
@@ -53,11 +59,11 @@ end
 @deb_rsync_url = ENV["deb_rsync_url"] ||= "#{ENV["USER"]}@weth.delivery.puppetlabs.net:/opt/tools/freight/apt"
 
 @matrix = {
-  el5: { dist: "el", codename: "5", version: "5" },
-  el6: { dist: "el", codename: "6", version: "6" },
-  el7: { dist: "el", codename: "7", version: "7" },
-  f20: { dist: "fedora", codename: "f20", version: "20" },
-  f21: { dist: "fedora", codename: "f21", version: "21" }
+  el5: { dist: "el", codename: "5", plat_version: "5" },
+  el6: { dist: "el", codename: "6", plat_version: "6" },
+  el7: { dist: "el", codename: "7", plat_version: "7" },
+  f20: { dist: "fedora", codename: "f20", plat_version: "20" },
+  f21: { dist: "fedora", codename: "f21", plat_version: "21" }
 }
 
 def tempdir
@@ -88,9 +94,9 @@ def mv_f(src, dest, options = {})
 end
 
 def populate_classvars(dist)
-  @version = @matrix[dist.to_sym][:version]
   @dist = @matrix[dist.to_sym][:dist]
   @codename = @matrix[dist.to_sym][:codename]
+  @plat_version = @matrix[dist.to_sym][:plat_version]
 end
 
 def check_command(cmd)
@@ -124,7 +130,7 @@ def build_rpm(dist)
   erb "templates/redhat/#{@name}.spec.erb", "#{temp}/SPECS/#{@name}.spec"
   sh "rpmbuild -bs #{args} --nodeps #{temp}/SPECS/#{@name}.spec"
   output = `find #{temp} -name *.rpm`
-  mv FileList["#{temp}/SRPMS/#{@name}-#{@version}-#{@release}.src.rpm"], "#{base}/SRPMS"
+  mv FileList["#{temp}/SRPMS/#{@name}-#{@rpmversion}-#{@release}.src.rpm"], "#{base}/SRPMS"
   rm_rf temp
   puts
   puts "Wrote:"
@@ -134,19 +140,19 @@ def build_rpm(dist)
 
   # This package is inherantly noarch, but we're building it on a 64-bit
   # mock and copying it into a 32-bit namespace for distribution.
-  mock = "#{@dist == "el" ? "pl-el" : "pl-fedora"}-#{@version}-x86_64"
-  sh "mock -r #{mock} #{base}/SRPMS/#{@name}-#{@version}-#{@release}.src.rpm"
+  mock = "#{@dist == "el" ? "pl-el" : "pl-fedora"}-#{@plat_version}-x86_64"
+  sh "mock -r #{mock} #{base}/SRPMS/#{@name}-#{@rpmversion}-#{@release}.src.rpm"
 
   # Is this wrapped in an unless? Yes it is.
   # Why isn't #unless at the end of the command? because it's a very long line.
   # Why are we doing this? Because RHEL7 i386 doesn't exist yet and
   # populating this will just make an empty repo. We'll have to back this
   # out when CentOS drops a 32-bit EL7 release but in the mean time, kludge.
-  unless @dist == "el" && @version == "7"
-    cp_pr "/var/lib/mock/#{mock}/result/#{@name}-#{@version}-#{@release}.noarch.rpm", "#{base}/i386/"
+  unless @dist == "el" && @plat_version == "7"
+    cp_pr "/var/lib/mock/#{mock}/result/#{@name}-#{@rpmversion}-#{@release}.noarch.rpm", "#{base}/i386/"
   end
 
-  cp_pr "/var/lib/mock/#{mock}/result/#{@name}-#{@version}-#{@release}.noarch.rpm", "#{base}/x86_64/"
+  cp_pr "/var/lib/mock/#{mock}/result/#{@name}-#{@rpmversion}-#{@release}.noarch.rpm", "#{base}/x86_64/"
 end
 
 def build_deb(dist)
