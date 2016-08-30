@@ -161,7 +161,7 @@ def build_deb(dist)
   temp = tempdir
   base = "pkg/deb/#{@dist}"
   mkdir_p base
-  build_root = "#{temp}/puppetlabs-release_1.0"
+  build_root = "#{temp}/puppetlabs-release_#{@debversion}"
   mkdir_p build_root
   cp_p "files/puppetlabs-keyring.gpg", build_root
   cp_p "files/puppetlabs-nightly-keyring.gpg", build_root
