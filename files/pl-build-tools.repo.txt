@@ -2,6 +2,7 @@
 name=Puppet Labs Build Tools Repository __OS_NAME__ __OS_VERSION__ - $basearch
 baseurl=http://pl-build-tools.delivery.puppetlabs.net/yum/__OS_NAME__/__OS_VERSION__/$basearch
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-pl-build-tools
+       file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet
 enabled=1
 gpgcheck=1
 
@@ -9,6 +10,7 @@ gpgcheck=1
 #name=Puppet Labs Build Tools Repository __OS_NAME__ __OS_VERSION__ - Source
 #baseurl=http://pl-build-tools.delivery.puppetlabs.net/yum/__OS_NAME__/__OS_VERSION__/SRPMS
 #gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-pl-build-tools
+#       file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet
 #failovermethod=priority
 #enabled=0
 #gpgcheck=1
