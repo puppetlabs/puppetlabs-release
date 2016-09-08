@@ -223,7 +223,7 @@ namespace :rpm do
   end
 
   desc "Ship the packages to the world"
-  task ship: [:check] do
+  task ship: :build_environment do
     cmd = %W[
       rsync
       --recursive
