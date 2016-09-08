@@ -117,7 +117,7 @@ def build_rpm(dist)
      --define "_default_patch_fuzz 2"'
   args = rpm_define + " " + rpm_old_version
   mkdir_p temp
-  topdir = "pkg"
+  topdir = "pkg/rpm"
   base = "#{topdir}/#{@dist}/#{@codename}/products"
   mkdir_p "#{base}/SRPMS"
   mkdir_p "#{base}/i386"
