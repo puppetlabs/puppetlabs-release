@@ -51,7 +51,7 @@ end
 # a standard release package with consistent versions across platforms, we
 # get to set this version to 22. Blarg.
 @rpmversion = ENV["rpmversion"] ||= "22.0"
-@release = ENV["release"] ||= "1"
+@release = ENV["release"] ||= "2"
 @deb_dists = %w[jessie precise squeeze trusty utopic wheezy]
 @signwith = ENV["signwith"] ||= "4BD6EC30"
 @nosign ||= ENV["no_sign"]
