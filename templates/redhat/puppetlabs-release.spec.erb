@@ -18,10 +18,10 @@ Source3:        puppetlabs.repo
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildArch:      noarch
-Requires:       redhat-release >=  %{version}
+Requires:       redhat-release >=  <%= @plat_version -%>
 
-Provides:       puppetlabs-release-devel >= <%= @dist_version -%>-2
-Obsoletes:      puppetlabs-release-devel <= <%= @dist_version -%>-1
+Provides:       puppetlabs-release-devel >= <%= @plat_version -%>-2
+Obsoletes:      puppetlabs-release-devel <= <%= @plat_version -%>-1
 
 %description
 This package contains the yum.puppetlabs.com repository
