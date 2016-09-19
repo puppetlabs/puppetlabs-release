@@ -3,7 +3,7 @@ project: 'pl-build-tools-staging-release'
 packaging_url: 'git://github.com/puppetlabs/packaging.git --branch=master'
 packaging_repo: 'packaging'
 gpg_name: 'info@puppetlabs.com'
-gpg_key: '4BD6EC30'
+gpg_key: '7F438280EF8D349F'
 build_tar: FALSE
 sign_tar: FALSE
 vanagon_project: TRUE
