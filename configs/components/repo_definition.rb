@@ -1,5 +1,5 @@
 component 'repo_definition' do |pkg, settings, platform|
-  pkg.version '2015.03.31'
+  pkg.version '2016.10.03'
 
   if platform.is_deb?
     pkg.url 'file://files/pl-build-tools.list.txt'
@@ -28,6 +28,8 @@ component 'repo_definition' do |pkg, settings, platform|
 
     if platform.name =~ /el-4/
       install_cmds << "sed -i 's/gpgcheck=1/gpgcheck=0/' #{repo_path}/pl-build-tools.repo"
+    elsif platform.is_sles?
+      install_cmds << "sed -i -e 's|file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-build-tools|=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-build-tools|g' #{repo_path}/pl-build-tools.repo"
     end
 
     pkg.url 'file://files/pl-build-tools.repo.txt'
