@@ -1,5 +1,5 @@
 component 'gpg_key' do |pkg, settings, platform|
-  pkg.version '2016.08.19'
+  pkg.version '2016.10.03'
 
   if platform.is_deb?
     pkg.add_source 'file://files/puppetlabs-keyring.gpg'
@@ -17,9 +17,11 @@ component 'gpg_key' do |pkg, settings, platform|
     # script. This keeps the sles workflow consistent with other rpm based
     # platforms
     if platform.is_sles?
-      pkg.add_postinstall_action ["install"],
-        ['rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-PC1',
-         'rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs-PC1']
+      if platform.os_version >= "12"
+        pkg.add_postinstall_action ["install"],
+          ['rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-PC1',
+           'rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs-PC1']
+      end
     end
   end
 end
