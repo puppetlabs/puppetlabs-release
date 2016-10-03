@@ -1,16 +1,16 @@
 [pl-build-tools]
 name=Puppet Build Tools Staging Repository __OS_NAME__ __OS_VERSION__ - $basearch
 baseurl=http://pl-build-tools-staging.delivery.puppetlabs.net/yum/__OS_NAME__/__OS_VERSION__/$basearch
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-pl-build-tools
-       file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-pl-build-tools-staging
+       file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-build-tools-staging
 enabled=1
 gpgcheck=1
 
 #[pl-build-tools-source]
 name=Puppet Build Tools Staging Repository __OS_NAME__ __OS_VERSION__ - Source
 #baseurl=http://pl-build-tools-staging.delivery.puppetlabs.net/yum/__OS_NAME__/__OS_VERSION__/SRPMS
-#gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-pl-build-tools
-#       file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet
+#gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-pl-build-tools-staging
+#       file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-build-tools-staging
 #failovermethod=priority
 #enabled=0
 #gpgcheck=1
