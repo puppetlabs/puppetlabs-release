@@ -1,5 +1,5 @@
 component 'repo_definition' do |pkg, settings, platform|
-  pkg.version '2015.09.28'
+  pkg.version '2016.10.03'
 
   if platform.is_deb?
     pkg.url 'file://files/puppetlabs.list.txt'
