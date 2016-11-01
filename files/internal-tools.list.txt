@@ -1,0 +1,3 @@
+# Puppetlabs Internal Tools __CODENAME__ Repository
+deb http://internal-tools.delivery.puppetlabs.net/debian/ __CODENAME__ main
+#deb-src http://internal-tools.delivery.puppetlabs.net/debian/ __CODENAME__ main
