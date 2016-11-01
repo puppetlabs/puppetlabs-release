@@ -1,0 +1,16 @@
+[internal-tools]
+name=Puppet Labs Build Tools Repository __OS_NAME__ __OS_VERSION__ - $basearch
+baseurl=http://internal-tools.delivery.puppetlabs.net/yum/__OS_NAME__/__OS_VERSION__/$basearch
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-internal-tools
+       file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-internal-tools
+enabled=1
+gpgcheck=1
+
+#[internal-tools-source]
+#name=Puppet Labs Build Tools Repository __OS_NAME__ __OS_VERSION__ - Source
+#baseurl=http://internal-tools.delivery.puppetlabs.net/yum/__OS_NAME__/__OS_VERSION__/SRPMS
+#gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-internal-tools
+#       file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-internal-tools
+#failovermethod=priority
+#enabled=0
+#gpgcheck=1
