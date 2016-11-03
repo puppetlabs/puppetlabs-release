@@ -1,16 +1,16 @@
 component 'repo_definition' do |pkg, settings, platform|
-  pkg.version '2016.10.03'
+  pkg.version '2016.11.03'
 
   if platform.is_deb?
-    pkg.url 'file://files/pl-build-tools.list.txt'
-    pkg.md5sum 'c9fa2a46a12cc95f536751870a76a87f'
-    pkg.install_file 'pl-build-tools.list.txt', '/etc/apt/sources.list.d/pl-build-tools.list'
+    pkg.url 'file://files/test-tools.list.txt'
+    pkg.md5sum 'ba0d40ea589a00017a412d70bacc6ff5'
+    pkg.install_file 'test-tools.list.txt', '/etc/apt/sources.list.d/test-tools.list'
     pkg.install do
       if platform.is_huaweios?
-        # For pl-build-tools, we're using jessie packages cross compiled for powerpc
-        "sed -i 's|__CODENAME__|jessie|g' /etc/apt/sources.list.d/pl-build-tools.list"
+        # For test-tools, we're using jessie packages cross compiled for powerpc
+        "sed -i 's|__CODENAME__|jessie|g' /etc/apt/sources.list.d/test-tools.list"
       else
-        "sed -i 's|__CODENAME__|#{platform.codename}|g' /etc/apt/sources.list.d/pl-build-tools.list"
+        "sed -i 's|__CODENAME__|#{platform.codename}|g' /etc/apt/sources.list.d/test-tools.list"
       end
     end
   else
@@ -24,17 +24,17 @@ component 'repo_definition' do |pkg, settings, platform|
       repo_path = '/etc/yum.repos.d'
     end
 
-    install_cmds = [ "sed -i -e 's|__OS_NAME__|#{platform.os_name}|g' -e 's|__OS_VERSION__|#{platform.os_version}|g' #{repo_path}/pl-build-tools.repo" ]
+    install_cmds = [ "sed -i -e 's|__OS_NAME__|#{platform.os_name}|g' -e 's|__OS_VERSION__|#{platform.os_version}|g' #{repo_path}/test-tools.repo" ]
 
     if platform.name =~ /el-4/
-      install_cmds << "sed -i 's/gpgcheck=1/gpgcheck=0/' #{repo_path}/pl-build-tools.repo"
+      install_cmds << "sed -i 's/gpgcheck=1/gpgcheck=0/' #{repo_path}/test-tools.repo"
     elsif platform.is_sles?
-      install_cmds << "sed -i -e 's|file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-build-tools|=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-build-tools|g' #{repo_path}/pl-build-tools.repo"
+      install_cmds << "sed -i -e 's|file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-test-tools|=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-test-tools|g' #{repo_path}/test-tools.repo"
     end
 
-    pkg.url 'file://files/pl-build-tools.repo.txt'
-    pkg.md5sum '154b9edd18c730d88615b64b8b4f0f07'
-    pkg.install_file 'pl-build-tools.repo.txt', "#{repo_path}/pl-build-tools.repo"
+    pkg.url 'file://files/test-tools.repo.txt'
+    pkg.md5sum 'a33abac3098b49ee2f0d8c68ff97e670'
+    pkg.install_file 'test-tools.repo.txt', "#{repo_path}/test-tools.repo"
     pkg.install do
       install_cmds
     end
