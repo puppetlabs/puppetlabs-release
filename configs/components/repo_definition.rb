@@ -29,7 +29,7 @@ component 'repo_definition' do |pkg, settings, platform|
     if platform.name =~ /el-4/
       install_cmds << "sed -i 's/gpgcheck=1/gpgcheck=0/' #{repo_path}/internal-tools.repo"
     elsif platform.is_sles?
-      install_cmds << "sed -i -e 's|file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-build-tools|=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-build-tools|g' #{repo_path}/internal-tools.repo"
+      install_cmds << "sed -i -e 's|file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-internal-tools|=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-internal-tools|g' #{repo_path}/internal-tools.repo"
     end
 
     pkg.url 'file://files/internal-tools.repo.txt'
