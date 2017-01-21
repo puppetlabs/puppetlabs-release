@@ -5,6 +5,15 @@ component 'repo_definition' do |pkg, settings, platform|
     pkg.url 'file://files/puppetlabs.list.txt'
     pkg.md5sum '53d2e1455bab67b4a49a5d0969ebbb95'
     pkg.install_configfile 'puppetlabs.list.txt', '/etc/apt/sources.list.d/puppetlabs-pc1.list'
+  if platform.name =~ /^ubuntu-16.10/
+    # Ubuntu 16.10 shipped with a puppet-agent package that was versioned based
+    # on the included version of puppet. This means the distro package would
+    # override Puppet Inc's puppet-agent AIO package version. We are working
+    # around this by pinning our puppet-agent package to a higher priority in
+    # this preferences config fragment:
+    pkg.add_source 'file://files/puppetlabs-puppet-agent-pin-1000.txt', sum: '713257941eb9e3fae798d4faebd1a995'
+    pkg.install_configfile 'puppetlabs-puppet-agent-pin-1000.txt', '/etc/apt/preferences.d/puppetlabs-pc1-puppet-agent-pin-1000'
+  end
     pkg.install do
       "sed -i 's|__CODENAME__|#{platform.codename}|g' /etc/apt/sources.list.d/puppetlabs-pc1.list"
     end
