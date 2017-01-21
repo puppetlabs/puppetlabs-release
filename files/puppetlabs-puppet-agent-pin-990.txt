@@ -1,0 +1,8 @@
+# Ubuntu 16.10 shipped with a puppet-agent package that was versioned based
+# on the included version of puppet. This means the distro package would
+# override Puppet Inc's puppet-agent AIO package version. We are working
+# around this by pinning our puppet-agent package to a higher priority in
+# this preferences config fragment:
+Package: puppet-agent
+Pin: origin "apt.puppetlabs.com"
+Pin-Priority: 990
