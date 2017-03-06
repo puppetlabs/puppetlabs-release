@@ -5,3 +5,4 @@ Gemfile.lock
 Gemfile.local
 *.log
 ext/packaging
+pkg/*
