@@ -38,7 +38,7 @@ component 'repo_definition' do |pkg, settings, platform|
     # a '='. This isn't the case for other rpm platforms, so we get to modify
     # the repo file after we install it on sles.
     if platform.is_sles?
-      install_hash << "sed -i -e 's|file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-PC1|=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-PC1|g' #{repo_path}/puppet.repo"
+      install_hash << "sed -i -e 's|file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-release|=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-release|g' #{repo_path}/puppet.repo"
     end
 
     pkg.install do

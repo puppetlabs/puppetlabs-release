@@ -1,16 +1,16 @@
 [puppet]
 name=Puppet Repository __OS_NAME__ __OS_VERSION__ - $basearch
 baseurl=http://yum.puppetlabs.com/__OS_NAME__/__OS_VERSION__/puppet/$basearch
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs-PC1
-       file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-PC1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs-release
+       file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-release
 enabled=1
 gpgcheck=1
 
 [puppet-source]
 name=Puppet Repository __OS_NAME__ __OS_VERSION__ - Source
 baseurl=http://yum.puppetlabs.com/__OS_NAME__/__OS_VERSION__/puppet/SRPMS
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs-PC1
-       file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-PC1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs-release
+       file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-release
 failovermethod=priority
 enabled=0
 gpgcheck=1
