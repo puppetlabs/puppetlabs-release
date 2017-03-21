@@ -18,4 +18,4 @@ gem 'packaging', '~> 0.4', git: 'https://github.com/puppetlabs/packaging.git'
 gem 'rake'
 # We should use a minimum specific Vanagon verson, but
 #  allow it to rev upwards within a given Y release series
-gem 'vanagon', *vanagon_location_for(ENV['VANAGON_LOCATION'] || '~> 0.9.1')
+gem 'vanagon', *vanagon_location_for(ENV['VANAGON_LOCATION'] || '~> 0.9.3')
