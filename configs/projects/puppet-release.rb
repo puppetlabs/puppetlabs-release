@@ -3,7 +3,7 @@ project 'puppet-release' do |proj|
   proj.release '1'
   proj.license 'ASL 2.0'
   proj.version '1.0.0'
-  proj.vendor 'Puppet Labs <info@puppetlabs.com>'
+  proj.vendor 'Puppet, Inc. <release@puppet.com>'
   proj.homepage 'https://www.puppetlabs.com'
   proj.target_repo 'puppet'
   proj.noarch
