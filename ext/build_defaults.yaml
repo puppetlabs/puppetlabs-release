@@ -1,11 +1,10 @@
 ---
-project: 'puppet5-nightly-release'
+project: 'puppet-nightly-release'
 packaging_url: 'git://github.com/puppetlabs/packaging.git --branch=1.0.x'
 packaging_repo: 'packaging'
-gpg_name: 'info@puppetlabs.com'
-gpg_key: 'B8F999C007BB6C57'
+gpg_name: 'release@puppetlabs.com'
+gpg_key: '7F438280EF8D349F'
 sign_tar: FALSE
 vanagon_project: TRUE
-repo_name: 'puppet5-nightly'
-repo_link_target: 'puppet-nightly'
+repo_name: 'puppet-nightly'
 build_tar: FALSE
