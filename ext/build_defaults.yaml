@@ -7,4 +7,5 @@ gpg_key: '7F438280EF8D349F'
 sign_tar: FALSE
 vanagon_project: TRUE
 repo_name: 'puppet5-nightly'
+nonfinal_repo_name: 'puppet5-nightly'
 build_tar: FALSE
