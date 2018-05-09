@@ -1,4 +1,4 @@
-platform "fedora-f28-x86_64" do |plat|
+platform "fedora-28-x86_64" do |plat|
   plat.servicedir "/usr/lib/systemd/system"
   plat.defaultdir "/etc/sysconfig"
   plat.servicetype "systemd"
