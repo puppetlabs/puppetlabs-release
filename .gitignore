@@ -7,3 +7,4 @@ Gemfile.local
 ext/packaging
 pkg/*
 ext/packaging
+ext/build_metadata.json
