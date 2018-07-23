@@ -16,4 +16,4 @@ gem 'releng_metadata', :source => 'https://artifactory.delivery.puppetlabs.net/a
 gem 'rake'
 # We should use a minimum specific Vanagon verson, but
 #  allow it to rev upwards within a given Y release series
-gem 'vanagon', *location_for(ENV['VANAGON_LOCATION'] || '~> 0.14.1')
+gem 'vanagon', *location_for(ENV['VANAGON_LOCATION'] || '~> 0.15.13')
