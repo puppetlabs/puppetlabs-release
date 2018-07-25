@@ -10,6 +10,8 @@ project 'puppet5-nightly-release' do |proj|
 
   proj.conflicts 'puppet-nightly-release'
 
+  proj.setting(:target_repo, 'puppet5-nightly')
+
   proj.component 'gpg_key'
   proj.component 'repo_definition'
 end
