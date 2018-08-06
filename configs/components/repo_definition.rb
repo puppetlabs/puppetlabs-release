@@ -3,7 +3,6 @@ component 'repo_definition' do |pkg, settings, platform|
 
   if platform.is_deb?
     pkg.url "file://files/#{settings[:target_repo]}.list.txt"
-    pkg.md5sum '53d2e1455bab67b4a49a5d0969ebbb95'
     pkg.install_configfile "#{settings[:target_repo]}.list.txt", "/etc/apt/sources.list.d/#{settings[:target_repo]}.list"
     pkg.install do
       "sed -i 's|__CODENAME__|#{platform.codename}|g' /etc/apt/sources.list.d/#{settings[:target_repo]}.list"
@@ -20,7 +19,6 @@ component 'repo_definition' do |pkg, settings, platform|
     end
 
     pkg.url "file://files/#{settings[:target_repo]}.repo.txt"
-    pkg.md5sum 'c5b79dc2f8a13d710a17e5f3ca502376'
     pkg.install_configfile "#{settings[:target_repo]}.repo.txt", "#{repo_path}/#{settings[:target_repo]}.repo"
 
     install_hash = ["sed -i -e 's|__OS_NAME__|#{platform.os_name}|g' -e 's|__OS_VERSION__|#{platform.os_version}|g' #{repo_path}/#{settings[:target_repo]}.repo"]
