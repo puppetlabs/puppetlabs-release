@@ -1,5 +1,5 @@
 component 'repo_definition' do |pkg, settings, platform|
-  pkg.version '2017.05.05'
+  pkg.version '2018.3.22'
 
   if platform.is_deb?
     pkg.url "file://files/#{settings[:target_repo]}.list.txt"
@@ -27,7 +27,7 @@ component 'repo_definition' do |pkg, settings, platform|
     # a '='. This isn't the case for other rpm platforms, so we get to modify
     # the repo file after we install it on sles.
     if platform.is_sles?
-      install_hash << "sed -i -e 's|file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet5-release|=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet5-release|g' #{repo_path}/#{settings[:target_repo]}.repo"
+      install_hash << "sed -i -e 's|file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet5-release|=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-#{settings[:target_repo]}-release|g' #{repo_path}/#{settings[:target_repo]}.repo"
     end
 
     pkg.install do
