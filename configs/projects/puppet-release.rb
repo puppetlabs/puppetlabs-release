@@ -8,6 +8,8 @@ project 'puppet-release' do |proj|
   proj.target_repo 'puppet'
   proj.noarch
 
+  proj.setting(:target_repo, 'puppet')
+
   proj.component 'gpg_key'
   proj.component 'repo_definition'
 end
