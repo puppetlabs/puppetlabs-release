@@ -4,8 +4,6 @@ platform "cumulus-22-amd64" do |plat|
   plat.servicetype "sysv"
   plat.codename "cumulus"
 
-  plat.add_build_repository "http://pl-build-tools.delivery.puppetlabs.net/debian/pl-build-tools-release-wheezy.deb"
-
   plat.provision_with %Q{
 echo 'deb http://enterprise.delivery.puppetlabs.net/build-tools/debian/CumulusLinux CumulusLinux-2.2 build-tools
 deb http://osmirror.delivery.puppetlabs.net/cumulus/ CumulusLinux-2.2 main addons security-updates testing updates' > /etc/apt/sources.list
