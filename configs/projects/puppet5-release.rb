@@ -8,6 +8,8 @@ project 'puppet5-release' do |proj|
   proj.target_repo 'puppet5'
   proj.noarch
 
+  proj.setting(:target_repo, 'puppet5')
+
   proj.conflicts 'puppet-release'
   proj.conflicts 'puppet6-release'
 
