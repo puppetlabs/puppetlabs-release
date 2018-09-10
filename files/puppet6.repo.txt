@@ -1,0 +1,14 @@
+[puppet6]
+name=Puppet 6 Repository __OS_NAME__ __OS_VERSION__ - $basearch
+baseurl=http://yum.puppetlabs.com/puppet6/__OS_NAME__/__OS_VERSION__/$basearch
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet6-release
+enabled=1
+gpgcheck=1
+
+[puppet6-source]
+name=Puppet 6 Repository __OS_NAME__ __OS_VERSION__ - Source
+baseurl=http://yum.puppetlabs.com/puppet6/__OS_NAME__/__OS_VERSION__/SRPMS
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet6-release
+failovermethod=priority
+enabled=0
+gpgcheck=1
