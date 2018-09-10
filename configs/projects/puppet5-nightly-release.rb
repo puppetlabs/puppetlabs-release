@@ -1,6 +1,6 @@
 project 'puppet5-nightly-release' do |proj|
   proj.description 'Release packages for the Puppet repository'
-  proj.release '6'
+  proj.release '7'
   proj.license 'ASL 2.0'
   proj.version '1.0.0'
   proj.vendor 'Puppet Labs <info@puppetlabs.com>'
@@ -9,6 +9,7 @@ project 'puppet5-nightly-release' do |proj|
   proj.noarch
 
   proj.conflicts 'puppet-nightly-release'
+  proj.conflicts 'puppet6-nightly-release'
 
   proj.setting(:target_repo, 'puppet5-nightly')
 
