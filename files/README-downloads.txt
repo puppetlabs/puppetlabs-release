@@ -1,27 +1,29 @@
+Puppet, Inc. Non-Linux Packages
+
+For official documentation and setup instructions, see:
+https://puppet.com/docs/puppet/latest/puppet_platform.html
+
+## Layout
+
 The platform folders:
-/mac and /windows
-contain platform specific packages for all of Puppetlabs projects.
+/eos, /mac, /windows
+contain platform-specific packages for all Puppet, Inc. open-source projects.
 
 The project folders:
-/facter, /hiera, /mcollective, /puppet, and /puppetdb
-contain TARBALLS of the respective projects.
+/facter, /hiera, /mcollective, /puppet, /puppetdb, /razor-client, /razor-server
+contain tarballs and/or gems of the respective projects.
 
 /enterprise
-contains source packages for our Enterprise products
-
-/training
-contains public resources for Professional Service's trainings.
-
-/nightly
-contains tarballs of some of our projects built during the night
-and is deprecated.
+contains source packages for third-party dependencies in Puppet Enterprise.
 
 
-Note: you can find deb and rpm packages at apt.puppetlabs.com and
-yum.puppetlabs.com respectively, gems used to be hosted in a /gems directory
-but we now publish gems, including rcs, to rubygems.org
+## Linux
+Deb and rpm packages can be found at apt.puppet.com and yum.puppet.com,
+respectively.
 
-Archives:
+## Nightlies
+Nightly packages can be found at nightlies.puppet.com/downloads
 
+## Archives
 Older (> 3 years old) releases are regularly removed from this repository.
-Archives can be found in http://release-archives.puppet.com/downloads
+Archives can be found at http://release-archives.puppet.com/downloads
