@@ -3,6 +3,9 @@ Puppet, Inc. Nightly Yum Repositories
 For official documentation and setup instructions, see:
 https://puppet.com/docs/puppet/latest/puppet_platform.html
 
+For help, please open a ticket in the CPR project at https://tickets.puppet.com
+or reach out to us on Slack at http://slack.puppet.com/.
+
 These repositories contain *UNSUPPORTED* packages intended for public
 consumption. These packages contain unreleased software by Puppet, Inc., e.g.
 Puppet, Puppet Server, PuppetDB, etc.

@@ -3,6 +3,9 @@ Puppet, Inc. Apt Repositories
 For official documentation and setup instructions, see:
 https://puppet.com/docs/puppet/latest/puppet_platform.html
 
+For help, please open a ticket in the CPR project at https://tickets.puppet.com
+or reach out to us on Slack at http://slack.puppet.com/.
+
 These repositories contain packages intended for public consumption. These
 packages contain software released by Puppet, Inc., e.g. Puppet, Puppet Server,
 PuppetDB, etc.
