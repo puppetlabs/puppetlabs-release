@@ -6,5 +6,5 @@ Gemfile.local
 *.log
 ext/packaging
 pkg/*
-ext/build_metadata.json
+ext/build_metadata*
 .ruby-version
