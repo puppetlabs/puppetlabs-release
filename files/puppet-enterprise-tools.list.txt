@@ -1,0 +1,2 @@
+# Puppet Enterprise Tools __CODENAME__ Repository
+deb http://apt.puppet.com __CODENAME__ puppet-enterprise-tools
