@@ -7,10 +7,8 @@ component 'gpg_key' do |pkg, settings, platform|
   else
     pkg.add_source("file://files/RPM-GPG-KEY-puppetlabs.gpg")
     pkg.add_source("file://files/RPM-GPG-KEY-puppet.asc")
-    pkg.add_source("file://files/RPM-GPG-KEY-nightly-puppetlabs")
     pkg.install_file 'RPM-GPG-KEY-puppetlabs.gpg', '/etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs-PC1'
     pkg.install_file 'RPM-GPG-KEY-puppet.asc', '/etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-PC1'
-    pkg.install_file 'RPM-GPG-KEY-nightly-puppetlabs', '/etc/pki/rpm-gpg/RPM-GPG-KEY-nightly-puppetlabs-PC1'
 
   end
 end
