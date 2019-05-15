@@ -1,9 +1,9 @@
 project 'puppetlabs-release-pc1' do |proj|
-  proj.description 'Release packages for the Puppet Labs PC1 repository'
-  proj.release '6'
+  proj.description 'Release packages for the end-of-life Puppet Labs PC1 repository'
+  proj.release '1'
   proj.license 'ASL 2.0'
-  proj.version '1.1.0'
-  proj.vendor 'Puppet Labs <info@puppetlabs.com>'
+  proj.version '2.0.0'
+  proj.vendor 'Puppet, Inc. <release@puppet.com>'
   proj.homepage 'https://www.puppetlabs.com'
   proj.target_repo 'PC1'
   proj.noarch
