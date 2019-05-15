@@ -1,0 +1,24 @@
+[puppet-archives-products]
+name=Puppet Archive Repository __OS_NAME__ __OS_VERSION__ - $basearch
+baseurl=http://release-archives.puppet.com/yum/__OS_NAME__/__OS_VERSION__/products/$basearch
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs
+       file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet
+enabled=1
+gpgcheck=1
+
+[puppet-archives-dependencies]
+name=Puppet Archive Repository __OS_NAME__ __OS_VERSION__ - $basearch
+baseurl=http://release-archives.puppet.com/yum/__OS_NAME__/__OS_VERSION__/dependencies/$basearch
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs
+       file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet
+enabled=1
+gpgcheck=1
+
+[puppet-archives-devel]
+name=Puppet Archive Repository __OS_NAME__ __OS_VERSION__ - $basearch
+baseurl=http://release-archives.puppet.com/yum/__OS_NAME__/__OS_VERSION__/devel/$basearch
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs
+       file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet
+enabled=1
+gpgcheck=1
+
