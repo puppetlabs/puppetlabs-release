@@ -1,7 +1,7 @@
 [puppetlabs-pc1]
 name=Puppet Labs (EOL) PC1 Repository __OS_NAME__ __OS_VERSION__ - $basearch
 baseurl=http://release-archives.puppet.com/yum/__OS_NAME__/__OS_VERSION__/PC1/$basearch
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs-PC1
-       file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-PC1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs
+       file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet
 enabled=1
 gpgcheck=1
