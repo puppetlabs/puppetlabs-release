@@ -1,2 +1,2 @@
 # Puppet Archive __CODENAME__ Repository
-deb http://release-archives.puppet.com/apt __CODENAME__ products dependencies devel
+deb http://release-archives.puppet.com/apt __CODENAME__ main dependencies devel
