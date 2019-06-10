@@ -4,11 +4,3 @@ baseurl=http://nightlies.puppet.com/yum/puppet-nightly/__OS_NAME__/__OS_VERSION_
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-nightly-release
 enabled=1
 gpgcheck=1
-
-[puppet-nightly-source]
-name=Puppet Nightly Repository __OS_NAME__ __OS_VERSION__ - Source
-baseurl=http://nightlies.puppet.com/yum/puppet-nightly/__OS_NAME__/__OS_VERSION__/SRPMS
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-nightly-release
-failovermethod=priority
-enabled=0
-gpgcheck=1

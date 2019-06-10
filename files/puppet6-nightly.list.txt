@@ -1,9 +1,2 @@
 # Puppet 6 Nightly __CODENAME__ Repository
 deb http://nightlies.puppet.com/apt __CODENAME__ puppet6-nightly
-
-# Puppet 6 Nightly __CODENAME__ Source Repository
-# The source repos are commented out by default because we
-# do not always make sources available for all packages or
-# for all platforms. If you want to access the source repos,
-# uncomment the following line.
-#deb-src http://nightlies.puppet.com/apt __CODENAME__ puppet6-nightly
