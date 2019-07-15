@@ -1,6 +1,0 @@
-[puppet-enterprise-tools]
-name=Puppet Enterprise Tools Repository __OS_NAME__ __OS_VERSION__ - $basearch
-baseurl=http://yum.puppet.com/puppet-enterprise-tools/__OS_NAME__/__OS_VERSION__/$basearch
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-enterprise-tools-release
-enabled=1
-gpgcheck=1
