@@ -10,9 +10,6 @@ project 'puppet-tools-release' do |proj|
 
   proj.setting(:target_repo, 'puppet-tools')
 
-  proj.conflicts 'puppet-release'
-  proj.conflicts 'puppet5-release'
-  proj.conflicts 'puppet6-release'
   proj.conflicts 'puppet-enterprise-tools-release'
   proj.replaces 'puppet-enterprise-tools-release'
 
