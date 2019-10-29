@@ -4,7 +4,7 @@ For official documentation and setup instructions, see:
 https://puppet.com/docs/puppet/latest/puppet_platform.html
 
 For help, please open a ticket in the CPR project at https://tickets.puppet.com
-or reach out to us on Slack at http://slack.puppet.com/.
+or reach out to us on Slack at https://slack.puppet.com/.
 
 These repositories contain packages intended for public consumption. These
 packages are for software released by Puppet, Inc., e.g. Puppet, Puppet Server,
@@ -14,7 +14,7 @@ PuppetDB, etc.
 ## Installation
 To add the repo for your distribution, install the release package with the
 version for your distribution. For example, on centos 7:
-sudo rpm -Uvh http://yum.puppetlabs.com/puppet-release-el-7.noarch.rpm
+sudo rpm -Uvh https://yum.puppetlabs.com/puppet-release-el-7.noarch.rpm
 
 
 ## Recommendations for Mirroring
@@ -35,4 +35,3 @@ Nightly repositories and packages can be found at nightlies.puppet.com/yum
 ## Archives
 Older (> 3 years old) releases are regularly removed from this repository.
 Archives can be found at http://release-archives.puppet.com/yum
-

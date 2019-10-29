@@ -4,7 +4,7 @@ For official documentation and setup instructions, see:
 https://puppet.com/docs/puppet/latest/puppet_platform.html
 
 For help, please open a ticket in the CPR project at https://tickets.puppet.com
-or reach out to us on Slack at http://slack.puppet.com/.
+or reach out to us on Slack at https://slack.puppet.com/.
 
 These repositories contain *UNSUPPORTED* packages intended for public
 consumption. These packages contain software released by Puppet, Inc., e.g.
@@ -14,7 +14,7 @@ Puppet, Puppet Server, PuppetDB, etc.
 ## Installation
 To add the repo for your distribution, install the release package with the
 codename for your distribution. For example, on xenial:
-wget http://nightlies.puppet.com/apt/puppet-nightly-release-xenial.deb;
+wget https://nightlies.puppet.com/apt/puppet-nightly-release-xenial.deb;
 sudo dpkg -i puppet-nightly-release-xenial.deb
 sudo apt-get update
 

@@ -4,7 +4,7 @@ For official documentation and setup instructions, see:
 https://puppet.com/docs/puppet/latest/puppet_platform.html
 
 For help, please open a ticket in the CPR project at https://tickets.puppet.com
-or reach out to us on Slack at http://slack.puppet.com/.
+or reach out to us on Slack at https://slack.puppet.com/.
 
 ## Layout
 
