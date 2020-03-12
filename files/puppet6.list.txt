@@ -1,2 +1,2 @@
 # Puppet 6 __CODENAME__ Repository
-deb https://apt.puppetlabs.com __CODENAME__ puppet6
+deb http://apt.puppetlabs.com __CODENAME__ puppet6
