@@ -14,7 +14,7 @@ Puppet, Puppet Server, PuppetDB, etc.
 ## Installation
 To add the repo for your distribution, install the release package with the
 codename for your distribution. For example, on xenial:
-wget http://nightlies.puppet.com/apt/puppet-nightly-release-xenial.deb;
+wget https://nightlies.puppet.com/apt/puppet-nightly-release-xenial.deb;
 sudo dpkg -i puppet-nightly-release-xenial.deb
 sudo apt-get update
 

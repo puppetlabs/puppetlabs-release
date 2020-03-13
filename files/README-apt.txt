@@ -14,7 +14,7 @@ PuppetDB, etc.
 ## Installation
 To add the repo for your distribution, install the release package with the
 codename for your distribution. For example, on xenial:
-wget http://apt.puppetlabs.com/puppet-release-xenial.deb;
+wget https://apt.puppetlabs.com/puppet-release-xenial.deb;
 sudo dpkg -i puppet-release-xenial.deb
 sudo apt-get update
 
