@@ -7,6 +7,14 @@ component 'repo_definition' do |pkg, settings, platform|
     pkg.install do
       "sed -i 's|__CODENAME__|#{platform.codename}|g' /etc/apt/sources.list.d/#{settings[:target_repo]}.list"
     end
+    pkg.add_postinstall_action ["install"],
+      [<<-HERE.undent
+          if [ ! -e /usr/lib/apt/methods/https ]; then
+            sed -i -e 's|https://|http://|' /etc/apt/sources.list.d/#{settings[:target_repo]}.list
+          fi
+        HERE
+      ]
+
   else
     # Specifying the repo path as a platform config var is likely the
     # way to go if anything else needs to get added here:
