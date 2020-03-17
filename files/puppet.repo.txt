@@ -1,6 +1,6 @@
 [puppet]
 name=Puppet Repository __OS_NAME__ __OS_VERSION__ - $basearch
-baseurl=https://yum.puppetlabs.com/puppet/__OS_NAME__/__OS_VERSION__/$basearch
+baseurl=http://yum.puppetlabs.com/puppet/__OS_NAME__/__OS_VERSION__/$basearch
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-release
 enabled=1
 gpgcheck=1
