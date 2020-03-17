@@ -1,13 +1,13 @@
 [puppet5]
 name=Puppet 5 Repository __OS_NAME__ __OS_VERSION__ - $basearch
-baseurl=https://yum.puppetlabs.com/puppet5/__OS_NAME__/__OS_VERSION__/$basearch
+baseurl=http://yum.puppetlabs.com/puppet5/__OS_NAME__/__OS_VERSION__/$basearch
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet5-release
 enabled=1
 gpgcheck=1
 
 [puppet5-source]
 name=Puppet 5 Repository __OS_NAME__ __OS_VERSION__ - Source
-baseurl=https://yum.puppetlabs.com/puppet5/__OS_NAME__/__OS_VERSION__/SRPMS
+baseurl=http://yum.puppetlabs.com/puppet5/__OS_NAME__/__OS_VERSION__/SRPMS
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet5-release
 failovermethod=priority
 enabled=0
