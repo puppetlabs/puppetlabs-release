@@ -1,7 +1,11 @@
 puppetlabs-release
 ==================
 
-Repo that builds packages to add our apt and yum repositories and public signing key. To see the latest changes, checkout the `puppet` branch.
+Repo for yum and apt release packages with Puppet's signing key.
+
+See "Build and Ship a Release Package" in Confluence
+(https://confluence.puppetlabs.com/pages/viewpage.action?pageId=159652513)
+for details.
 
 NOTE: We must now set the project using the `PROJECT_OVERRIDE` environment
-      variable when performing tasks with the packaging repo.
+variable when performing tasks with the packaging repo.
