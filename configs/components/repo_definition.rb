@@ -1,5 +1,5 @@
 component 'repo_definition' do |pkg, settings, platform|
-  pkg.version '2018.3.22'
+  pkg.version '2020.05.18'
 
   if platform.is_deb?
     pkg.url "file://files/#{settings[:target_repo]}.list.txt"
