@@ -1,31 +1,51 @@
 component 'repo_definition' do |pkg, settings, platform|
-  pkg.version '2020.05.18'
+  pkg.version '2020.06.01'
 
-  if platform.is_deb?
-    pkg.url "file://files/#{settings[:target_repo]}.list.txt"
-    pkg.install_configfile "#{settings[:target_repo]}.list.txt", "/etc/apt/sources.list.d/#{settings[:target_repo]}.list"
-    pkg.install do
-      "sed -i 's|__CODENAME__|#{platform.codename}|g' /etc/apt/sources.list.d/#{settings[:target_repo]}.list"
-    end
+  # Default sed-fu for setting os information in the .repo file
+  os_fixup = [
+    "sed -i -e 's|__OS_NAME__|#{platform.os_name}|g' "\
+    "-e 's|__OS_VERSION__|#{platform.os_version}|g' "\
+    "#{repo_path}/#{settings[:target_repo]}.repo"
+  ]
+
+  case
+  when platform.is_deb?
+    url = "file://files/#{settings[:target_repo]}.list.txt"
+    install_configfile = [
+      "#{settings[:target_repo]}.list.txt",
+      "/etc/apt/sources.list.d/#{settings[:target_repo]}.list"
+    ]
+    os_fixup = [
+      "sed -i 's|__CODENAME__|#{platform.codename}|g' "\
+      "/etc/apt/sources.list.d/#{settings[:target_repo]}.list"
+    ]
+  when platform.is_sles?
+    url = "file://files/#{settings[:target_repo]}.sles.txt"
+    repo_path = '/etc/zypp/repos.d'
+    install_configfile = [
+      "#{settings[:target_repo]}.sles.txt",
+      "#{repo_path}/#{settings[:target_repo]}.repo"
+    ]
+  when platform.is_cisco_wrlinux?
+    url = "file://files/#{settings[:target_repo]}.repo.txt"
+    repo_path = '/etc/yum/repos.d'
+    install_configfile = [
+      "#{settings[:target_repo]}.repo.txt",
+      "#{repo_path}/#{settings[:target_repo]}.repo"
+    ]
   else
-    # Specifying the repo path as a platform config var is likely the
-    # way to go if anything else needs to get added here:
-    if platform.is_cisco_wrlinux?
-      repo_path = '/etc/yum/repos.d'
-    elsif platform.is_sles?
-      repo_path = '/etc/zypp/repos.d'
-    else
-      repo_path = '/etc/yum.repos.d'
-    end
+    # centos, redhat, fedora
+    url = "file://files/#{settings[:target_repo]}.repo.txt"
+    repo_path = '/etc/yum.repos.d'
+    install_configfile = [
+      "#{settings[:target_repo]}.repo.txt",
+      "#{repo_path}/#{settings[:target_repo]}.repo"
+    ]
+  end
 
-    pkg.url "file://files/#{settings[:target_repo]}.repo.txt"
-    pkg.install_configfile "#{settings[:target_repo]}.repo.txt", "#{repo_path}/#{settings[:target_repo]}.repo"
-
-    install_hash = ["sed -i -e 's|__OS_NAME__|#{platform.os_name}|g' -e 's|__OS_VERSION__|#{platform.os_version}|g' #{repo_path}/#{settings[:target_repo]}.repo"]
-
-    pkg.install do
-      install_hash
-    end
+  pkg.url url
+  pkg.install_configfile *install_configfile
+  pkg.install do
+    os_fixup
   end
 end
-
