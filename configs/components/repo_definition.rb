@@ -1,12 +1,7 @@
 component 'repo_definition' do |pkg, settings, platform|
-  pkg.version '2020.06.01'
+  pkg.version '2020.06.02'
 
-  # Default sed-fu for setting os information in the .repo file
-  os_fixup = [
-    "sed -i -e 's|__OS_NAME__|#{platform.os_name}|g' "\
-    "-e 's|__OS_VERSION__|#{platform.os_version}|g' "\
-    "#{repo_path}/#{settings[:target_repo]}.repo"
-  ]
+  os_fixup = nil
 
   case
   when platform.is_deb?
@@ -39,6 +34,16 @@ component 'repo_definition' do |pkg, settings, platform|
     repo_path = '/etc/yum.repos.d'
     install_configfile = [
       "#{settings[:target_repo]}.repo.txt",
+      "#{repo_path}/#{settings[:target_repo]}.repo"
+    ]
+  end
+
+  if os_fixup.nil?
+    # Default sed-fu for setting os information in the .repo file
+    # Need to defer this setting to the end because of 'repo_path' 
+    os_fixup = [
+      "sed -i -e 's|__OS_NAME__|#{platform.os_name}|g' "\
+      "-e 's|__OS_VERSION__|#{platform.os_version}|g' "\
       "#{repo_path}/#{settings[:target_repo]}.repo"
     ]
   end
