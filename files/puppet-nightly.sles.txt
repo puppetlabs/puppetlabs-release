@@ -1,1 +1,1 @@
-puppet-nightly.list.txt
+puppet-nightly.repo.txt
