@@ -1,6 +1,6 @@
 project 'puppet-release' do |proj|
   proj.description 'Release packages for the Puppet repository'
-  proj.release '13'
+  proj.release '14'
   proj.license 'ASL 2.0'
   proj.version '1.0.0'
   proj.vendor 'Puppet, Inc. <release@puppet.com>'
@@ -12,6 +12,7 @@ project 'puppet-release' do |proj|
 
   proj.conflicts 'puppet5-release'
   proj.conflicts 'puppet6-release'
+  proj.conflicts 'puppet7-release'
 
   proj.component 'gpg_key'
   proj.component 'repo_definition'
