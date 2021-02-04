@@ -1,5 +1,5 @@
 component 'gpg_key' do |pkg, settings, platform|
-  pkg.version '2019.4.8'
+  pkg.version '2021.2.4'
 
   if platform.is_deb?
     pkg.add_source 'file://files/keyring.gpg'
