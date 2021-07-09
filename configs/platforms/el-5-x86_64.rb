@@ -5,5 +5,5 @@ platform "el-5-x86_64" do |plat|
 
   plat.provision_with "yum install -y --nogpgcheck autoconf automake createrepo rsync gcc make rpmdevtools rpm-libs yum-utils rpm-sign rpm-build"
   plat.install_build_dependencies_with "yum install -y --nogpgcheck"
-  plat.vmpooler_template "centos-5-x86_64"
+  plat.vmpooler_template "redhat-5-x86_64"
 end

@@ -1,5 +1,5 @@
-component 'repo_definition' do |pkg, settings, platform|
-  pkg.version '2016.10.03'
+component 'repo_definition' do |pkg, _, platform|
+  pkg.version '2021.07.09'
 
   if platform.is_deb?
     pkg.url 'file://files/pl-build-tools.list.txt'
@@ -24,16 +24,27 @@ component 'repo_definition' do |pkg, settings, platform|
       repo_path = '/etc/yum.repos.d'
     end
 
-    install_cmds = [ "sed -i -e 's|__OS_NAME__|#{platform.os_name}|g' -e 's|__OS_VERSION__|#{platform.os_version}|g' #{repo_path}/pl-build-tools.repo" ]
+    install_cmds = []
 
-    if platform.name =~ /el-4/
-      install_cmds << "sed -i 's/gpgcheck=1/gpgcheck=0/' #{repo_path}/pl-build-tools.repo"
-    elsif platform.is_sles?
-      install_cmds << "sed -i -e 's|file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-build-tools|=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-2025-04-06|g' #{repo_path}/pl-build-tools.repo"
+    install_cmds << "sed -i " \
+                    "-e 's|__OS_NAME__|#{platform.os_name}|g' " \
+                    "-e 's|__OS_VERSION__|#{platform.os_version}|g' " \
+                    "#{repo_path}/pl-build-tools.repo"
+
+    if platform.is_sles?
+      # Most yum-based systems will allow multiple gpg keys, like this:
+      #
+      #    gpgkey=file:///some-file
+      #           file:///some-other-file
+      #           file:///ya-file
+      #
+      # SLES does not allow it. We'll delete all but the first one.
+      # Rearranging that over time will be needed.
+      install_cmds << "sed -i -e '\\|^  *file:///|d' #{repo_path}/pl-build-tools.repo"
     end
 
     pkg.url 'file://files/pl-build-tools.repo.txt'
-    pkg.md5sum '154b9edd18c730d88615b64b8b4f0f07'
+    pkg.md5sum '4723dc127409d5528b7814c0a1b338f9'
     pkg.install_file 'pl-build-tools.repo.txt', "#{repo_path}/pl-build-tools.repo"
     pkg.install do
       install_cmds
