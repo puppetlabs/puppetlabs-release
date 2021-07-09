@@ -29,7 +29,7 @@ component 'repo_definition' do |pkg, settings, platform|
     if platform.name =~ /el-4/
       install_cmds << "sed -i 's/gpgcheck=1/gpgcheck=0/' #{repo_path}/pl-build-tools.repo"
     elsif platform.is_sles?
-      install_cmds << "sed -i -e 's|file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-build-tools|=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-build-tools|g' #{repo_path}/pl-build-tools.repo"
+      install_cmds << "sed -i -e 's|file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-build-tools|=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-2025-04-06|g' #{repo_path}/pl-build-tools.repo"
     end
 
     pkg.url 'file://files/pl-build-tools.repo.txt'
@@ -40,4 +40,3 @@ component 'repo_definition' do |pkg, settings, platform|
     end
   end
 end
-
