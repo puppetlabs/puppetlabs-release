@@ -1,8 +1,7 @@
 [pl-build-tools]
 name=Puppet Labs Build Tools Repository __OS_NAME__ __OS_VERSION__ - $basearch
 baseurl=http://pl-build-tools.delivery.puppetlabs.net/yum/__OS_NAME__/__OS_VERSION__/$basearch
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-pl-build-tools
-       file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-build-tools
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-2025-04-06.pub
 enabled=1
 gpgcheck=1
 
