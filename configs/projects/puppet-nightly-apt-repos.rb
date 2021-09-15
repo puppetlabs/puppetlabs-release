@@ -1,4 +1,4 @@
-project 'puppet7-nightly-apt-repos' do |proj|
+project 'puppet-nightly-apt-repos' do |proj|
   proj.no_packaging true unless platform.is_deb?
 
   proj.description 'apt.repos.puppet.com nightly release packages for Puppet 7'
@@ -17,8 +17,8 @@ project 'puppet7-nightly-apt-repos' do |proj|
   proj.conflicts 'puppet6-nightly-release'
   proj.conflicts 'puppet7-nightly-release'
 
-  proj.conflicts 'puppet-nightly-apt-repos'
   proj.conflicts 'puppet6-nightly-apt-repos'
+  proj.conflicts 'puppet7-nightly-apt-repos'
 
   proj.component 'gpg_key'
   proj.component 'repos_puppet_com'

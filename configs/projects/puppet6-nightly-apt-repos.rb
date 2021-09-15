@@ -17,6 +17,7 @@ project 'puppet6-nightly-apt-repos' do |proj|
   proj.conflicts 'puppet6-release'
   proj.conflicts 'puppet7-release'
 
+  proj.conflicts 'puppet-nightly-apt-repos'
   proj.conflicts 'puppet7-nightly-apt-repos'
 
   proj.component 'gpg_key'
