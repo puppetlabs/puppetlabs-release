@@ -11,6 +11,7 @@ project 'release-puppet6-nightly' do |proj|
 
   proj.setting(:puppet_product, 'puppet6')
   proj.setting(:apt_component, 'nightly')
+  proj.setting(:target_repo, "#{proj.puppet_product}-#{proj.apt_component}")
 
   proj.conflicts 'puppet-release'
   proj.conflicts 'puppet5-release'
