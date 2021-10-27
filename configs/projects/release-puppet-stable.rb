@@ -1,7 +1,7 @@
-project 'puppet-stable-apt-repos' do |proj|
+project 'release-puppet-stable' do |proj|
   proj.no_packaging true unless platform.is_deb?
 
-  proj.description 'apt.repos.puppet.com stable release packages for Puppet 7'
+  proj.description 'apt.repos.puppet.com stable release packages for the latest Puppet'
   proj.release '1'
   proj.license 'ASL 2.0'
   proj.version '7.0.0'
@@ -17,8 +17,8 @@ project 'puppet-stable-apt-repos' do |proj|
   proj.conflicts 'puppet6-release'
   proj.conflicts 'puppet7-release'
 
-  proj.conflicts 'puppet6-stable-apt-repos'
-  proj.conflicts 'puppet7-stable-apt-repos'
+  proj.conflicts 'release-puppet6-stable'
+  proj.conflicts 'release-puppet7-stable'
 
   proj.component 'gpg_key'
   proj.component 'repos_puppet_com'

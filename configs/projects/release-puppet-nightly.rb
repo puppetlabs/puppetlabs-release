@@ -1,7 +1,7 @@
-project 'puppet7-nightly-apt-repos' do |proj|
+project 'release-puppet-nightly' do |proj|
   proj.no_packaging true unless platform.is_deb?
 
-  proj.description 'apt.repos.puppet.com nightly release packages for Puppet 7'
+  proj.description 'apt.repos.puppet.com nightly release packages for latest Puppet'
   proj.release '1'
   proj.license 'ASL 2.0'
   proj.version '7.0.0'
@@ -17,8 +17,8 @@ project 'puppet7-nightly-apt-repos' do |proj|
   proj.conflicts 'puppet6-nightly-release'
   proj.conflicts 'puppet7-nightly-release'
 
-  proj.conflicts 'puppet-nightly-apt-repos'
-  proj.conflicts 'puppet6-nightly-apt-repos'
+  proj.conflicts 'release-puppet6-nightly'
+  proj.conflicts 'release-puppet7-nightly'
 
   proj.component 'gpg_key'
   proj.component 'repos_puppet_com'
