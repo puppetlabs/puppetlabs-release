@@ -1,0 +1,2 @@
+# Puppet 6 __CODENAME__ Stable Repository
+deb https://apt.repos.puppet.com/puppet6 __CODENAME__ stable
