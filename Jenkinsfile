@@ -13,7 +13,13 @@ pipeline {
     stage('Build') {
       steps {
         cleanWs()
-        echo "Something has been committed 2"
+        sh "mkdir output"
+        sh "echo 'hello' >> output/hello.txt"
+      }
+    }
+    post {
+      always {
+        archiveArtifacts artifacts: 'output/*'
       }
     }
   }
