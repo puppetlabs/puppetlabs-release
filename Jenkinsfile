@@ -13,7 +13,7 @@ pipeline {
     stage('Build') {
       steps {
         cleanWs()
-        echo "Something has been committed"
+        echo "Something has been committed 2"
       }
     }
   }
