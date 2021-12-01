@@ -17,10 +17,10 @@ pipeline {
         sh "echo 'hello' >> output/hello.txt"
       }
     }
+  }
     post {
       always {
         archiveArtifacts artifacts: 'output/*'
       }
     }
-  }
 }
