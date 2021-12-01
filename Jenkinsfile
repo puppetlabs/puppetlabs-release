@@ -1,3 +1,5 @@
+properties([pipelineTriggers([githubPush()])])
+
 pipeline {
   agent  {
     label 'k8s-worker'
@@ -5,6 +7,7 @@ pipeline {
   options {
     timestamps()
     ansiColor('xterm')
+    preserveStashes(buildCount: 15)
   }
   environment {
     ARTIFACTORY_API_KEY = credentials('api_token_for_jenkins_to_artifactory')
@@ -18,9 +21,9 @@ pipeline {
       }
     }
   }
-    post {
-      always {
-        archiveArtifacts artifacts: 'output/*'
-      }
+  post {
+    always {
+      archiveArtifacts artifacts: 'output/*'
     }
+  }
 }
