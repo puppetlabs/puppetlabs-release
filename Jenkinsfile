@@ -21,7 +21,7 @@ pipeline {
       steps {
         cleanWs()
         sh "mkdir output"
-        sh "echo 'hello' >> output/hello.txt"
+        sh "./ci/vanagon_build"
       }
     }
   }
