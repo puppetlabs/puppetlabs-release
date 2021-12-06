@@ -20,7 +20,7 @@ pipeline {
     stage('Build') {
       steps {
         sh "chmod +x -R ${env.WORKSPACE}"
-        sh "./ci/vanagon_build"
+        sh "./ci/vanagon_build.sh"
       }
     }
   }
