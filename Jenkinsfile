@@ -20,7 +20,7 @@ pipeline {
     stage('Build') {
       steps {
         cleanWs()
-        sh "mkdir output"
+        sh "ls"
         sh "./ci/vanagon_build"
       }
     }
