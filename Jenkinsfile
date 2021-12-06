@@ -19,8 +19,6 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        cleanWs()
-        sh "ls"
         sh "./ci/vanagon_build"
       }
     }
