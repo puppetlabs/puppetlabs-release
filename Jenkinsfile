@@ -10,13 +10,13 @@ pipeline {
   }
 
   environment {
-    ABS_TOKEN = credentials('always-be-scheduling')
+    ABS_TOKEN = credentials('always-be-scheduling-k8s')
   }
 
   triggers {
     githubPush()
   }
-  
+
   stages {
     stage('Build') {
       steps {

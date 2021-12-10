@@ -27,191 +27,19 @@
 #   run_me_maybe_resources beaker TEST_TARGETS suite.props
 #
 
-set -x
-
-run_me_maybe_usage()
-{
-  local mesg=$1
-  local run_me_maybe_usage="usage: run_me_maybe_resources style plural_parameter outfile [ args ]"
-
-  echo ""
-  echo "Error: $mesg"
-  echo $run_me_maybe_usage
-  echo ""
-}
-
-run_me_maybe_resources()
-{
-  local style=$1
-  local plural=$2
-  local outfile=$3
-
-  local singular=
-
-  if [ -z "$style" ]; then
-    run_me_maybe_usage "Style must be specified"
-    return
-  fi
-
-  if [[ "$plural" == "LAYOUT_AXIS" ]]; then
-      singular="LAYOUT"
-  elif [[ "$plural" =~ .S$ ]]; then
-    singular=${plural%S}
-  else
-    run_me_maybe_usage "Parameter must be plural [$plural]"
-    return
-  fi
-
-  if [ -z "${!plural}" ]; then
-    run_me_maybe_usage "Parameter [$plural] has no value. Aborting."
-    return
-  fi
-
-  if [ -z "$outfile" ]; then
-    run_me_maybe_usage "Output file must be specified"
-    return
-  fi
-
-  if [[ "$style" == "vanagon" ]]; then
-    local project=$4
-
-    if [ -z "$project" ]; then
-      run_me_maybe_usage "Additional project argument must be specified for vanagon-style resources"
-      return
-    fi
-
-    run_me_maybe_vanagon_resources $plural $singular $outfile $project
-  elif [[ "$style" == "beaker" ]]; then
-    run_me_maybe_beaker_resources $plural $singular $outfile
-  elif [[ "$style" == "integration" ]]; then
-    run_me_maybe_beaker_integration $plural $singular $outfile
-  else
-    echo "Style must be either 'beaker', 'vanagon' or 'integration'"
-    echo $run_me_maybe_usage
-  fi
-}
-
-run_me_maybe_vanagon_resources()
-{
-  local plural=$1
-  local singular=$2
-  local outfile=$3
-  local project=$4
-
-  echo "Computing $singular values for vanagon resource scheduling..."
-
-  echo -n "ABS_RESOURCE_REQUESTS_vanagon={" >> $outfile
-  unset ADD_COMMA
-
-  for ITEM in ${!plural}
-  do
-    # Only the last line of output is JSON
-    OUT=$(bundle exec build_host_info $project $ITEM)
-    RESULT=$?
-    if [ $RESULT -ne 0 ]; then
-      echo
-      echo "ERROR: Running build_host_info returned nonzero exit."
-      echo
-      exit 1
-    fi
-    TRANSLATED=$(echo $OUT | tail -n1 | jq -r '.name')
-    echo "  $plural: $ITEM -> $TRANSLATED"
-
-    if [ -n "$ADD_COMMA" ]; then echo -n ", " >> $outfile; fi
-    echo -n '"'$ITEM'":{"'$TRANSLATED'":1}' >> $outfile
-    ADD_COMMA=true
-  done
-  echo "}" >> $outfile
-}
-
-run_me_maybe_beaker_resources()
-{
-  local plural=$1
-  local singular=$2
-  local outfile=$3
-
-  echo "Computing $singular values for beaker resource scheduling..."
-
-  if [ -n "$RMMR_OPTIONAL_MASTER_TARGET" ]; then
-      echo "Including additional master test target $RMMR_OPTIONAL_MASTER_TARGET"
-  fi
-
-  if [ -n "$RMMR_ADDITIONAL_CLIENT_TARGETS" ]; then
-      echo "Including additional client test target $RMMR_ADDITIONAL_CLIENT_TARGETS"
-  fi
-
-  if [ -n "$RMMR_OPTIONAL_STYLE_QUALIFIER" ]; then
-      STYLE=beaker_${RMMR_OPTIONAL_STYLE_QUALIFIER}
-  else
-      STYLE=beaker
-  fi
-
-  echo -n "ABS_RESOURCE_REQUESTS_$STYLE={" >> $outfile
-  unset ADD_COMMA
-
-  for ITEM in ${!plural}
-  do
-    TARGET=$ITEM
-    if [ -n "$RMMR_OPTIONAL_MASTER_TARGET" ]; then
-        TARGET=${RMMR_OPTIONAL_MASTER_TARGET}-$TARGET
-    fi
-    if [ -n "$RMMR_ADDITIONAL_CLIENT_TARGETS" ]; then
-        TARGET=$TARGET-${RMMR_ADDITIONAL_CLIENT_TARGETS}
-    fi
-    TRANSLATED=$(bundle exec beaker-hostgenerator $TARGET --hypervisor abs --templates-only --disable-default-role)
-    echo "  $plural: $ITEM -> $TRANSLATED"
-
-    if [ -n "$ADD_COMMA" ]; then echo -n ", " >> $outfile; fi
-    echo -n '"'$ITEM'":'$TRANSLATED >> $outfile
-    ADD_COMMA=true
-  done
-  echo "}" >> $outfile
-}
-
-run_me_maybe_beaker_integration()
-{
-  local plural=$1
-  local singular=$2
-  local outfile=$3
-
-  echo "Computing $singular values for beaker resource scheduling..."
-
-  echo -n "ABS_RESOURCE_REQUESTS_beaker={" >> $outfile
-  unset ADD_COMMA
-
-  for ITEM in ${!plural}
-  do
-    #sanitize string by removing [ ] , '
-    ITEM=${ITEM//[\'\[\],]}
-    TRANSLATED=$(bundle exec beaker-hostgenerator $ITEM --hypervisor abs --templates-only --disable-default-role)
-    echo "  $plural: $ITEM -> $TRANSLATED"
-
-    if [ -n "$ADD_COMMA" ]; then echo -n ", " >> $outfile; fi
-    echo -n '"'$ITEM'":'$TRANSLATED >> $outfile
-    ADD_COMMA=true
-  done
-  echo "}" >> $outfile
-}
-
 source /usr/local/rvm/scripts/rvm
 rvm use 2.5.1
+
+set -x
+
 export VANAGON_SSH_KEY="$HOME/.ssh/id_rsa-acceptance"
-#export VANAGON_SSH_AGENT=true
-#eval "$(ssh-agent -t 24h -s)"
-#ssh-add "${HOME}/.ssh/id_rsa"
-export TEAM=release
 export BUNDLE_PATH=.bundle/gems
 export BUNDLE_BIN=.bundle/bin
 
 bundle install
 
 PLATFORMS=$(bundle exec vanagon list --platforms --use-spaces | tail -1)
-
-run_me_maybe_resources vanagon PLATFORMS build.props puppet-release
-
-export ABS__RESOURCE_REQUESTS_vanagon=build.props
-
-PROJECTS=($(bundle exec vanagon list --projects --use-spaces))
+PROJECTS=$(bundle exec vanagon list --projects --use-spaces)
 
 echo "$PLATFORMS"
 echo "$PROJECTS"
