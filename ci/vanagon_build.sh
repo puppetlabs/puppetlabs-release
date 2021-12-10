@@ -23,6 +23,6 @@ do
   PLATFORMS="${PLATFORMS},${i}"
 done
 
-echo PLATFORMS
+echo $PLATFORMS
 
 bundle exec vanagon build puppet-release debian-9-amd64
