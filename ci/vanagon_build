@@ -27,6 +27,8 @@
 #   run_me_maybe_resources beaker TEST_TARGETS suite.props
 #
 
+set -x
+
 run_me_maybe_usage()
 {
   local mesg=$1
@@ -203,12 +205,13 @@ export BUNDLE_BIN=.bundle/bin
 
 bundle install
 
-run_me_maybe_resources vanagon puppet-release build.props
+PLATFORMS=$(bundle exec vanagon list --platforms --use-spaces | tail -1)
 
-export ABS__RESOURCE_REQUESTS_vanagon build.props
+run_me_maybe_resources vanagon PLATFORMS build.props
+
+export ABS__RESOURCE_REQUESTS_vanagon=build.props
 
 PROJECTS=($(bundle exec vanagon list --projects --use-spaces))
-PLATFORMS_RAW=$(bundle exec vanagon list --platforms --use-spaces | tail -1 | tr ' ' ,)
 
 echo "$PLATFORMS"
 echo "$PROJECTS"
