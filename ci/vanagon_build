@@ -207,7 +207,7 @@ bundle install
 
 PLATFORMS=$(bundle exec vanagon list --platforms --use-spaces | tail -1)
 
-run_me_maybe_resources vanagon PLATFORMS build.props
+run_me_maybe_resources vanagon PLATFORMS build.props puppet-release
 
 export ABS__RESOURCE_REQUESTS_vanagon=build.props
 
