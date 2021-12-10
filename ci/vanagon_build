@@ -6,7 +6,7 @@ rvm use 2.5.1
 #export VANAGON_SSH_AGENT=true
 #eval "$(ssh-agent -t 24h -s)"
 #ssh-add "${HOME}/.ssh/id_rsa"
-#export TEAM=release
+export TEAM=release
 export BUNDLE_PATH=.bundle/gems
 export BUNDLE_BIN=.bundle/bin
 
@@ -15,7 +15,7 @@ bundle install
 PROJECTS=($(bundle exec vanagon list --projects --use-spaces))
 PLATFORMS_RAW=$(bundle exec vanagon list --platforms --use-spaces | tail -1 | tr ' ' ,)
 
-echo $PLATFORMS
-echo $PROJECTS
+echo "$PLATFORMS"
+echo "$PROJECTS"
 
 bundle exec vanagon build puppet-release debian-9-amd64
