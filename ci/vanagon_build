@@ -12,17 +12,14 @@ export BUNDLE_BIN=.bundle/bin
 
 bundle install
 
-declare -a COMPONENTS=($(ls -1 configs/components | sed -e 's/\..*$//'))
-declare -a PROJECTS=($(ls -1 configs/projects | sed -e 's/\..*$//'))
-declare -a PLATFORMS_RAW=($(ls -1 configs/platforms | sed -e 's/\..*$//'))
+PROJECTS=($(bundle exec vanagon list --projects --use-spaces))
+PLATFORMS_RAW=$(bundle exec vanagon list --platforms --use-spaces | tail -1 | tr ' ' ,)
 
-PLATFORMS=""
-for i in "PLATFORMS_RAW[@]"
-do
-  echo "$i"
-  PLATFORMS="${PLATFORMS},${i}"
-done
-
-echo "$PLATFORMS"
+echo $PLATFORMS
+echo $PROJECTS
 
 bundle exec vanagon build puppet-release debian-9-amd64
+
+bundle exec vanagon list --projects
+bundle exec vanagon list --platforms
+bundle exec vanagon list --platforms --use-spaces | tail -1 | tr ' ' ,
