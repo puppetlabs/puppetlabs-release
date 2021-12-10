@@ -11,6 +11,7 @@ pipeline {
 
   environment {
     ARTIFACTORY_API_KEY = credentials('api_token_for_jenkins_to_artifactory')
+    ABS_TOKEN = credentials('always-be-scheduling')
   }
 
   triggers {
