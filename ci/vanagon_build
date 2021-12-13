@@ -16,12 +16,13 @@ bundle install
 PLATFORMS=$(bundle exec vanagon list --platforms --use-spaces | tail -1 | tr ' ' ,)
 PROJECTS=$(bundle exec vanagon list --projects --use-spaces)
 # Remove first element (title 'Projects') from array
-PROJECTS=("${PROJECTS[@]:1}")
+#PROJECTS=("${PROJECTS[@]:1}")
 
 echo "$PLATFORMS"
 echo "$PROJECTS"
 
 for project in $PROJECTS
 do
-  bundle exec vanagon build $project $PLATFORMS
+  echo $project
+  #bundle exec vanagon build $project $PLATFORMS
 done
