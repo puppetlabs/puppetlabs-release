@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# 
-
 source /usr/local/rvm/scripts/rvm
 rvm use 2.5.1
 
@@ -13,15 +11,12 @@ export BUNDLE_BIN=.bundle/bin
 
 bundle install
 
-PLATFORMS=$(bundle exec vanagon list --platforms --use-spaces | tail -1 | tr ' ' ,)
-PROJECTS=($(bundle exec vanagon list --projects --use-spaces))
+#PLATFORMS=$(bundle exec vanagon list --platforms --use-spaces | tail -1 | tr ' ' ,)
+#PROJECTS=($(bundle exec vanagon list --projects --use-spaces))
 # Remove first two elements (empty and 'Projects') from array
-PROJECTS="${PROJECTS[@]:2}"
+#PROJECTS="${PROJECTS[@]:2}"
 
-echo "$PLATFORMS"
-echo "$PROJECTS"
+#echo "$PLATFORMS"
+#echo "$PROJECTS"
 
-for project in $PROJECTS
-do
-  bundle exec vanagon build $project $PLATFORMS
-done
+bundle exec vanagon build $1 $2
