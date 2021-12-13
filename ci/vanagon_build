@@ -17,4 +17,4 @@ PROJECTS=$(bundle exec vanagon list --projects --use-spaces)
 echo "$PLATFORMS"
 echo "$PROJECTS"
 
-bundle exec vanagon build puppet-release debian-9-amd64
+bundle exec vanagon build puppet-release $PLATFORMS
