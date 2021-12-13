@@ -11,7 +11,7 @@ export BUNDLE_BIN=.bundle/bin
 
 bundle install
 
-#PLATFORMS=$(bundle exec vanagon list --platforms --use-spaces | tail -1 | tr ' ' ,)
+PLATFORMS=$(bundle exec vanagon list --platforms --use-spaces | tail -1 | tr ' ' ,)
 #PROJECTS=($(bundle exec vanagon list --projects --use-spaces))
 # Remove first two elements (empty and 'Projects') from array
 #PROJECTS="${PROJECTS[@]:2}"
@@ -19,4 +19,4 @@ bundle install
 #echo "$PLATFORMS"
 #echo "$PROJECTS"
 
-bundle exec vanagon build $PROJECT $PLATFORM
+bundle exec vanagon build $PROJECT $PLATFORMS

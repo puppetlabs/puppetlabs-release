@@ -22,12 +22,11 @@ pipeline {
       matrix {
         axes {
           axis {
-            name 'PLATFORM'
-            values 'debian-10-amd64', 'debian-11-amd64'
-          }
-          axis {
             name 'PROJECT'
-            values 'puppet-nightly-release', 'puppet-release'
+            values 'puppet-nightly-release', 'puppet-release', 'puppet-tools-release', 'puppet5-nightly-release',
+            'puppet5-release', 'puppet6-nightly-release', 'puppet6-release', 'puppet7-nightly-release',
+            'puppet7-release', 'release-puppet-nightly', 'release-puppet-stable', 'release-puppet6-nightly',
+            'release-puppet6-stable', 'release-puppet7-nightly', 'release-puppet7-stable'
           }
         }
         stages {
