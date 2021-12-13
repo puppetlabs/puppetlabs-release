@@ -31,12 +31,16 @@ pipeline {
         }
         stages {
           stage('Build') {
-            try {
-              sh "./ci/vanagon_build"
-            } catch(error) {     
-              retry(3) {
-                 sleep(3)
-                 sh "./ci/vanagon_build"
+            steps {
+              script {
+                try {
+                  sh "./ci/vanagon_build"
+                } catch(error) {     
+                  retry(3) {
+                     sleep(3)
+                     sh "./ci/vanagon_build"
+                  }
+                }
               }
             }
           }
