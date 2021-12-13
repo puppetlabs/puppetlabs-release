@@ -39,16 +39,16 @@ pipeline {
         stages {
           stage('Build') {
             steps {
-              sh "./ci/vanagon_build $PROJECT $PLATFORM"
+              sh "./ci/vanagon_build"
             }
           }
         }
       }
     }
-    post {
-      always {
-        archiveArtifacts artifacts: 'output/**/*'
-      }
+  }
+  post {
+    always {
+      archiveArtifacts artifacts: 'output/**/*'
     }
   }
 }

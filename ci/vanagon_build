@@ -19,4 +19,4 @@ bundle install
 #echo "$PLATFORMS"
 #echo "$PROJECTS"
 
-bundle exec vanagon build $1 $2
+bundle exec vanagon build $PROJECT $PLATFORM
