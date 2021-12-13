@@ -11,7 +11,7 @@ export BUNDLE_BIN=.bundle/bin
 
 bundle install
 
-PLATFORMS=$(bundle exec vanagon list --platforms --use-spaces | tail -1)
+PLATFORMS=$(bundle exec vanagon list --platforms --use-spaces | tail -1 | tr ' ' ,)
 PROJECTS=$(bundle exec vanagon list --projects --use-spaces)
 
 echo "$PLATFORMS"
