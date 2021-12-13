@@ -1,32 +1,5 @@
 #!/bin/bash
 
-# Helper to assist in creating "Run Me Maybe" resource requests
-# (See: https://github.com/puppetlabs/run-me-maybe-plugin
-#
-#
-# Usage:
-#
-# Set the appropriate resource description strings in the (plural) job parameter,
-# run the resources helper with the style of resources, the name of the
-# relevant (plural) job parameter, and the location of the properties file to
-# which resource requests will be written.
-#
-# Vanagon also requires a project name, so specify that parameter last when
-# requesting vanagon resources
-#
-#
-# Requesting vanagon resources:
-#
-#   BUILD_TARGETS='el-6-x86_64 el-7-x86_64 el-4-x86_64 win-x64 win-x86'
-#   run_me_maybe_resources vanagon BUILD_TARGETS suite.props puppet_agent
-#
-#
-# Requesting beaker resources:
-#
-#   TEST_TARGETS="centos7-64mda ubuntu1404-64a"
-#   run_me_maybe_resources beaker TEST_TARGETS suite.props
-#
-
 source /usr/local/rvm/scripts/rvm
 rvm use 2.5.1
 
