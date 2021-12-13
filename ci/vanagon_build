@@ -23,5 +23,6 @@ echo "$PROJECTS"
 
 for project in $PROJECTS
 do
-  bundle exec vanagon build $project $PLATFORMS
+  echo $project
 done
+#bundle exec vanagon build $project $PLATFORMS
