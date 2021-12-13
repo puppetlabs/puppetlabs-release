@@ -23,13 +23,11 @@ pipeline {
         axes {
           axis {
             name 'PLATFORM'
-            values 'debian-10-amd64', 'debian-11-amd64', 'debian-9-amd64', 'el-6-x86_64,el-7-x86_64',
-            'el-8-aarch64,el-8-x86_64'
+            values 'debian-10-amd64', 'debian-11-amd64'
           }
           axis {
             name 'PROJECT'
-            values 'puppet-nightly-release', 'puppet-release', 'puppet-tools-release', 'puppet5-nightly-release',
-            'puppet5-release'
+            values 'puppet-nightly-release', 'puppet-release'
           }
         }
         stages {
