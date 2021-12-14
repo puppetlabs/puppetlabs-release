@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Builds all platforms for a vanagon project
+
 source /usr/local/rvm/scripts/rvm
 rvm use 2.5.1
 
@@ -11,12 +13,17 @@ export BUNDLE_BIN=.bundle/bin
 
 bundle install
 
-PLATFORMS=$(bundle exec vanagon list --platforms --use-spaces | tail -1 | tr ' ' ,)
-#PROJECTS=($(bundle exec vanagon list --projects --use-spaces))
-# Remove first two elements (empty and 'Projects') from array
-#PROJECTS="${PROJECTS[@]:2}"
+PLATFORMS=($(bundle exec vanagon list --platforms --use-spaces | tail -1))
+echo $PLATFORMS
+for index in "${!PLATFORMS[@]}"
+do 
+  [[ "PLATFORMS[$index]" != "debian*" ]] && unset -v 'PLATFORMS[$index]'
+done
 
-#echo "$PLATFORMS"
-#echo "$PROJECTS"
+echo $PLATFORMS
 
-bundle exec vanagon build $PROJECT $PLATFORMS
+# Retry build up to 3 times
+for i in 1 2 3
+do
+  bundle exec vanagon build $PROJECT $PLATFORMS && break || sleep 15
+done
