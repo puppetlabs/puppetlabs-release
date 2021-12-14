@@ -16,7 +16,7 @@ bundle install
 PLATFORMS=($(bundle exec vanagon list --platforms --use-spaces | tail -1))
 echo "${PLATFORMS[*]}"
 
-if [ "$PROJECT" == "release"* ]
+if [[ "$PROJECT" == "release"* ]]
 then
 echo "entered"
   for index in "${!PLATFORMS[@]}"
