@@ -20,7 +20,7 @@ if [ "$PROJECT" == "release"* ]
 then
   for index in "${!PLATFORMS[@]}"
   do 
-    [[ "${PLATFORMS[$index]}" != "debian"* ]] && unset -v 'PLATFORMS[$index]'
+    [[ "${PLATFORMS[$index]}" != ("debian"* || "ubuntu"*) ]] && unset -v 'PLATFORMS[$index]'
   done
 fi
 
