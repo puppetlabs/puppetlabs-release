@@ -15,10 +15,14 @@ bundle install
 
 PLATFORMS=($(bundle exec vanagon list --platforms --use-spaces | tail -1))
 echo "${PLATFORMS[*]}"
-for index in "${!PLATFORMS[@]}"
-do 
-  [[ "${PLATFORMS[$index]}" != "debian"* ]] && unset -v 'PLATFORMS[$index]'
-done
+
+if [ "$PROJECT" == "release"* ]
+then
+  for index in "${!PLATFORMS[@]}"
+  do 
+    [[ "${PLATFORMS[$index]}" != "debian"* ]] && unset -v 'PLATFORMS[$index]'
+  done
+fi
 
 echo "${PLATFORMS[*]}"
 
