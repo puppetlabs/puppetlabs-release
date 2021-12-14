@@ -18,6 +18,7 @@ echo "${PLATFORMS[*]}"
 
 if [ "$PROJECT" == "release"* ]
 then
+echo "entered"
   for index in "${!PLATFORMS[@]}"
   do 
     [[ "${PLATFORMS[$index]}" != "debian"* ]] || [[ "${PLATFORMS[$index]}" != "ubuntu"* ]] && unset -v 'PLATFORMS[$index]'
