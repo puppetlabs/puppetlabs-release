@@ -23,7 +23,10 @@ pipeline {
         axes {
           axis {
             name 'PROJECT'
-            values 'release-puppet6-stable'
+            values 'puppet-nightly-release', 'puppet-release', 'puppet-tools-release',
+            'puppet6-nightly-release', 'puppet6-release', 'puppet7-nightly-release',
+            'puppet7-release', 'release-puppet-nightly', 'release-puppet-stable', 'release-puppet6-nightly', 
+            'release-puppet6-stable', 'release-puppet7-nightly', 'release-puppet7-stable'
           }
         }
         stages {
