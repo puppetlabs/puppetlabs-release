@@ -21,7 +21,10 @@ then
 echo "entered"
   for index in "${!PLATFORMS[@]}"
   do 
-    [[ "${PLATFORMS[$index]}" != "debian"* ]] || [[ "${PLATFORMS[$index]}" != "ubuntu"* ]] && unset -v 'PLATFORMS[$index]'
+    if [[ "${PLATFORMS[$index]}" != "debian"* ]] || [[ "${PLATFORMS[$index]}" != "ubuntu"* ]]
+    then
+      unset -v 'PLATFORMS[$index]'
+    fi
   done
 fi
 
