@@ -13,12 +13,12 @@ export BUNDLE_BIN=.bundle/bin
 
 bundle install
 
+# Get platfroms as an array
 PLATFORMS=($(bundle exec vanagon list --platforms --use-spaces | tail -1))
-echo "${PLATFORMS[*]}"
 
+# Only build debian platforms if project starts with release
 if [[ "$PROJECT" == "release"* ]]
 then
-echo "entered"
   for index in "${!PLATFORMS[@]}"
   do 
     if [[ "${PLATFORMS[$index]}" != "debian"* ]] && [[ "${PLATFORMS[$index]}" != "ubuntu"* ]]
@@ -28,6 +28,7 @@ echo "entered"
   done
 fi
 
+# Convert array of platforms into a comma seperated string of platforms
 platforms_string="${PLATFORMS[*]}"
 platforms_final="${platforms_string//${IFS:0:1}/,}"
 
