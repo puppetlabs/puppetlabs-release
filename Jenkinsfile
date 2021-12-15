@@ -33,7 +33,7 @@ pipeline {
           stage('Build') {
             steps {
               script {
-                sh "./ci/vanagon_build"
+                sh "./ci/vanagon_build_project"
               }
             }
           }
