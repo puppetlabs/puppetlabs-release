@@ -36,7 +36,11 @@ pipeline {
         }
       }
       */
-      sh "echo 'hello world'"
+      steps {
+        script {
+          sh "echo 'hello world'"
+        }
+      }
     }
   }
 
