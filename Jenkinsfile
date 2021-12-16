@@ -13,18 +13,7 @@ pipeline {
     ABS_TOKEN = credentials('always-be-scheduling-k8s')
   }
 
-  triggers {
-    GenericTrigger(
-      genericVariables: [
-        [key: 'ref', value: '$.ref']
-      ],
-      causeString: 'Triggered on $ref',
-      regexpFilterExpression: '',
-      regexpFilterText: '',
-      printContributedVariables: true,
-      printPostContent: true
-    )
-  }
+
 
   stages {
     stage('BuildArtifacts') {
