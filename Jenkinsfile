@@ -13,8 +13,6 @@ pipeline {
     ABS_TOKEN = credentials('always-be-scheduling-k8s')
   }
 
-
-
   stages {
     stage('BuildArtifacts') {
       matrix {
@@ -31,7 +29,6 @@ pipeline {
           stage('Build') {
             steps {
               script {
-                sh "echo $ref"
                 sh "./ci/vanagon_build_project"
               }
             }
@@ -40,6 +37,7 @@ pipeline {
       }
     }
   }
+  
   post {
     always {
       archiveArtifacts artifacts: 'output/**/*'
