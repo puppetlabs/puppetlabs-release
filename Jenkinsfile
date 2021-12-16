@@ -14,7 +14,14 @@ pipeline {
   }
 
   triggers {
-    githubPush()
+    GenericTrigger(
+      genericVariables: [
+        [key: 'ref', value: '$.ref']
+      ],
+      causeString: 'Triggered on $ref',
+      printContributedVariables: true,
+      printPostContent: true
+    )
   }
 
   stages {
@@ -33,6 +40,7 @@ pipeline {
           stage('Build') {
             steps {
               script {
+                sh "echo $ref"
                 sh "./ci/vanagon_build_project"
               }
             }
