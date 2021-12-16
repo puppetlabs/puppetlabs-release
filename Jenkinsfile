@@ -19,6 +19,8 @@ pipeline {
         [key: 'ref', value: '$.ref']
       ],
       causeString: 'Triggered on $ref',
+      regexpFilterExpression: '',
+      regexpFilterText: '',
       printContributedVariables: true,
       printPostContent: true
     )
