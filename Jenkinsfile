@@ -2,20 +2,20 @@ pipeline {
   agent  {
     label 'k8s-worker'
   }
-
+/*
   options {
     timestamps()
     ansiColor('xterm')
     preserveStashes(buildCount: 15)
   }
-
+*/
   environment {
     ABS_TOKEN = credentials('always-be-scheduling-k8s')
   }
 
   stages {
     stage('BuildArtifacts') {
-      matrix {
+/*      matrix {
         axes {
           axis {
             name 'PROJECT'
@@ -35,9 +35,11 @@ pipeline {
           }
         }
       }
+      */
+      sh "echo 'hello world'"
     }
   }
-  
+
   post {
     always {
       archiveArtifacts artifacts: 'output/**/*'
