@@ -15,7 +15,6 @@ pipeline {
 
   stages {
     stage('BuildArtifacts') {
-      
       matrix {
         axes {
           axis {
@@ -26,7 +25,6 @@ pipeline {
             'release-puppet6-stable', 'release-puppet7-nightly', 'release-puppet7-stable'
           }
         }
-
         stages {
           stage('Build') {
             steps {
