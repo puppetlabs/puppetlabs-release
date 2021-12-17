@@ -15,27 +15,7 @@ pipeline {
 
   stages {
     stage('BuildArtifacts') {
-/*      matrix {
-        axes {
-          axis {
-            name 'PROJECT'
-            values 'puppet-nightly-release', 'puppet-release', 'puppet-tools-release',
-            'puppet6-nightly-release', 'puppet6-release', 'puppet7-nightly-release',
-            'puppet7-release', 'release-puppet-nightly', 'release-puppet-stable', 'release-puppet6-nightly', 
-            'release-puppet6-stable', 'release-puppet7-nightly', 'release-puppet7-stable'
-          }
-        }
-        stages {
-          stage('Build') {
-            steps {
-              script {
-                sh "./ci/vanagon_build_project"
-              }
-            }
-          }
-        }
-      }
-      */
+      
       matrix {
         axes {
           axis {
@@ -46,6 +26,7 @@ pipeline {
             'release-puppet6-stable', 'release-puppet7-nightly', 'release-puppet7-stable'
           }
         }
+
         stages {
           stage('Build') {
             steps {
