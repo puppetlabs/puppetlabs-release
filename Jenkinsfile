@@ -50,7 +50,7 @@ pipeline {
           stage('Build') {
             steps {
               script {
-                sh "echo $PROJECT"
+                sh "./ci/vanagon_build_project"
               }
             }
           }
