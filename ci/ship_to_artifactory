@@ -3,7 +3,6 @@
 git fetch --tags
 
 VERSION=$(git describe)
-ls
 
 mv output ${VERSION}
 
