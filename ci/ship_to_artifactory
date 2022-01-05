@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Uploads artifacts from the output folder to the release-engineering/ci/puppetlabs-release folder in artifactory.
+
 set -x
 
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
