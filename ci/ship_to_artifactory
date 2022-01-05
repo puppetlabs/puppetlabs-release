@@ -6,7 +6,7 @@ BRANCH=$(git rev-parse --abbrev-ref HEAD)
 SHA=$(git rev-parse --short HEAD)
 
 mkdir -p ci/puppetlabs-release/${BRANCH}/${SHA}
-mv output ci/puppetlabs-release/${BRANCH}/${SHA}
+mv output/* ci/puppetlabs-release/${BRANCH}/${SHA}
 
 zip -r ${SHA}.zip ci/puppetlabs-release/${BRANCH}/${SHA}
 
