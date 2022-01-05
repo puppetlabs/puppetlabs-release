@@ -1,7 +1,9 @@
 #!/bin/bash
 
+git fetch --tags
+
 VERSION=$(git describe)
-git describe
+
 mv output ${VERSION}
 
 zip -r ${VERSION}.zip ${VERSION}
