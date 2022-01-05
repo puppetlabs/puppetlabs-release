@@ -1,5 +1,8 @@
 #!/bin/bash
 
 VERSION=$(git describe)
+mv output ${VERSION}
 
-curl -u jenkins:$ARTIFACTORY_API_TOKEN -X PUT https://artifactory.delivery.puppetlabs.net/artifactory/release-engineering/$VERSION -T output
+zip -r ${VERSION}.zip ${VERSION}
+
+curl -u jenkins:$ARTIFACTORY_API_TOKEN --header "X-Explode-Archive: true" -X PUT https://artifactory.delivery.puppetlabs.net/artifactory/release-engineering/$VERSION -T ${VERSION}.zip
