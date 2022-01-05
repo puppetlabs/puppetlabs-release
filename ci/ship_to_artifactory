@@ -4,6 +4,8 @@ set -x
 
 VERSION=$(git rev-parse --short HEAD)
 
+echo env.BRANCH_NAME
+
 mv output ${VERSION}
 
 zip -r ${VERSION}.zip ${VERSION}
