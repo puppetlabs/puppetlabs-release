@@ -4,12 +4,11 @@
 
 set -x
 
-BRANCH=$(git rev-parse --abbrev-ref HEAD)
 SHA=$(git rev-parse --short HEAD)
 
-mkdir -p ci/puppetlabs-release/${BRANCH}/${SHA}
-mv output/* ci/puppetlabs-release/${BRANCH}/${SHA}
+mkdir -p ci/puppetlabs-release/${BRANCH_NAME}/${SHA}
+mv output/* ci/puppetlabs-release/${BRANCH_NAME}/${SHA}
 
-zip -r ${SHA}.zip ci/puppetlabs-release/${BRANCH}/${SHA}
+zip -r ${SHA}.zip ci/puppetlabs-release/${BRANCH_NAME}/${SHA}
 
 curl -u jenkins:$ARTIFACTORY_API_TOKEN -H "X-Explode-Archive: true" -X PUT https://artifactory.delivery.puppetlabs.net/artifactory/release-engineering/ -T ${SHA}.zip
