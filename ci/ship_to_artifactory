@@ -1,11 +1,8 @@
 #!/bin/bash
 
 set -x
-who
 
-git fetch --tags
-
-VERSION=$(git describe)
+VERSION=$(git rev-parse --short HEAD)
 
 mv output ${VERSION}
 
