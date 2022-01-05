@@ -36,13 +36,12 @@ pipeline {
         }
       }
     }
-  }
-
-  post {
-    always {
-      script {
-        sh "VERSION=$(git describe)"
-        sh "curl -u jenkins:$ARTIFACTORY_API_TOKEN -X PUT https://artifactory.delivery.puppetlabs.net/artifactory/release-engineering/$VERSION -T output"
+    stage('ShipToArtifactory') {
+      steps {
+        script {
+          sh "VERSION=$(git describe)"
+          sh "curl -u jenkins:$ARTIFACTORY_API_TOKEN -X PUT https://artifactory.delivery.puppetlabs.net/artifactory/release-engineering/$VERSION -T output"
+        }
       }
     }
   }
