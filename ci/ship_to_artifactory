@@ -8,4 +8,4 @@ mv output ${VERSION}
 
 zip -r ${VERSION}.zip ${VERSION}
 
-curl -u jenkins:$ARTIFACTORY_API_TOKEN --header "X-Explode-Archive: true" -X PUT https://artifactory.delivery.puppetlabs.net/artifactory/release-engineering/$VERSION -T ${VERSION}.zip
+curl -v -H "X-JFrog-Art-Api: $ARTIFACTORY_API_TOKEN" -H "X-Explode-Archive: true" -X PUT https://artifactory.delivery.puppetlabs.net/artifactory/release-engineering/$VERSION -T ${VERSION}.zip
