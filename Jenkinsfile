@@ -29,6 +29,7 @@ pipeline {
           stage('Build') {
             steps {
               script {
+                sh "mkdir -p output"
                 sh "./ci/vanagon_build_project"
               }
             }
