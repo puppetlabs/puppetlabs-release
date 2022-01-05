@@ -2,6 +2,8 @@
 
 set -x
 
+git fetch --tags
+
 VERSION=$(git rev-parse --short HEAD)
 
 mv output ${VERSION}
