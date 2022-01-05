@@ -1,5 +1,6 @@
 #!/bin/bash
 
+set -x
 who
 
 git fetch --tags
