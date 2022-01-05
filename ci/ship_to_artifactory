@@ -9,5 +9,5 @@ VERSION=$(git describe)
 mv output ${VERSION}
 
 zip -r ${VERSION}.zip ${VERSION}
-
+echo $ARTIFACTORY_API_TOKEN
 curl -u jenkins:$ARTIFACTORY_API_TOKEN -H "X-Explode-Archive: true" -X PUT https://artifactory.delivery.puppetlabs.net/artifactory/release-engineering/$VERSION -T ${VERSION}.zip
