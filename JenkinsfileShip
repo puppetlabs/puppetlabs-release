@@ -19,7 +19,7 @@ pipeline {
       steps {
         script {
           sh "touch hello.txt"
-          sh "curl -u jenkins:$ARTIFACTORY_API_TOKEN -X PUT https://artifactory.delivery.puppetlabs.net/artifactory/release-engineering/hello.txt -T hello.txt"
+          sh 'curl -u jenkins:$ARTIFACTORY_API_TOKEN -X PUT https://artifactory.delivery.puppetlabs.net/artifactory/release-engineering/hello.txt -T hello.txt'
         }
       }
     }
