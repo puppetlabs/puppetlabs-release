@@ -35,5 +35,5 @@ platforms_final="${platforms_string//${IFS:0:1}/,}"
 # Retry build up to 3 times
 for i in 1 2 3
 do
-  touch output/$PROJECT
+  bundle exec vanagon build $PROJECT $platforms_final && break || sleep 15
 done
