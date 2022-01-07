@@ -1,0 +1,5 @@
+#!/bin/bash
+
+curl -u jenkins:$ARTIFACTORY_API_TOKEN -H "X-Explode-Archive: true" -X GET https://artifactory.delivery.puppetlabs.net/api/archive/download/release-engineering/ci/puppetlabs-release?archiveType=zip
+
+ls
