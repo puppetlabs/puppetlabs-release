@@ -1,5 +1,5 @@
 #!/bin/bash
 
-curl -u jenkins:$ARTIFACTORY_API_TOKEN -X GET https://artifactory.delivery.puppetlabs.net/artifactory/api/archive/download/release-engineering/ci/puppetlabs-release/RE-13966/565c0df?archiveType=zip
+wget -r --no-parent -nH --cut-dirs=4 --proxy=off https://artifactory.delivery.puppetlabs.net/artifactory/release-engineering/ci/puppetlabs-release/RE-13966/565c0df
 
 ls
