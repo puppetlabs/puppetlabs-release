@@ -1,5 +1,5 @@
 #!/bin/bash
 
-wget -r --no-parent -nH --cut-dirs=4 --proxy=off https://artifactory.delivery.puppetlabs.net/artifactory/release-engineering/ci/puppetlabs-release/RE-13966/565c0df
+wget -r --no-parent -nH --cut-dirs=4 --proxy=off --reject html,md5,sha1 https://artifactory.delivery.puppetlabs.net/artifactory/release-engineering/ci/puppetlabs-release/RE-13966/565c0df
 
 ls RE-13966
