@@ -1,5 +1,5 @@
 #!/bin/bash
 
-wget -r -p --no-parent -nH --cut-dirs=4 --proxy=off https://artifactory.delivery.puppetlabs.net/artifactory/release-engineering/ci/puppetlabs-release/RE-13966/565c0df
+wget -r -p --no-parent -nH --cut-dirs=5 --proxy=off https://artifactory.delivery.puppetlabs.net/artifactory/release-engineering/ci/puppetlabs-release/RE-13966/565c0df
 
-ls
+ls -R 565c0df
