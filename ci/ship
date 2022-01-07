@@ -2,4 +2,4 @@
 
 wget -r -p --no-parent -nH --cut-dirs=5 --proxy=off --reject="index.html*" https://artifactory.delivery.puppetlabs.net/artifactory/release-engineering/ci/puppetlabs-release/RE-13966/565c0df
 
-ls -R 565c0df
+ls 565c0df
