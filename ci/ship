@@ -2,4 +2,5 @@
 
 wget -r -p --no-parent -nH --cut-dirs=5 --proxy=off --accept deb,rpm https://artifactory.delivery.puppetlabs.net/artifactory/release-engineering/ci/puppetlabs-release/RE-13966/565c0df
 
-tree 565c0df
+cd 565c0df
+find
