@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 def location_for(place)
-  if place =~ /^(git[:@][^#]*)#(.*)/
+  if place =~ /^((?:git[:@]|https:)[^#]*)#(.*)/
     [{ git: $1, branch: $2, require: false }]
   elsif place =~ /^file:\/\/(.*)/
     ['>= 0', { path: File.expand_path($1), require: false }]
@@ -11,6 +11,6 @@ def location_for(place)
 end
 
 gem 'json'
-gem 'packaging', *location_for(ENV['PACKAGING_LOCATION'] || '~> 0.99.8')
+gem 'packaging', *location_for(ENV['PACKAGING_LOCATION'] || '~> 0.99')
 gem 'rake'
 gem 'vanagon', *location_for(ENV['VANAGON_LOCATION'] || '~> 0.21')
