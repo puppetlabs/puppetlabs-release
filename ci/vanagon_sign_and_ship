@@ -1,14 +1,8 @@
 #!/bin/bash
 
-# Uploads artifacts from the output folder to the release-engineering/ci/puppetlabs-release folder in artifactory.
+# Signs and ships artifacts
 
 set -x
 
-SHA=$(git rev-parse --short HEAD)
-
-mkdir -p ci/puppetlabs-release/${BRANCH_NAME}/${SHA}
-mv output/* ci/puppetlabs-release/${BRANCH_NAME}/${SHA}
-
-zip -r ${SHA}.zip ci/puppetlabs-release/${BRANCH_NAME}/${SHA}
-
-curl -u jenkins:$ARTIFACTORY_API_TOKEN -H "X-Explode-Archive: true" -X PUT https://artifactory.delivery.puppetlabs.net/artifactory/release-engineering/ -T ${SHA}.zip
+vanagon sign
+vanagon ship
