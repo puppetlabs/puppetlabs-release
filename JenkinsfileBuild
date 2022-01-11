@@ -30,18 +30,17 @@ pipeline {
           stage('Build') {
             steps {
               script {
-                sh "mkdir -p output"
-                sh "./ci/vanagon_build_project"
+                sh "./ci/vanagon_build"
               }
             }
           }
         }
       }
     }
-    stage('ShipToArtifactory') {
+    stage('SignAndShip') {
       steps {
         script {
-          sh "./ci/ship_to_artifactory"
+          sh "./ci/vanagon_sign_and_ship"
         }
       }
     }

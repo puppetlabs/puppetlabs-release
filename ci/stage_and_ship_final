@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Signs and ships artifacts
+
+vanagon sign
+vanagon ship
