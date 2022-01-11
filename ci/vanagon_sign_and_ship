@@ -2,7 +2,16 @@
 
 # Signs and ships artifacts
 
+source /usr/local/rvm/scripts/rvm
+rvm use 2.5.1
+
 set -x
 
-vanagon sign
-vanagon ship
+export VANAGON_SSH_KEY="$HOME/.ssh/id_rsa-acceptance"
+export BUNDLE_PATH=.bundle/gems
+export BUNDLE_BIN=.bundle/bin
+
+bundle install
+
+bundle exec vanagon sign
+bundle exec vanagon ship
