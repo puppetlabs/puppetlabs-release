@@ -8,6 +8,12 @@ rvm use 2.5.1
 set -x
 
 export VANAGON_SSH_KEY="$HOME/.ssh/id_rsa-acceptance"
+export VANAGON_SSH_AGENT=true
+export VANAGON_FORCE_SIGNING=true
+eval "$(ssh-agent -t 24h -s)"
+ssh-add "${HOME}/.ssh/id_rsa"
+export TEAM=release
+
 export BUNDLE_PATH=.bundle/gems
 export BUNDLE_BIN=.bundle/bin
 
