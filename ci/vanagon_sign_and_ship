@@ -13,14 +13,14 @@ export VANAGON_FORCE_SIGNING=true
 eval "$(ssh-agent -t 24h -s)"
 ssh-add "${HOME}/.ssh/id_rsa"
 export TEAM=release
-export PROJECT_OVERRIDE=puppet-nightly-release
+export PROJECT_ROOT=$(pwd)
 
 export BUNDLE_PATH=.bundle/gems
 export BUNDLE_BIN=.bundle/bin
 
 bundle install
 
-pwd
+echo $PROJECT_ROOT
 
 bundle exec vanagon sign
 bundle exec vanagon ship
