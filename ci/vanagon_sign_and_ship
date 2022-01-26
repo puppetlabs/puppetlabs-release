@@ -20,9 +20,7 @@ export BUNDLE_BIN=.bundle/bin
 
 bundle install
 
-ls
-
-echo $PROJECT_ROOT
+pwd
 
 bundle exec vanagon sign
 bundle exec vanagon ship
