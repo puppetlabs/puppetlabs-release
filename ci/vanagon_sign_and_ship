@@ -22,7 +22,7 @@ bundle install
 
 ls
 
-git status
+git describe
 
 bundle exec vanagon sign
 bundle exec vanagon ship
