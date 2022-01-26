@@ -7,8 +7,6 @@ rvm use 2.5.1
 
 set -x
 
-ls ext
-
 export VANAGON_SSH_KEY="$HOME/.ssh/id_rsa-acceptance"
 export VANAGON_SSH_AGENT=true
 export VANAGON_FORCE_SIGNING=true
@@ -21,5 +19,4 @@ export BUNDLE_BIN=.bundle/bin
 
 bundle install
 
-bundle exec vanagon sign
 bundle exec vanagon ship
