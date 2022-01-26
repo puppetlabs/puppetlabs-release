@@ -20,5 +20,9 @@ export BUNDLE_BIN=.bundle/bin
 
 bundle install
 
+ls
+
+git status
+
 bundle exec vanagon sign
 bundle exec vanagon ship
