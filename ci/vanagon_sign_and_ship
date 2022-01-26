@@ -22,9 +22,7 @@ bundle install
 
 ls
 
-git branch
-
-git tag
+echo $PROJECT_ROOT
 
 bundle exec vanagon sign
 bundle exec vanagon ship
