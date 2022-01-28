@@ -17,9 +17,6 @@ export TEAM=release
 export BUNDLE_PATH=.bundle/gems
 export BUNDLE_BIN=.bundle/bin
 
-git fetch --tags
-
 bundle install
 
-bundle exec vanagon sign
 bundle exec vanagon ship
