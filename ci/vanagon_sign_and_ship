@@ -19,4 +19,5 @@ export BUNDLE_BIN=.bundle/bin
 
 bundle install
 
+bundle exec vanagon sign
 bundle exec vanagon ship
