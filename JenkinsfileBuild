@@ -30,6 +30,7 @@ pipeline {
           stage('Build') {
             steps {
               script {
+                sh "git fetch --tags"
                 sh "./ci/vanagon_build"
               }
             }
