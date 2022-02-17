@@ -1,0 +1,44 @@
+#!/bin/bash
+
+source /usr/local/rvm/scripts/rvm
+rvm use 2.5.1
+
+set -ex
+
+if [[ -z $PROJECT ]]; then
+  : === ERROR: Cannot continue with \$PROJECT unset.
+  exit 1
+fi
+
+if [[ -z $REPO_NAME ]]; then
+  : === ERROR: Cannot continue with \$REPO_NAME unset.
+  exit 1
+fi
+
+export TEAM=release
+export ANSWER_OVERRIDE=true
+export FOSS_ONLY=true
+export PROJECT_OVERRIDE=$PROJECT
+export NONFINAL_REPO_NAME=$REPO_NAME
+
+export BUNDLE_PATH=.bundle/gems
+export BUNDLE_BIN=.bundle/bin
+
+bundle install
+
+case $NIGHTLY in
+  true)
+    bundle exec rake pl:jenkins:stage_nightly_release_packages --trace
+    bundle exec rake pl:remote:update_nightly_repos --trace
+    bundle exec rake pl:remote:deploy_nightlies_to_s3 --trace
+  ;;
+  false)
+    bundle exec rake pl:jenkins:stage_release_packages --trace
+    bundle exec rake pl:remote:update_yum_repo pl:remote:update_apt_repo --trace
+    bundle exec rake pl:remote:deploy_final_builds_to_s3 pl:remote:deploy_to_rsync_server --trace
+  ;;
+  *)
+    echo 'Error: Unrecognized value for $NIGHTLY: ' $NIGHTLY 1>&2
+    exit 1
+  ;;
+esac
