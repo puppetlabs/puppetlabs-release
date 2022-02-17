@@ -1,5 +1,6 @@
 #!/bin/bash
 
+source /usr/local/rvm/scripts/rvm
 rvm use 2.5.1
 
 set -ex
@@ -20,7 +21,10 @@ export FOSS_ONLY=true
 export PROJECT_OVERRIDE=$PROJECT
 export NONFINAL_REPO_NAME=$REPO_NAME
 
-bundle install --path .bundle/gems
+export BUNDLE_PATH=.bundle/gems
+export BUNDLE_BIN=.bundle/bin
+
+bundle install
 
 if [ $NIGHTLY == 'true' ]; then
   echo "Nightly equals true"
