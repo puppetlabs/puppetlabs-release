@@ -3,15 +3,17 @@ pipeline {
     label 'k8s-worker'
   }
 
+  parameters {
+    string(name: 'PROJECT', defaultValue: '', description: 'Name of release package to ship (e.g. puppet6-release)')
+    string(name: 'REPO_NAME', defaultValue: '', description: 'Name of the repository to ship to (e.g. puppet6)')
+    string(name: 'REF', defaultValue: 'main', description: 'Git ref of puppetlabs-release to ship from (defaults to HEAD of main)')
+    choice(name: 'NIGHTLY', choices: ['true', 'false'], description: 'Is this a nightly release package?')
+  }
+
   options {
     timestamps()
     ansiColor('xterm')
     preserveStashes(buildCount: 15)
-  }
-
-  environment {
-    ABS_TOKEN = credentials('always-be-scheduling-k8s')
-    ARTIFACTORY_API_TOKEN = credentials('api_token_for_jenkins_to_artifactory')
   }
 
   stages {
