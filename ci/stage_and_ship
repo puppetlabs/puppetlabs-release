@@ -1,4 +1,4 @@
-#!/usr/bin/env bash --login
+#!/bin/bash
 
 rvm use 2.5.1
 
