@@ -20,7 +20,7 @@ pipeline {
     stage('Ship') {
       steps {
         script {
-          sh "./ci/stage_and_ship_final"
+          sh "./ci/stage_and_ship"
         }
       }
     }
