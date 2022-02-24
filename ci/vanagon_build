@@ -3,7 +3,7 @@
 # Builds all platforms for a vanagon project
 
 source /usr/local/rvm/scripts/rvm
-rvm use 2.5.1
+rvm use 2.5.9
 
 set -x
 
