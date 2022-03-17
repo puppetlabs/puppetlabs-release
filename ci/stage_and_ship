@@ -5,8 +5,6 @@ rvm use 2.5.1
 
 set -ex
 
-git checkout -f $REF
-
 if [[ -z $PROJECT ]]; then
   : === ERROR: Cannot continue with \$PROJECT unset.
   exit 1
