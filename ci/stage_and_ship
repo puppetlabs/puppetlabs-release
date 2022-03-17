@@ -1,9 +1,12 @@
 #!/bin/bash
 
 source /usr/local/rvm/scripts/rvm
-rvm use 2.5.1
+rvm use 2.5.9
 
 set -ex
+
+git switch main
+git checkout -f $REF
 
 if [[ -z $PROJECT ]]; then
   : === ERROR: Cannot continue with \$PROJECT unset.
@@ -25,8 +28,6 @@ export BUNDLE_PATH=.bundle/gems
 export BUNDLE_BIN=.bundle/bin
 
 bundle install
-
-bundle exec rake --tasks
 
 case $NIGHTLY in
   true)
