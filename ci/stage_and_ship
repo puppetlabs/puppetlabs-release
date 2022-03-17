@@ -28,6 +28,8 @@ export BUNDLE_BIN=.bundle/bin
 
 bundle install
 
+bundle exec rake --tasks
+
 case $NIGHTLY in
   true)
     bundle exec rake pl:jenkins:stage_nightly_release_packages --trace
