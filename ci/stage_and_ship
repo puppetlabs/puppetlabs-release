@@ -39,8 +39,8 @@ case $NIGHTLY in
   ;;
   false)
     bundle exec rake pl:jenkins:stage_release_packages --trace
-    #bundle exec rake pl:remote:update_yum_repo pl:remote:update_apt_repo --trace
-    #bundle exec rake pl:remote:deploy_final_builds_to_s3 pl:remote:deploy_to_rsync_server --trace
+    bundle exec rake pl:remote:update_yum_repo pl:remote:update_apt_repo --trace
+    bundle exec rake pl:remote:deploy_final_builds_to_s3 pl:remote:deploy_to_rsync_server --trace
   ;;
   *)
     echo 'Error: Unrecognized value for $NIGHTLY: ' $NIGHTLY 1>&2
