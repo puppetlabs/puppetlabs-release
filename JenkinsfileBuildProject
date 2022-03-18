@@ -1,0 +1,42 @@
+// https://jenkins-sre.delivery.puppetlabs.net/view/release-engineering/job/pipeline_puppetlabs-release_vanagon-build-project/
+
+pipeline {
+  agent  {
+    label 'k8s-worker'
+  }
+
+  parameters {
+    string(name: 'PROJECT', defaultValue: '', description: 'Name of release package to build (e.g. puppet6-release)')
+    string(name: 'BRANCH', defaultValue: 'main', description: 'Git ref of puppetlabs-release to build from (defaults to HEAD of main)')
+  }
+
+  options {
+    timestamps()
+    ansiColor('xterm')
+    preserveStashes(buildCount: 15)
+  }
+
+  environment {
+    ABS_TOKEN = credentials('always-be-scheduling-k8s')
+    ARTIFACTORY_API_KEY = credentials('api_token_for_jenkins_to_artifactory')
+  }
+
+  stages {
+    stage('BuildArtifacts') {
+      steps {
+        script {
+          sh "git fetch --tags"
+          sh "git checkout -f $BRANCH"
+          sh "./ci/vanagon_build"
+        }
+      }
+    }
+    stage('SignAndShip') {
+      steps {
+        script {
+          sh "./ci/vanagon_sign_and_ship"
+        }
+      }
+    }
+  }
+}
