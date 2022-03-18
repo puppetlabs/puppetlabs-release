@@ -11,6 +11,6 @@ def location_for(place)
 end
 
 gem 'json'
-gem 'packaging', *location_for(ENV['PACKAGING_LOCATION'] || '~> 0.106.0')
+gem 'packaging', '0.106.0'
 gem 'rake'
 gem 'vanagon', *location_for(ENV['VANAGON_LOCATION'] || '~> 0.21')
