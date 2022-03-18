@@ -25,8 +25,11 @@ pipeline {
         }
         stages {
           stage ('BuildJob') {
-            build(job: 'pipeline_puppetlabs-release_vanagon-build-project', parameters: [string(name: 'PROJECT', value: "${PROJECT}"), string(name: 'BRANCH', value: "${env.BRANCH_NAME}")])
+            steps {
+              build(job: 'pipeline_puppetlabs-release_vanagon-build-project', parameters: [string(name: 'PROJECT', value: "${PROJECT}"), string(name: 'BRANCH', value: "${env.BRANCH_NAME}")])
+            }
           }
+        }
       }
     }
   }
