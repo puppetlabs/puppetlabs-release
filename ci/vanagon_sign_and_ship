@@ -13,7 +13,7 @@ export VANAGON_FORCE_SIGNING=true
 eval "$(ssh-agent -t 24h -s)"
 ssh-add "${HOME}/.ssh/id_rsa"
 export TEAM=release
-mv ../puppetlabs-release ../$PROJECT
+mv /opt/jenkins-builds/puppetlabs-release /opt/jenkins-builds/$PROJECT
 
 export BUNDLE_PATH=.bundle/gems
 export BUNDLE_BIN=.bundle/bin
