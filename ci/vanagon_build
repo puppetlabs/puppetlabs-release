@@ -3,7 +3,7 @@
 # Builds all platforms for a vanagon project
 
 source /usr/local/rvm/scripts/rvm
-rvm use 2.5.1
+rvm use 2.5.9
 
 set -x
 
@@ -13,6 +13,7 @@ export VANAGON_FORCE_SIGNING=true
 eval "$(ssh-agent -t 24h -s)"
 ssh-add "${HOME}/.ssh/id_rsa"
 export TEAM=release
+export PROJECT_OVERRIDE=$PROJECT
 
 export BUNDLE_PATH=.bundle/gems
 export BUNDLE_BIN=.bundle/bin
@@ -39,5 +40,3 @@ platforms_string="${PLATFORMS[*]}"
 platforms_final="${platforms_string//${IFS:0:1}/,}"
 
 bundle exec vanagon build -p never $PROJECT $platforms_final
-
-ls output/el/6
