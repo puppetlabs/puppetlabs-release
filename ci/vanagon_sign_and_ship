@@ -22,4 +22,4 @@ bundle install
 
 bundle exec vanagon sign
 bundle exec vanagon ship
-bundle exec vanagon repo
+bundle exec repo
