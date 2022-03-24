@@ -29,6 +29,8 @@ export NONFINAL_REPO_NAME=$REPO_NAME
 export BUNDLE_PATH=.bundle/gems
 export BUNDLE_BIN=.bundle/bin
 
+export NIGHTLY_SHIP_TO_GCP=true
+
 bundle install
 
 case $NIGHTLY in
