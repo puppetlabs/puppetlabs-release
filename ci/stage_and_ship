@@ -28,7 +28,7 @@ export NONFINAL_REPO_NAME=$REPO_NAME
 
 export BUNDLE_PATH=.bundle/gems
 export BUNDLE_BIN=.bundle/bin
-export PACKAGING_LOCATION=git@github.com:puppetlabs/packaging#1.0.x
+export PACKAGING_LOCATION=git@github.com:isaac-hammes/packaging#test_new_apt_repo
 
 bundle install
 
