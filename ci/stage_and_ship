@@ -28,14 +28,13 @@ export NONFINAL_REPO_NAME=$REPO_NAME
 
 export BUNDLE_PATH=.bundle/gems
 export BUNDLE_BIN=.bundle/bin
-
-export NIGHTLY_SHIP_TO_GCP=true
 export PACKAGING_LOCATION=git@github.com:puppetlabs/packaging#1.0.x
 
 bundle install
 
 case $NIGHTLY in
   true)
+  export NIGHTLY_SHIP_TO_GCP=1
     bundle exec rake pl:jenkins:stage_nightly_release_packages --trace
     bundle exec rake pl:remote:update_nightly_repos --trace
     bundle exec rake pl:remote:deploy_nightlies_to_s3 --trace
