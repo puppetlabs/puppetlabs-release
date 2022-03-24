@@ -30,6 +30,7 @@ export BUNDLE_PATH=.bundle/gems
 export BUNDLE_BIN=.bundle/bin
 
 export NIGHTLY_SHIP_TO_GCP=true
+export PACKAGING_LOCATION=git@github.com:puppetlabs/packaging#1.0.x
 
 bundle install
 
