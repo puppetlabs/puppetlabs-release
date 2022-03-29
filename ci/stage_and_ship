@@ -7,6 +7,8 @@ set -ex
 
 git checkout -f $REF
 
+# Fixes shipping for older sha's. Job should be fixed in the future so that it does not
+# checkout the sha it is shipping.
 echo "require 'packaging'" > Rakefile
 echo "Pkg::Util::RakeUtils.load_packaging_tasks" >> Rakefile
 
@@ -28,7 +30,6 @@ export NONFINAL_REPO_NAME=$REPO_NAME
 
 export BUNDLE_PATH=.bundle/gems
 export BUNDLE_BIN=.bundle/bin
-export PACKAGING_LOCATION=git@github.com:puppetlabs/packaging#1.0.x
 
 bundle install
 
@@ -37,9 +38,6 @@ case $NIGHTLY in
     bundle exec rake pl:jenkins:stage_nightly_release_packages --trace
     bundle exec rake pl:remote:update_nightly_repos --trace
     bundle exec rake pl:remote:deploy_nightlies_to_s3 --trace
-    bundle exec rake pl:stage_nightly_debs --trace
-    bundle exec rake pl:remote:sync_apt_repo_to_gcp --trace
-
   ;;
   false)
     bundle exec rake pl:jenkins:stage_release_packages --trace
