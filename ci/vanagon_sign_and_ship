@@ -3,7 +3,7 @@
 # Signs and ships artifacts
 
 source /usr/local/rvm/scripts/rvm
-rvm use 2.5.1
+rvm use 2.5.9
 
 set -x
 
@@ -13,6 +13,7 @@ export VANAGON_FORCE_SIGNING=true
 eval "$(ssh-agent -t 24h -s)"
 ssh-add "${HOME}/.ssh/id_rsa"
 export TEAM=release
+export PROJECT_OVERRIDE=$PROJECT
 
 export BUNDLE_PATH=.bundle/gems
 export BUNDLE_BIN=.bundle/bin
@@ -21,3 +22,4 @@ bundle install
 
 bundle exec vanagon sign
 bundle exec vanagon ship
+bundle exec repo

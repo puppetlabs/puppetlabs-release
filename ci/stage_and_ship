@@ -1,9 +1,16 @@
 #!/bin/bash
 
 source /usr/local/rvm/scripts/rvm
-rvm use 2.5.1
+rvm use 2.5.9
 
 set -ex
+
+git checkout -f $REF
+
+# Fixes shipping for older sha's. Job should be fixed in the future so that it does not
+# checkout the sha it is shipping.
+echo "require 'packaging'" > Rakefile
+echo "Pkg::Util::RakeUtils.load_packaging_tasks" >> Rakefile
 
 if [[ -z $PROJECT ]]; then
   : === ERROR: Cannot continue with \$PROJECT unset.

@@ -11,11 +11,6 @@ pipeline {
     preserveStashes(buildCount: 15)
   }
 
-  environment {
-    ABS_TOKEN = credentials('always-be-scheduling-k8s')
-    ARTIFACTORY_API_KEY = credentials('api_token_for_jenkins_to_artifactory')
-  }
-
   stages {
     stage('BuildArtifacts') {
       matrix {
@@ -29,21 +24,11 @@ pipeline {
           }
         }
         stages {
-          stage('Build') {
+          stage ('BuildJob') {
             steps {
-              script {
-                sh "git fetch --tags"
-                sh "./ci/vanagon_build"
-              }
+              build(job: 'pipeline_puppetlabs-release_vanagon-build-project', parameters: [string(name: 'PROJECT', value: "${PROJECT}"), string(name: 'BRANCH', value: "${env.BRANCH_NAME}")])
             }
           }
-        }
-      }
-    }
-    stage('SignAndShip') {
-      steps {
-        script {
-          sh "./ci/vanagon_sign_and_ship"
         }
       }
     }
