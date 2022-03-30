@@ -10,7 +10,7 @@ component 'repo_definition' do |pkg, settings, platform|
 
   case
   when platform.is_deb?
-    destination_server = 'apt.repos.puppetlabs.com' unless target_repo =~ /-nightly$/
+    destination_server = 'apt.puppetlabs.com' unless target_repo =~ /-nightly$/
     url = "file://files/#{destination_server}/#{target_repo}.list.txt"
     install_configfile = [
       "#{target_repo}.list.txt",
