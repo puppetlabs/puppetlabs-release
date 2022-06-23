@@ -1,14 +1,36 @@
 #!/bin/bash
+##
+## Jenkins parameters:
+##
+## PROJECT:
+##  Name of the vanagon project (Examples: puppet7-release, puppet-nightly-release)
+##
+## REPO_NAME:
+##   Name of the yum and apt repositories to ship to (Examples: 'puppet6', 'puppet7', 'puppet')
+##
+## REF:
+##   Git ref of puppetlabs-release to ship from (defaults to HEAD of main)
+##   This is probably no longer needed.
+##
+## NIGHTLY (true/false)
+##   Indicates that this is for the 'nightlies' repo
 
 source /usr/local/rvm/scripts/rvm
 rvm use 2.5.9
 
 set -ex
 
+export TEAM=release
+export ANSWER_OVERRIDE=true
+export FOSS_ONLY=true
+export PROJECT_OVERRIDE=$PROJECT
+
+export BUNDLE_PATH=.bundle/gems
+export BUNDLE_BIN=.bundle/bin
+
+# Fixes shipping for older sha's. This probably is no longer needed
 git checkout -f $REF
 
-# Fixes shipping for older sha's. Job should be fixed in the future so that it does not
-# checkout the sha it is shipping.
 echo "require 'packaging'" > Rakefile
 echo "Pkg::Util::RakeUtils.load_packaging_tasks" >> Rakefile
 
@@ -22,27 +44,27 @@ if [[ -z $REPO_NAME ]]; then
   exit 1
 fi
 
-export TEAM=release
-export ANSWER_OVERRIDE=true
-export FOSS_ONLY=true
-export PROJECT_OVERRIDE=$PROJECT
-export NONFINAL_REPO_NAME=$REPO_NAME
-
-export BUNDLE_PATH=.bundle/gems
-export BUNDLE_BIN=.bundle/bin
-
 bundle install
 
 case $NIGHTLY in
   true)
-    bundle exec rake pl:jenkins:stage_nightly_release_packages --trace
-    bundle exec rake pl:remote:update_nightly_repos --trace
-    bundle exec rake pl:remote:deploy_nightlies_to_s3 --trace
+    # Refuse to ship non-nightly projects to nightly repos.
+    if [[ $PROJECT != *-nightly-* ]]; then
+      echo "Error: Non-nightly project, \"$PROJECT\" can not be shipped with NIGHTLY=true" 1>&2
+      exit 1
+    fi
+
+    # Normalize the NONFINAL_REPO_NAME by stripping 'nightly' if it exists, the assuring it does.
+    export NONFINAL_REPO_NAME=${REPO_NAME%%-nightly}-nightly
+
+    bundle exec rake --trace pl:jenkins:stage_nightly_release_packages
+    bundle exec rake --trace pl:remote:update_nightly_repos
+    bundle exec rake --trace pl:remote:deploy_nightlies_to_s3
   ;;
   false)
-    bundle exec rake pl:jenkins:stage_release_packages --trace
-    bundle exec rake pl:remote:update_yum_repo pl:remote:update_apt_repo --trace
-    bundle exec rake pl:remote:deploy_final_builds_to_s3 pl:remote:deploy_to_rsync_server --trace
+    bundle exec rake --trace pl:jenkins:stage_release_packages
+    bundle exec rake --trace pl:remote:update_yum_repo pl:remote:update_apt_repo
+    bundle exec rake --trace pl:remote:deploy_final_builds_to_s3 pl:remote:deploy_to_rsync_server
   ;;
   *)
     echo 'Error: Unrecognized value for $NIGHTLY: ' $NIGHTLY 1>&2
