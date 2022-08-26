@@ -1,6 +1,6 @@
 project 'puppet6-release' do |proj|
   proj.description 'Release packages for the Puppet 6 repository'
-  proj.release '20'
+  proj.release '21'
   proj.license 'ASL 2.0'
   proj.version '6.0.0'
   proj.vendor 'Puppet, Inc. <release@puppet.com>'

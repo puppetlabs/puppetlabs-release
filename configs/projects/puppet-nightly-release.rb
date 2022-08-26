@@ -1,6 +1,6 @@
 project 'puppet-nightly-release' do |proj|
   proj.description 'Release packages for the Puppet nightly repository'
-  proj.release '25'
+  proj.release '26'
   proj.license 'ASL 2.0'
   proj.version '1.0.0'
   proj.vendor 'Puppet Labs <info@puppetlabs.com>'
