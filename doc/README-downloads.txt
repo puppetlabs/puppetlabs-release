@@ -1,10 +1,10 @@
 Puppet, Inc. Non-Linux Packages
 
-For official documentation and setup instructions, see:
-https://puppet.com/docs/puppet/latest/puppet_platform.html
+For documentation and setup instructions, see:
+https://www.puppet.com/docs/puppet/latest/install_puppet.html#install_puppet
 
-For help, please open a ticket in the CPR project at https://tickets.puppet.com
-or reach out to us on Slack at https://slack.puppet.com/.
+For help, open a ticket in the CPR project at https://tickets.puppet.com
+or contact us on Slack at https://slack.puppet.com
 
 ## Layout
 
@@ -21,8 +21,7 @@ contains source packages for third-party dependencies in Puppet Enterprise.
 
 
 ## Linux
-Deb and rpm packages can be found at apt.puppet.com and yum.puppet.com,
-respectively.
+Deb and rpm packages can be found at apt.puppet.com and yum.puppet.com.
 
 ## Nightlies
 Nightly packages can be found at nightlies.puppet.com/downloads

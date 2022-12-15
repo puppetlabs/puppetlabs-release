@@ -1,13 +1,24 @@
-puppetlabs-release
-==================
+# puppetlabs-release
+
+Uses fpm to build puppetlabs-release packages for all the platforms that we support.
+
+See the [doc](./doc) directory for external documentation.
+
+## Continuous Integration
 
 Repo for yum and apt release packages with Puppet's signing key.
 
-See "Build and Ship a Release Package" in Confluence
-(https://confluence.puppetlabs.com/pages/viewpage.action?pageId=159652513)
-for details.
+Merging to the main branch runs the Jenkins job:
 
-NOTE: We must now set the project using the `PROJECT_OVERRIDE` environment
-variable when performing tasks with the packaging repo.
+https://jenkins-sre.delivery.puppetlabs.net/job/pipeline_puppetlabs-release_vanagon-build
 
-Pushes to this repository kickoff the https://jenkins-sre.delivery.puppetlabs.net/view/release-engineering/job/pipeline_puppetlabs-release_vanagon-build/ job that uses vanagon to build all of the projects.
+## Local builds
+
+  - bundle install
+  - bundle exec rake build
+
+`*.template` files for yum `.repo` and apt `.list` are merged with JSON configuration files from the `source` directory.
+
+This results in an intermediate `build` directory of small trees for fpm to create appropriate `.rpm` and `.deb` files from.
+
+The fpm output files are left in the `output` directory per conventions set by the `packaging` gem.

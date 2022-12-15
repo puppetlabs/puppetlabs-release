@@ -1,10 +1,10 @@
 Puppet, Inc. Apt Repositories
 
-For official documentation and setup instructions, see:
-https://puppet.com/docs/puppet/latest/puppet_platform.html
+For documentation and setup instructions, see:
+https://www.puppet.com/docs/puppet/latest/install_puppet.html#install_puppet
 
-For help, please open a ticket in the CPR project at https://tickets.puppet.com
-or reach out to us on Slack at https://slack.puppet.com/.
+For help, open a ticket in the CPR project at https://tickets.puppet.com
+or contact us on Slack at https://slack.puppet.com
 
 These repositories contain packages intended for public consumption. These
 packages contain software released by Puppet, Inc., e.g. Puppet, Puppet Server,
@@ -12,9 +12,10 @@ PuppetDB, etc.
 
 
 ## Installation
-To add the repo for your distribution, install the release package with the
-codename for your distribution. For example, on xenial:
-wget http://apt.puppetlabs.com/puppet-release-xenial.deb;
+To add the repo to a distribution, install the release package with the
+codename for the distribution. For example, on xenial:
+
+wget http://apt.puppetlabs.com/puppet-release-xenial.deb
 sudo dpkg -i puppet-release-xenial.deb
 sudo apt-get update
 
