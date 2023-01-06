@@ -1,0 +1,28 @@
+{
+  "project": "release-puppet6-stable",
+  "description": "Stable release packages for Puppet 6",
+  "version": "6.0.0",
+  "release": "1",
+
+  "license": "ASL 2.0",
+  "vendor": "Puppet, Inc. <release@puppet.com>",
+  "homepage": "https://www.puppet.com",
+  "target_repo": "puppet6-stable",
+
+  "debs": [
+    "buster",
+    "bullseye",
+    "bionic",
+    "focal",
+    "jammy"
+  ],
+
+  "conflicts": [
+    "puppet-release",
+    "puppet5-release",
+    "puppet6-release",
+    "puppet7-release",
+    "release-puppet-stable",
+    "release-puppet7-stable"
+  ]
+}

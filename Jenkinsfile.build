@@ -1,0 +1,29 @@
+pipeline {
+  agent  {
+    label 'k8s-worker'
+  }
+
+  options {
+    timestamps()
+    ansiColor('xterm')
+    preserveStashes(buildCount: 15)
+  }
+
+  environment {
+    ABS_TOKEN = credentials('always-be-scheduling-k8s')
+    ARTIFACTORY_API_KEY = credentials('api_token_for_jenkins_to_artifactory')
+  }
+
+  stages {
+    stage('Install Dependencies') {
+      steps {
+        sh 'sudo apt install --quiet --assume-yes rpm'
+      }
+    }
+    stage('Build') {
+      steps {
+        sh './ci/ci-build'
+      }
+    }
+  }
+}

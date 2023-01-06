@@ -1,0 +1,2 @@
+# Puppet __CODENAME__ Nightly Repository
+deb https://apt.repos.puppet.com/puppet7 __CODENAME__ nightly

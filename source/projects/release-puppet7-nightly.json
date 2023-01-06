@@ -1,0 +1,28 @@
+{
+  "project": "release-puppet7-nightly",
+  "description": "Release packages for the Puppet 7 nightly repository",
+  "version": "7.0.0",
+  "release": "1",
+
+  "license": "ASL 2.0",
+  "vendor": "Puppet, Inc. <release@puppet.com>",
+  "homepage": "https://www.puppet.com",
+  "target_repo": "puppet7-nightly",
+
+  "debs": [
+    "buster",
+    "bullseye",
+    "bionic",
+    "focal",
+    "jammy"
+  ],
+
+  "conflicts": [
+    "puppet-nightly-release",
+    "puppet5-nightly-release",
+    "puppet6-nightly-release",
+    "puppet7-nightly-release",
+    "release-puppet-nightly",
+    "release-puppet6-nightly"
+  ]
+}
