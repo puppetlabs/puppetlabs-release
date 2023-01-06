@@ -6,7 +6,7 @@ rvm use 2.7.5
 set -ex
 
 # Workaround for https://issues.jenkins.io/browse/JENKINS-64000
-git fetch --tags
+# git fetch --tags
 
 bundle config set --local path .
 bundle install
