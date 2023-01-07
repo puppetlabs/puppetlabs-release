@@ -12,7 +12,7 @@ pipeline {
   environment {
     ABS_TOKEN = credentials('always-be-scheduling-k8s')
     ARTIFACTORY_API_KEY = credentials('api_token_for_jenkins_to_artifactory')
-    // PS4 = "'+ \$(date --rfc-email) + '"
+    PS4 = /'+ `date --rfc-email` + '/
   }
 
   stages {
