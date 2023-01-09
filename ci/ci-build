@@ -3,6 +3,7 @@
 source /usr/local/rvm/scripts/rvm
 rvm use 2.7.5
 
+PS4='+ [\d \t] + '
 set -ex
 
 bundle config set --local path .
