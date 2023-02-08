@@ -172,9 +172,6 @@ function create_build_directory {
   package_type=$1
 
   case $project_name in
-    release-*)
-      template_source_directory=apt.repos.puppet.com
-      ;;
     puppet*-nightly*)
       template_source_directory=nightlies.puppet.com
       ;;
