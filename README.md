@@ -8,9 +8,9 @@ See the [doc](./doc) directory for external documentation.
 
 Repo for yum and apt release packages with Puppet's signing key.
 
-Merging to the main branch runs the Jenkins job:
+Pull requests run here:
 
-https://jenkins-sre.delivery.puppetlabs.net/job/pipeline_puppetlabs-release_vanagon-build
+https://jenkins-sre.delivery.puppetlabs.net/job/pipeline_puppetlabs-release_build
 
 ## Local builds
 
