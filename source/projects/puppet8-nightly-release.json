@@ -1,24 +1,20 @@
 {
-  "project": "puppet6-nightly-release",
-  "description": "Release packages for the Puppet 6 nightly repository",
+  "project": "puppet8-nightly-release",
+  "description": "Release packages for the Puppet 8 nightly repository",
   "version": "1.0.0",
-  "release": "24",
+  "release": "1",
 
   "license": "ASL 2.0",
   "vendor": "Puppet, Inc. <release@puppet.com>",
   "homepage": "https://www.puppet.com",
-  "target_repo": "puppet6-nightly",
+  "target_repo": "puppet8-nightly",
 
   "debs": [
     "buster",
-    "bullseye",
-    "bionic",
-    "focal",
-    "jammy"
+    "bullseye"
   ],
 
   "rpms": [
-    "el-6",
     "el-7",
     "el-8",
     "el-9",
@@ -26,7 +22,6 @@
   ],
 
   "sles": [
-    "sles-11",
     "sles-12",
     "sles-15"
   ],
@@ -34,7 +29,13 @@
   "conflicts": [
     "puppet-nightly-release",
     "puppet5-nightly-release",
-    "puppet7-nightly-release",
-    "puppet8-nightly-release"
+    "puppet6-nightly-release",
+    "puppet7-nightly-release"
+  ],
+
+  "replaces": [
+    "puppet5-nightly-release",
+    "puppet6-nightly-release",
+    "puppet7-nightly-release"
   ]
 }
