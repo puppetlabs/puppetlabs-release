@@ -2,10 +2,10 @@
   "project": "puppet-nightly-release",
   "description": "Release packages for the Puppet nightly repository",
   "version": "1.0.0",
-  "release": "28",
+  "release": "29",
 
   "license": "ASL 2.0",
-  "vendor": "Puppet, Inc. <info@puppet.com>",
+  "vendor": "Puppet By Perforce <release@puppet.com>",
   "homepage": "https://www.puppet.com",
   "target_repo": "puppet-nightly",
 
@@ -34,11 +34,13 @@
   "conflicts": [
     "puppet5-nightly-release",
     "puppet6-nightly-release",
-    "puppet7-nightly-release"
+    "puppet7-nightly-release",
+    "puppet8-nightly-release"
   ],
 
   "replaces": [
     "puppet5-nightly-release",
-    "puppet6-nightly-release"
+    "puppet6-nightly-release",
+    "puppet7-nightly-release"
   ]
 }
