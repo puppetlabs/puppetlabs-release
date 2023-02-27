@@ -92,7 +92,12 @@ function create_deb {
   mkdir --parents "$output_directory"
 
   fpm --name "$project_name" --chdir "$build_directory" \
-      --version "$project_version" --iteration "$project_release.$os_name" \
+      --version "$project_version" \
+      --iteration "$project_release$os_name" \
+      --category 'System Environment/Base' \
+      --description "$project_description" \
+      --vendor "$project_vendor" \
+      --maintainer "$project_vendor" \
       --category 'System Environment/Base' \
       --description "$project_description" \
       --vendor "$project_vendor" --maintainer "$project_vendor" \
@@ -223,6 +228,7 @@ function check_project {
 # with the needed files and generate appropriate .rpm or .deb packages.
 function build_project {
   project_name=$1
+  project_name_minus_release=${project_name::-8}
   project_json=$source_directory/projects/$project_name.json
 
   rpms=$(jq --raw-output '.rpms[]?' "$project_json")
@@ -232,7 +238,7 @@ function build_project {
   for rpm in $rpms; do
     os_name=$(awk -F- '{ print $1 }' <<< "$rpm")
     os_version=$(awk -F- '{ print $2 }' <<< "$rpm")
-    output_directory="$output_base_directory/$os_name/$os_version/$project_name/noarch"
+    output_directory="$project_name/$output_base_directory/$os_name/$os_version/$project_name_minus_release/noarch"
     create_build_directory 'rpm'
     create_rpm
   done
@@ -240,14 +246,14 @@ function build_project {
   for sles_thing in $sles; do
     os_name=$(awk -F- '{ print $1 }' <<< "$sles_thing")
     os_version=$(awk -F- '{ print $2 }' <<< "$sles_thing")
-    output_directory="$output_base_directory/$os_name/$os_version/$project_name/noarch"
+    output_directory="$project_name/$output_base_directory/$os_name/$os_version/$project_name_minus_release/noarch"
     create_build_directory 'sles'
     create_rpm
   done
 
   for deb in $debs; do
     os_name=$deb
-    output_directory="$output_base_directory/$os_name/$project_name/noarch"
+    output_directory="$project_name/$output_base_directory/deb/$os_name/$project_name_minus_release/noarch"
     create_build_directory 'deb'
     create_deb
   done

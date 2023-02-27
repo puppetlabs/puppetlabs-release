@@ -18,17 +18,31 @@ end
 
 desc 'Sign packages'
 task :sign do
-   Pkg::Util::RakeUtils.invoke_task('pl:jenkins:sign_all', 'output')
+  Dir.glob('source/projects/*.json').each do |json_file_name|
+    project_name = File.basename(json_file_name, '.json')
+    Dir.chdir(project_name) do
+      Pkg::Util::RakeUtils.invoke_task('pl:jenkins:sign_all', 'output')
+    end
+  end
 end
 
 desc 'Upload packages to builds and Artifactory'
 task :ship do
-  Pkg::Util::RakeUtils.invoke_task('pl:jenkins:ship', 'artifacts', 'output')
-  Pkg::Util::RakeUtils.invoke_task('pl:jenkins:ship_to_artifactory', 'output')
+  Dir.glob('source/projects/*.json').each do |json_file_name|
+    project_name = File.basename(json_file_name, '.json')
+    ENV['PROJECT_OVERRIDE'] = project_name
+    Dir.chdir(project_name) do
+      Pkg::Util::RakeUtils.invoke_task('pl:jenkins:ship', 'artifacts', 'output')
+      Pkg::Util::RakeUtils.invoke_task('pl:jenkins:ship_to_artifactory', 'output')
+    end
+  end
 end
 
 desc 'Clean up build and output directories'
 task :clean do
   rm_rf 'build'
-  rm_rf 'output'
+  Dir.glob('source/projects/*.json').each do |json_file_name|
+    project_name = File.basename(json_file_name, '.json')
+    rm_rf project_name
+  end
 end
