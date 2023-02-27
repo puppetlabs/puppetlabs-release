@@ -92,10 +92,12 @@ function create_deb {
   mkdir --parents "$output_directory"
 
   fpm --name "$project_name" --chdir "$build_directory" \
-      --version "$project_version" --iteration "$project_release.$os_name" \
+      --version "$project_version" \
+      --iteration "$project_release$os_name" \
       --category 'System Environment/Base' \
       --description "$project_description" \
-      --vendor "$project_vendor" --maintainer "$project_vendor" \
+      --vendor "$project_vendor" \
+      --maintainer "$project_vendor" \
       --url "$project_url" \
       --architecture noarch --license "$project_license" \
       $conflicts_flags \
