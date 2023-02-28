@@ -133,12 +133,13 @@ function fpm_log_format {
 function install_deb_key_files {
   project_target_repo=$(jq --raw-output .target_repo "$project_json")
   install -D "$source_directory/keyring.gpg" \
-    "$build_directory/etc/apt/trusted.gpg.d/$project_target_repo-keyring.gpg"
+      "$build_directory/etc/apt/trusted.gpg.d/$project_target_repo-keyring.gpg"
 }
 
 function install_rpm_key_files {
-  install -D --target-directory="$build_directory/etc/pki/rpm-gpg" \
-          "$source_directory"/RPM-GPG-KEY*
+  project_target_repo=$(jq --raw-output .target_repo "$project_json")
+  install -D --target-directory="$build_directory/etc/pki/rpm-gpg/RPM-GPG-KEY-2025-04-06-$project_target_repo-release" \
+      "$source_directory"/RPM-GPG-KEY*
 }
 
 ##
@@ -228,7 +229,7 @@ function check_project {
 # with the needed files and generate appropriate .rpm or .deb packages.
 function build_project {
   project_name=$1
-  project_name_minus_release=${project_name::-8}
+  project_name_minus_release=${project_name/%-release/}
   project_json=$source_directory/projects/$project_name.json
 
   rpms=$(jq --raw-output '.rpms[]?' "$project_json")
