@@ -98,9 +98,6 @@ function create_deb {
       --description "$project_description" \
       --vendor "$project_vendor" \
       --maintainer "$project_vendor" \
-      --category 'System Environment/Base' \
-      --description "$project_description" \
-      --vendor "$project_vendor" --maintainer "$project_vendor" \
       --url "$project_url" \
       --architecture noarch --license "$project_license" \
       $conflicts_flags \
