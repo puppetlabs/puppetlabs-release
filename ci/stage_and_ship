@@ -28,46 +28,39 @@ export PROJECT_OVERRIDE=$PROJECT
 export BUNDLE_PATH=.bundle/gems
 export BUNDLE_BIN=.bundle/bin
 
-# Fixes shipping for older sha's. This probably is no longer needed
 git checkout -f $REF
-
-echo "require 'packaging'" > Rakefile
-echo "Pkg::Util::RakeUtils.load_packaging_tasks" >> Rakefile
 
 if [[ -z $PROJECT ]]; then
   : === ERROR: Cannot continue with \$PROJECT unset.
   exit 1
 fi
 
-if [[ -z $REPO_NAME ]]; then
-  : === ERROR: Cannot continue with \$REPO_NAME unset.
+if [[ -z $REF ]]; then
+  : === ERROR: Cannot continue with \$REF unset.
   exit 1
 fi
 
 bundle install
 
-case $NIGHTLY in
-  true)
-    # Refuse to ship non-nightly projects to nightly repos.
-    if [[ $PROJECT != *-nightly-* ]]; then
-      echo "Error: Non-nightly project, \"$PROJECT\" can not be shipped with NIGHTLY=true" 1>&2
-      exit 1
-    fi
-
+case $PROJECT in
+  puppet*-nightly-release)
     # Normalize the NONFINAL_REPO_NAME by stripping 'nightly' if it exists, the assuring it does.
     export NONFINAL_REPO_NAME=${REPO_NAME%%-nightly}-nightly
+    export REPO_NAME=${PROJECT/%-release/}
 
     bundle exec rake --trace pl:jenkins:stage_nightly_release_packages
     bundle exec rake --trace pl:remote:update_nightly_repos
     bundle exec rake --trace pl:remote:deploy_nightlies_to_s3
   ;;
-  false)
+  puppet-tools-release | puppet-release | puppet?-release)
+    export REPO_NAME=${PROJECT::-8}
+
     bundle exec rake --trace pl:jenkins:stage_release_packages
     bundle exec rake --trace pl:remote:update_yum_repo pl:remote:update_apt_repo
     bundle exec rake --trace pl:remote:deploy_final_builds_to_s3 pl:remote:deploy_to_rsync_server
   ;;
   *)
-    echo 'Error: Unrecognized value for $NIGHTLY: ' $NIGHTLY 1>&2
+    echo 'Error: Unrecognized value for project.'
     exit 1
   ;;
 esac
