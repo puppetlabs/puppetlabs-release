@@ -45,15 +45,15 @@ bundle install
 case $PROJECT in
   puppet*-nightly-release)
     # Normalize the NONFINAL_REPO_NAME by stripping 'nightly' if it exists, the assuring it does.
-    export NONFINAL_REPO_NAME=${REPO_NAME%%-nightly}-nightly
     export REPO_NAME=${PROJECT/%-release/}
+    export NONFINAL_REPO_NAME=${REPO_NAME%%-nightly}-nightly
 
     bundle exec rake --trace pl:jenkins:stage_nightly_release_packages
     bundle exec rake --trace pl:remote:update_nightly_repos
     bundle exec rake --trace pl:remote:deploy_nightlies_to_s3
   ;;
   puppet-tools-release | puppet-release | puppet?-release)
-    export REPO_NAME=${PROJECT::-8}
+    export REPO_NAME=${PROJECT/%-release/}
 
     bundle exec rake --trace pl:jenkins:stage_release_packages
     bundle exec rake --trace pl:remote:update_yum_repo pl:remote:update_apt_repo
