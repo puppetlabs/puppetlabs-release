@@ -123,8 +123,6 @@ function fpm_log_format {
       --expression='s/\}$//'
 }
 
-
-
 ##
 # Install GPG key files, as appropriate, into the build directory.
 function install_deb_key_files {
@@ -135,8 +133,20 @@ function install_deb_key_files {
 
 function install_rpm_key_files {
   project_target_repo=$(jq --raw-output .target_repo "$project_json")
-  install -D --target-directory="$build_directory/etc/pki/rpm-gpg/RPM-GPG-KEY-2025-04-06-$project_target_repo-release" \
-      "$source_directory"/RPM-GPG-KEY*
+
+  rpm_gpg_source_file=RPM-GPG-KEY-puppet-2025-04-06.pub
+  rpm_gpg_destination_file=RPM-GPG-KEY-2025-04-06-$project_target_repo-release
+  rpm_gpg_source_path="$source_directory/$rpm_gpg_source_file"
+  rpm_gpg_destination_path="$build_directory/etc/pki/rpm-gpg/$rpm_gpg_destination_file"
+  install -D "$rpm_gpg_source_path" "$rpm_gpg_destination_path"
+
+  # We don't need to be shipping this anymore but need to remove it first from the
+  # packages
+  obsolete_rpm_gpg_source_file=RPM-GPG-KEY-puppet.asc
+  obsolete_rpm_gpg_destination_file=RPM-GPG-KEY-$project_target_repo-release
+  obsolete_rpm_gpg_source_path="$source_directory/$obsolete_rpm_gpg_source_file"
+  obsolete_rpm_gpg_destination_path="$build_directory/etc/pki/rpm-gpg/$obsolete_rpm_gpg_destination_file"
+  install -D "$obsolete_rpm_gpg_source_path" "$obsolete_rpm_gpg_destination_path"
 }
 
 ##

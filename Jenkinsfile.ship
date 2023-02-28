@@ -9,7 +9,7 @@ pipeline {
     string(
       name: 'PROJECT',
       defaultValue: '',
-      description: 'Name of release package to ship (example: puppet6-release)'
+      description: 'Name of release package to ship (example: puppet8-release)'
     )
     string(
       name: 'REF',
@@ -28,7 +28,7 @@ pipeline {
     stage('Ship') {
       steps {
         script {
-          sh "./ci/stage_and_ship"
+          sh "./ci/stage-and-ship"
         }
       }
     }
