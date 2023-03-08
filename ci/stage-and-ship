@@ -6,7 +6,7 @@
 ##  Name of the vanagon project (Examples: puppet7-release, puppet-nightly-release)
 ##
 ## REPO_NAME:
-##   Name of the yum and apt repositories to ship to (Examples: 'puppet6', 'puppet7', 'puppet')
+##   Name of the yum and apt repositories to ship to (Examples: 'puppet7', 'puppet8', 'puppet')
 ##
 ## REF:
 ##   Git ref of puppetlabs-release to ship from (defaults to HEAD of main)
