@@ -162,8 +162,8 @@ function install_rpm_repo_file {
 }
 
 function install_sles_repo_file {
-  repo_file_source="$source_directory/$template_source_directory/$project_name.repo.template"
-  repo_file_build="$build_directory/etc/zypp.repos.d/$project_name.repo"
+  repo_file_source="$source_directory/$template_source_directory/$project_name.sles.template"
+  repo_file_build="$build_directory/etc/zypp/repos.d/$project_name.repo"
 
   mkdir --parents "$(dirname "$repo_file_build")"
   sed -e "s/__OS_NAME__/$os_name/g" -e "s/__OS_VERSION__/$os_version/g" \
