@@ -2,7 +2,7 @@
   "project": "puppet-nightly-release",
   "description": "Release packages for the Puppet nightly repository",
   "version": "1.0.0",
-  "release": "29",
+  "release": "30",
 
   "license": "ASL 2.0",
   "vendor": "Puppet By Perforce <release@puppet.com>",
