@@ -16,7 +16,7 @@
 ##   Indicates that this is for the 'nightlies' repo
 
 source /usr/local/rvm/scripts/rvm
-rvm use 2.5.9
+rvm use 2.7.5
 
 set -ex
 
