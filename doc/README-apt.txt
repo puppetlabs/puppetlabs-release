@@ -15,7 +15,7 @@ PuppetDB, etc.
 To add the repo to a distribution, install the release package with the
 codename for the distribution. For example, on xenial:
 
-wget http://apt.puppetlabs.com/puppet-release-xenial.deb
+wget http://apt.puppet.com/puppet-release-xenial.deb
 sudo dpkg -i puppet-release-xenial.deb
 sudo apt-get update
 
@@ -29,7 +29,7 @@ aws s3 sync --exclude '*.html' s3://apt.puppetlabs.com /var/apt
 rsync -a rsync://rsync.puppet.com/packages/apt /var/apt
 
 # HTTPS via CloudFront (fastest outside of US):
-wget -r https://apt.puppetlabs.com
+wget -r https://apt.puppet.com
 
 
 ## Nightlies

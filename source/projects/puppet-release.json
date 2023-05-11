@@ -2,11 +2,11 @@
   "project": "puppet-release",
   "description": "Release packages for the Puppet repository",
   "version": "1.0.0",
-  "release": "26",
+  "release": "27",
 
   "license": "ASL 2.0",
   "vendor": "Puppet, Inc. <release@puppet.com>",
-  "homepage": "https://www.puppetlabs.com",
+  "homepage": "https://www.puppet.com",
   "target_repo": "puppet",
 
   "debs": [

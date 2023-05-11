@@ -2,11 +2,11 @@
   "project": "puppet7-release",
   "description": "Release packages for the Puppet 7 repository",
   "version": "7.0.0",
-  "release": "12",
+  "release": "13",
 
   "license": "ASL 2.0",
   "vendor": "Puppet, Inc. <release@puppet.com>",
-  "homepage": "https://www.puppetlabs.com",
+  "homepage": "https://www.puppet.com",
   "target_repo": "puppet7",
 
   "debs": [

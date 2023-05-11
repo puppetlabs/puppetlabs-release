@@ -15,7 +15,7 @@ PuppetDB, etc.
 To add the repo to a distribution, install the release package with the
 version for the distribution. For example, on centos 7:
 
-sudo rpm -Uvh https://yum.puppetlabs.com/puppet-release-el-7.noarch.rpm
+sudo rpm -Uvh https://yum.puppet.com/puppet-release-el-7.noarch.rpm
 
 
 ## Recommendations for Mirroring
@@ -27,7 +27,7 @@ aws s3 sync --exclude '*.html' s3://yum.puppetlabs.com /var/yum
 rsync -a rsync://rsync.puppet.com/packages/yum /var/yum
 
 # HTTPS via CloudFront (fastest outside of US):
-wget -r https://yum.puppetlabs.com
+wget -r https://yum.puppet.com
 
 
 ## Nightlies
