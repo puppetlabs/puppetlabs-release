@@ -191,10 +191,10 @@ function create_build_directory {
     puppet*-release)
       case $package_type in
         rpm|sles)
-          template_source_directory=yum.puppetlabs.com
+          template_source_directory=yum.puppet.com
           ;;
         deb)
-          template_source_directory=apt.puppetlabs.com
+          template_source_directory=apt.puppet.com
           ;;
       esac
       ;;
