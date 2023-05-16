@@ -55,6 +55,7 @@ function create_rpm {
       --vendor "$project_vendor" --maintainer "$project_vendor" \
       --url "$project_url" \
       --architecture noarch --license "$project_license" \
+      --rpm-digest sha256 \
       $conflicts_flags \
       $replaces_flags \
       --input-type dir \
