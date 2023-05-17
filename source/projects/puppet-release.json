@@ -2,7 +2,7 @@
   "project": "puppet-release",
   "description": "Release packages for the Puppet repository",
   "version": "1.0.0",
-  "release": "27",
+  "release": "28",
 
   "license": "ASL 2.0",
   "vendor": "Puppet, Inc. <release@puppet.com>",
