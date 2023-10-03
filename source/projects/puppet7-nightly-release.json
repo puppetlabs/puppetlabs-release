@@ -2,7 +2,7 @@
   "project": "puppet7-nightly-release",
   "description": "Release packages for the Puppet 7 nightly repository",
   "version": "1.0.0",
-  "release": "21",
+  "release": "22",
 
   "license": "ASL 2.0",
   "vendor": "Puppet, Inc. <release@puppet.com>",

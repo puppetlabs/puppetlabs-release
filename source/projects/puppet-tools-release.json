@@ -2,7 +2,7 @@
   "project": "puppet-tools-release",
   "description": "Release packages for the puppet-tools repository",
   "version": "1.0.0",
-  "release": "11",
+  "release": "12",
 
   "license": "ASL 2.0",
   "vendor": "Puppet, Inc. <release@puppet.com>",
