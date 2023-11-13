@@ -11,7 +11,7 @@ pipeline {
 
   environment {
     ABS_TOKEN = credentials('always-be-scheduling-k8s')
-    ARTIFACTORY_API_KEY = credentials('api_token_for_jenkins_to_artifactory')
+    ARTIFACTORY_API_KEY = credentials('jenkins_local_artifactory_api_token')
   }
 
   stages {
