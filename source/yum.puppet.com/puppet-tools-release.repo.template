@@ -2,6 +2,5 @@
 name=Puppet Tools Repository __OS_NAME__ __OS_VERSION__ - $basearch
 baseurl=http://yum.puppet.com/puppet-tools/__OS_NAME__/__OS_VERSION__/$basearch
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-2025-04-06-puppet-tools-release
-       file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-tools-release
 enabled=1
 gpgcheck=1
