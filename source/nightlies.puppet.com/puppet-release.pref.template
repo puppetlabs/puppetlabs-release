@@ -1,0 +1,3 @@
+Package: puppet-agent
+Pin: release o=Puppet*
+Pin-Priority: 1001
