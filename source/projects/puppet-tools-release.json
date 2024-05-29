@@ -2,7 +2,7 @@
   "project": "puppet-tools-release",
   "description": "Release packages for the puppet-tools repository",
   "version": "1.0.0",
-  "release": "14",
+  "release": "15",
 
   "license": "ASL 2.0",
   "vendor": "Puppet, Inc. <release@puppet.com>",
@@ -23,6 +23,7 @@
     "el-8",
     "el-9",
     "fedora-36",
+    "fedora-40",
     "amazon-2023"
   ],
 
