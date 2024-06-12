@@ -109,8 +109,12 @@ function create_deb {
 }
 
 # Make fpm output a bit easier to read, mostly for the sake of Jenkins console output.
-# Sample input:
-#  {:timestamp=>"2023-01-03T19:08:56.015826+0000", :message=>"Created package", :path=>"output/puppet6-nightly-release_1.0.0-22bullseye_all.deb"}
+# Sample input (but with some newlines added for readability)
+#  {
+#    :timestamp=>"2023-01-03T19:08:56.015826+0000",
+#    :message=>"Created package",
+#    :path=>"output/puppet6-nightly-release_1.0.0-22bullseye_all.deb"
+#  }
 # Sample output:
 # [2023-01-03T19:08:56.015826+0000] Created package "output/puppet6-nightly-release_1.0.0-22bullseye_all.deb"
 
@@ -171,6 +175,15 @@ function install_deb_list_file {
   sed -e "s/__CODENAME__/$os_name/g" "$list_file_source" > "$list_file_build"
 }
 
+## See RE-16301
+function install_deb_pref_file {
+  pref_file_source="$source_directory/$template_source_directory/puppet-release.pref.template"
+  pref_file_build="$build_directory/etc/apt/preferences.d/puppet-release.pref"
+
+  mkdir --parents "$(dirname "$pref_file_build")"
+  cp "$pref_file_source" "$pref_file_build"
+}
+
 # Based on the package type ('rpm', 'deb' or 'sles') and the project name,
 # copy static files and expand templates into the 'build' directory that fpm
 # can later package.
@@ -207,6 +220,7 @@ function create_build_directory {
       build_directory="$build_base_directory/$os_name/$project_name"
       install_deb_key_files
       install_deb_list_file
+      install_deb_pref_file
       ;;
     sles)
       build_directory="$build_base_directory/$os_name/$os_version/$project_name"
@@ -240,7 +254,7 @@ function build_project {
     os_name=$(awk -F- '{ print $1 }' <<< "$rpm")
     os_version=$(awk -F- '{ print $2 }' <<< "$rpm")
     output_directory="$project_name/$output_base_directory/$os_name/$os_version/$project_name_minus_release/noarch"
-    create_build_directory 'rpm'
+    create_build_directory rpm
     create_rpm
   done
 
@@ -248,14 +262,14 @@ function build_project {
     os_name=$(awk -F- '{ print $1 }' <<< "$sles_thing")
     os_version=$(awk -F- '{ print $2 }' <<< "$sles_thing")
     output_directory="$project_name/$output_base_directory/$os_name/$os_version/$project_name_minus_release/noarch"
-    create_build_directory 'sles'
+    create_build_directory sles
     create_rpm
   done
 
   for deb in $debs; do
     os_name=$deb
     output_directory="$project_name/$output_base_directory/deb/$os_name/$project_name_minus_release/noarch"
-    create_build_directory 'deb'
+    create_build_directory deb
     create_deb
   done
 }
