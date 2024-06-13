@@ -2,7 +2,7 @@
   "project": "puppet-nightly-release",
   "description": "Release packages for the Puppet nightly repository",
   "version": "1.0.0",
-  "release": "35",
+  "release": "36",
 
   "license": "ASL 2.0",
   "vendor": "Puppet By Perforce <release@puppet.com>",
@@ -15,7 +15,8 @@
     "bookworm",
     "bionic",
     "focal",
-    "jammy"
+    "jammy",
+    "noble"
   ],
 
   "rpms": [
