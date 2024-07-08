@@ -175,7 +175,7 @@ function install_deb_list_file {
   sed -e "s/__CODENAME__/$os_name/g" "$list_file_source" > "$list_file_build"
 }
 
-## See RE-16301
+## See RE-16301 & RE-16379
 function install_deb_pref_file {
   pref_file_source="$source_directory/$template_source_directory/puppet-release.pref.template"
   pref_file_build="$build_directory/etc/apt/preferences.d/puppet-release.pref"
@@ -189,6 +189,11 @@ function install_deb_pref_file {
 # can later package.
 function create_build_directory {
   package_type=$1
+  want_pref_file=true
+
+  if [[ $project_name == puppet-tools-release ]]; then
+    want_pref_file=false
+  fi
 
   case $project_name in
     puppet*-nightly*)
@@ -220,7 +225,9 @@ function create_build_directory {
       build_directory="$build_base_directory/$os_name/$project_name"
       install_deb_key_files
       install_deb_list_file
-      install_deb_pref_file
+      if [[ $want_pref_file == true ]]; then
+        install_deb_pref_file
+      fi
       ;;
     sles)
       build_directory="$build_base_directory/$os_name/$os_version/$project_name"
