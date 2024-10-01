@@ -133,7 +133,7 @@ function fpm_log_format {
 function install_deb_key_files {
   project_target_repo=$(jq --raw-output .target_repo "$project_json")
   install -D "$source_directory/keyring.gpg" \
-      "$build_directory/etc/apt/trusted.gpg.d/$project_target_repo-keyring.gpg"
+      "$build_directory/etc/apt/keyrings/puppetlabs-keyring.gpg"
 }
 
 function install_rpm_key_files {

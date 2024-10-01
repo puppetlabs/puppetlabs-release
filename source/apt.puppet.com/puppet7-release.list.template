@@ -1,2 +1,2 @@
 # Puppet 7 __CODENAME__ Repository
-deb http://apt.puppet.com __CODENAME__ puppet7
+deb [signed-by=/etc/apt/keyrings/puppetlabs-keyring.gpg] http://apt.puppet.com __CODENAME__ puppet7
