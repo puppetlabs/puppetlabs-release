@@ -97,6 +97,8 @@ function create_deb {
       --iteration "$project_release$os_name" \
       --category 'System Environment/Base' \
       --description "$project_description" \
+      --config-files /etc \
+      --deb-no-default-config-files \
       --vendor "$project_vendor" \
       --maintainer "$project_vendor" \
       --url "$project_url" \
@@ -301,10 +303,6 @@ rm -rf $build_base_directory $output_base_directory
 for project_name in "$@"; do
   check_project "$project_name"
 done
-
-  echo "===
-  $script: Note: warnings about debian config files in /etc are expected.
-== " >&2
 
 # Now, build it.
 for project_name in "$@"; do
