@@ -1,2 +1,2 @@
 # Puppet Tools __CODENAME__ Repository
-deb http://apt.puppet.com __CODENAME__ puppet-tools
+deb [signed-by=/etc/apt/keyrings/puppetlabs-keyring.gpg] http://apt.puppet.com __CODENAME__ puppet-tools
