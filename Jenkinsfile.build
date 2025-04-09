@@ -17,6 +17,8 @@ pipeline {
   stages {
     stage('Install Dependencies') {
       steps {
+        sh "sudo sed -i -e 's/^deb/deb [trusted=yes]/' /etc/apt/sources.list.d/puppet-tools-release.list"
+        sh 'sudo apt update'
         sh 'sudo apt install --quiet --assume-yes rpm'
       }
     }
